@@ -1,13 +1,11 @@
-import { useState, useEffect } from "react";
 import "./index.css";
-import Cards from "./components/Cards";
-import SunIcon from "./assets/brand-sun.svg";
-import MoonIcon from "./assets/brand-moon.svg";
+import AnimeCards from "./components/AnimeCards";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import AnimeCards from "./components/AnimeCards";
-
+import { useEffect, useState } from "react";
 export default function App() {
   const [lightMode, setLightMode] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleLightMode = () => {
     setLightMode(!lightMode);
@@ -28,12 +26,13 @@ export default function App() {
 
   return (
     <div className="App">
-      <nav className="navbar">
-        <button className="toggle-mode" onClick={toggleLightMode}>
-          {lightMode ? <img src={MoonIcon} alt="Dark Mode" /> : <img src={SunIcon} alt="Light Mode" />}
-        </button>
-      </nav>
-      <Cards />
+      <Navbar
+        lightMode={lightMode}
+        toggleLightMode={toggleLightMode}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
+      <AnimeCards searchTerm={searchTerm} />
       <Footer />
     </div>
   );

@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PropTypes from "prop-types"; // Import PropTypes
 
-const AnimeCards = () => {
+import "./Cards.css";
+
+const AnimeCards = ({ searchTerm }) => {
   const [animeList, setAnimeList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
   const cardsPerPage = 10;
 
   useEffect(() => {
     const fetchAnimeData = async () => {
       try {
-        const response = await axios.get("https://api.jikan.moe/v4/anime/1/full");
-        const animeData = response.data.data; // Extracting anime data from the response
+        const response = await axios.get("https://api.jikan.moe/v4/anime");
+        const animeData = response.data.data || []; // Extract anime data from the response
 
-        setAnimeList([animeData]); // Storing the anime data in state
+        setAnimeList(animeData); // Storing the anime data in state
       } catch (error) {
         setError(error.message);
       } finally {
@@ -26,16 +28,15 @@ const AnimeCards = () => {
     fetchAnimeData();
   }, []);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
+  // Apply search filter
   const filteredAnimeList = animeList.filter((anime) => anime.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
+  // Calculate pagination
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentAnimeList = filteredAnimeList.slice(indexOfFirstCard, indexOfLastCard);
 
+  // Handle page click
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) return <div>Loading...</div>;
@@ -43,15 +44,18 @@ const AnimeCards = () => {
 
   return (
     <div>
-      <input type="text" placeholder="Search by title..." value={searchTerm} onChange={handleSearchChange} />
       <div className="cards-grid">
         {currentAnimeList.map((anime) => (
           <div key={anime.mal_id} className="card">
-            <img src={anime.images.large_image_url} alt={anime.title} />
-            <h2>{anime.title}</h2>
-            <p>Type: {anime.type}</p>
-            <p>Score: {anime.score}</p>
-            <p>Genres: {anime.genres.map((genre) => genre.name).join(", ")}</p>
+            <div className="card-image-container">
+              <img src={anime.images.jpg.image_url} alt={anime.title} className="card-image" />
+            </div>
+            <div className="card-info">
+              <h2 className="card-title">{anime.title}</h2>
+              <p className="card-tags">Type: {anime.type}</p>
+              <p className="card-tags">Score: {anime.score}</p>
+              <p className="card-description">Genres: {anime.genres.map((genre) => genre.name).join(", ")}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -64,6 +68,10 @@ const AnimeCards = () => {
       </div>
     </div>
   );
+};
+
+AnimeCards.propTypes = {
+  searchTerm: PropTypes.string.isRequired, // Validate searchTerm prop
 };
 
 export default AnimeCards;

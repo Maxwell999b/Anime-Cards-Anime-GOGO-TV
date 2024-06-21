@@ -1,0 +1,58 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: #fff;
+  display: flex;
+  height: 5rem;
+  background: #161619;
+  border-radius: 10px 10px 0px 0px;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 0rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.light-mode .navbar {
+  background: #d6d8e3;
+}
+
+.footer--links__icon {
+  height: 5vh;
+}
+.logo {
+  flex: 1;
+}
+
+.search-bar {
+  flex: 1;
+  margin: 0 auto;
+}
+input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 24px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #00a675;
+  transition: border-color 0.3s ease;
+}
+.toggle-mode {
+  flex: 1;
+  text-align: right;
+}
+
+.toggle-mode-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.toggle-mode-btn img {
+  width: 24px;
+  height: auto;
+}

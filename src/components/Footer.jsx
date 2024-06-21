@@ -1,5 +1,5 @@
 import Github from "../assets/github-square-brands.svg";
-import Icon from "../assets/icon.svg";
+import Icon from "../assets/pnga2.png";
 
 export default function Footer() {
   return (
