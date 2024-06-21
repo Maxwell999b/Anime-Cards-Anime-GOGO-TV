@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types"; // Import PropTypes
-
 import "./Cards.css";
 
 const AnimeCards = ({ searchTerm }) => {
@@ -39,7 +38,12 @@ const AnimeCards = ({ searchTerm }) => {
   // Handle page click
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div style={{ textAlign: "center", fontWeight: "bold", color: "Green" }}>
+        <h1>Loading...</h1>
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -52,9 +56,15 @@ const AnimeCards = ({ searchTerm }) => {
             </div>
             <div className="card-info">
               <h2 className="card-title">{anime.title}</h2>
-              <p className="card-tags">Type: {anime.type}</p>
-              <p className="card-tags">Score: {anime.score}</p>
-              <p className="card-description">Genres: {anime.genres.map((genre) => genre.name).join(", ")}</p>
+              <p className="card-tags">
+                Type: <span className="card-tags-type">{anime.type}</span>
+              </p>
+              <p className="card-tags">
+                Score: <span className="card-tags-score">{anime.score}</span>
+              </p>
+              <p className="card-tags">
+                Genres: <span className="card-tags-genres">{anime.genres.map((genre) => genre.name).join(", ")}</span>
+              </p>
             </div>
           </div>
         ))}

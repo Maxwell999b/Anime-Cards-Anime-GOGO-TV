@@ -34,17 +34,21 @@
 .card-title {
   font-size: 1.2rem;
   margin: 0.5rem 0;
-}
-
-.card-description {
-  font-size: 1rem;
-  color: #666;
+  color: #eeae00;
 }
 
 .card-tags {
   margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #999;
+  color: #4f6c97;
+  font-weight: bolder;
+}
+.card-tags-type,
+.card-tags-genres,
+.card-tags-score {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #d2649a;
 }
 
 .tag {
@@ -75,4 +79,7 @@
   background-color: #00ffb3;
   color: #ff0000;
   font-weight: bold;
+}
+.Loading {
+  font: bold blue;
 }
