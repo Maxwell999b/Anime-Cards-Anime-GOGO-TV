@@ -23,25 +23,25 @@ An interactive web application built using React.js to showcase a frontend devel
 1.  Clone the repository.
     
     ```
-git clone https://github.com/yourusername/Anime-Cards-Anime-GOGO-TV.git
+    git clone https://github.com/yourusername/Anime-Cards-Anime-GOGO-TV.git
     ```
     
 2.  Navigate to the project directory.
+
+    ```
+    cd Anime-Cards-Anime-GOGO-TV
+    ```
+    
+4.  Install dependencies.
     
     ```
-cd Anime-Cards-Anime-GOGO-TV
-    ```
-    
-3.  Install dependencies.
-    
-    ```
-npm install
+    npm install
     ```
     
 4.  Start the development server.
     
     ```
-npm run dev
+    npm run dev
     ```
     
 
