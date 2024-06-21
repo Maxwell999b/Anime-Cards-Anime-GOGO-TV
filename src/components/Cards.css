@@ -1,0 +1,95 @@
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-image-container {
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-image.blurred {
+  filter: blur(100px); /* Adjust the blur amount as needed */
+}
+
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.card-info {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #666;
+}
+
+.card-tags {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.tag {
+  margin-right: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  color: #333;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.pagination button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}

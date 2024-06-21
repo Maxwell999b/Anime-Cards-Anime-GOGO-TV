@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import "./index.css";
-import Info from "../components/Info";
-import Bio from "../components/Bio";
-import Footer from "../components/Footer";
+import Cards from "./components/Cards";
+import SunIcon from "./assets/brand-sun.svg";
+import MoonIcon from "./assets/brand-moon.svg";
+import Footer from "./components/Footer";
+// import AnimeCards from "./components/AnimeCards";
 
 export default function App() {
   const [lightMode, setLightMode] = useState(false);
@@ -26,8 +28,12 @@ export default function App() {
 
   return (
     <div className="App">
-      <Info lightMode={lightMode} toggleLightMode={toggleLightMode} />
-      <Bio />
+      <nav className="navbar">
+        <button className="toggle-mode" onClick={toggleLightMode}>
+          {lightMode ? <img src={MoonIcon} alt="Dark Mode" /> : <img src={SunIcon} alt="Light Mode" />}
+        </button>
+      </nav>
+      <Cards />
       <Footer />
     </div>
   );

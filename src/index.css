@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
 body,
 html {
   padding: 0;
@@ -22,6 +24,7 @@ html.light-mode {
   font-family: "Inter", sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
+
 .app {
   padding: 0;
   margin: 0;
@@ -32,15 +35,20 @@ html.light-mode {
 }
 .App {
   margin: auto;
-  width: 500px;
-  background-color: #1a1b21;
-  border-radius: 10px 10px 10px 10px;
-  transition: background-color 0.3s, color 0.3s;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
 }
 
 .light-mode .App {
   background-color: #d2d3db;
   color: #333333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
 }
 
 .info {
@@ -246,14 +254,13 @@ html.light-mode {
 
 .footer {
   display: flex;
-  height: 7rem;
-  width: inherit;
+  height: 5rem;
   background: #161619;
   border-radius: 0 0 10px 10px;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0rem;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -269,6 +276,8 @@ html.light-mode {
   margin: 1rem auto;
   padding: 0.5rem 1rem;
   border: none;
+  background: none;
+  cursor: pointer;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 500;

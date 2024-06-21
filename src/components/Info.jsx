@@ -1,12 +1,9 @@
-import PropTypes from "prop-types";
 import PhotoFront from "../assets/Pic-main-back.jpg";
 import PhotoBack from "../assets/Pic-main-front.jpg";
 import LinkedIn from "../assets/linkedin-brands.svg";
 import Whatsapp from "../assets/brand-whatsapp.svg";
-import SunIcon from "../assets/brand-sun.svg";
-import MoonIcon from "../assets/brand-moon.svg";
 
-function Info({ lightMode, toggleLightMode }) {
+function Info() {
   return (
     <main className="info">
       <div className="info--card">
@@ -21,12 +18,7 @@ function Info({ lightMode, toggleLightMode }) {
       </div>
       <div className="info--details">
         <span className="info--name">
-          <h1 className="info--name">
-            Abdulrahman Ahmed
-            <button className="toggle-mode" onClick={toggleLightMode}>
-              {lightMode ? <img src={MoonIcon} alt="Dark Mode" /> : <img src={SunIcon} alt="Light Mode" />}
-            </button>
-          </h1>
+          <h1 className="info--name">Abdulrahman Ahmed</h1>
         </span>
         <h2 className="info--position">Frontend Developer</h2>
         <a
@@ -56,11 +48,5 @@ function Info({ lightMode, toggleLightMode }) {
     </main>
   );
 }
-
-// Prop types validation
-Info.propTypes = {
-  lightMode: PropTypes.bool.isRequired,
-  toggleLightMode: PropTypes.func.isRequired,
-};
 
 export default Info;
