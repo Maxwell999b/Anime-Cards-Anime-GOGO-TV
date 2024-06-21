@@ -1,4 +1,4 @@
-# Digital-Business-Card
+# Flash-Cards
 Digital Business Card with React.js
 
 🚀 Project Name
