@@ -9,9 +9,9 @@ const Navbar = ({ lightMode, toggleLightMode, searchTerm, setSearchTerm }) => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <div>
+        <a href="../App.jsx">
           <img className="icon-sizing" src={Icon2} alt="Icon" />
-        </div>
+        </a>
       </div>
       <div className="search-bar">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

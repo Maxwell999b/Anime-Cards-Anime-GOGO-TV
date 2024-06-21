@@ -83,3 +83,18 @@
 .Loading {
   font: bold blue;
 }
+.loading-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.no-matches {
+  text-align: center;
+  margin-top: 15rem;
+  font-size: 1.5rem;
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 2rem;
+}

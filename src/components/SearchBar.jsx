@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
-  // Remove handleSearchChange from props
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };

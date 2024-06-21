@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 import "./Cards.css";
 
 const AnimeCards = ({ searchTerm }) => {
@@ -14,9 +14,9 @@ const AnimeCards = ({ searchTerm }) => {
     const fetchAnimeData = async () => {
       try {
         const response = await axios.get("https://api.jikan.moe/v4/anime");
-        const animeData = response.data.data || []; // Extract anime data from the response
+        const animeData = response.data.data || [];
 
-        setAnimeList(animeData); // Storing the anime data in state
+        setAnimeList(animeData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -27,15 +27,12 @@ const AnimeCards = ({ searchTerm }) => {
     fetchAnimeData();
   }, []);
 
-  // Apply search filter
   const filteredAnimeList = animeList.filter((anime) => anime.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  // Calculate pagination
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentAnimeList = filteredAnimeList.slice(indexOfFirstCard, indexOfLastCard);
 
-  // Handle page click
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading)
@@ -48,40 +45,40 @@ const AnimeCards = ({ searchTerm }) => {
 
   return (
     <div>
-      <div className="cards-grid">
-        {currentAnimeList.map((anime) => (
-          <div key={anime.mal_id} className="card">
-            <div className="card-image-container">
-              <img src={anime.images.jpg.image_url} alt={anime.title} className="card-image" />
+      {filteredAnimeList.length === 0 ? (
+        <div className="no-matches">No matches found</div>
+      ) : (
+        <div className="cards-grid">
+          {currentAnimeList.map((anime) => (
+            <div key={anime.mal_id} className="card">
+              <div className="card-image-container">
+                <img src={anime.images.jpg.image_url} alt={anime.title} className="card-image" />
+              </div>
+              <div className="card-info">
+                <h2 className="card-title">{anime.title}</h2>
+                <p className="card-tags">Type: {anime.type}</p>
+                <p className="card-tags">Score: {anime.score}</p>
+                <p className="card-description">Genres: {anime.genres.map((genre) => genre.name).join(", ")}</p>
+              </div>
             </div>
-            <div className="card-info">
-              <h2 className="card-title">{anime.title}</h2>
-              <p className="card-tags">
-                Type: <span className="card-tags-type">{anime.type}</span>
-              </p>
-              <p className="card-tags">
-                Score: <span className="card-tags-score">{anime.score}</span>
-              </p>
-              <p className="card-tags">
-                Genres: <span className="card-tags-genres">{anime.genres.map((genre) => genre.name).join(", ")}</span>
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="pagination">
-        {Array.from({ length: Math.ceil(filteredAnimeList.length / cardsPerPage) }, (_, i) => (
-          <button key={i + 1} onClick={() => paginate(i + 1)}>
-            {i + 1}
-          </button>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+      {filteredAnimeList.length > 0 && (
+        <div className="pagination">
+          {Array.from({ length: Math.ceil(filteredAnimeList.length / cardsPerPage) }, (_, i) => (
+            <button key={i + 1} onClick={() => paginate(i + 1)}>
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 AnimeCards.propTypes = {
-  searchTerm: PropTypes.string.isRequired, // Validate searchTerm prop
+  searchTerm: PropTypes.string.isRequired,
 };
 
 export default AnimeCards;
