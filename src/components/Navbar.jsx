@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import SunIcon from "../assets/brand-sun.svg";
 import MoonIcon from "../assets/brand-moon.svg";
 import SearchBar from "./SearchBar";
@@ -9,9 +10,9 @@ const Navbar = ({ lightMode, toggleLightMode, searchTerm, setSearchTerm }) => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <a href="./">
+        <Link to="/">
           <img className="icon-sizing" src={Icon2} alt="Icon" />
-        </a>
+        </Link>
       </div>
       <div className="search-bar">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

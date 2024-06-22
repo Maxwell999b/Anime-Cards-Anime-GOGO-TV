@@ -1,8 +1,11 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import AnimeCards from "./components/AnimeCards";
+import AnimeDetailsPage from "./components/AnimeDetailsPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
+
 export default function App() {
   const [lightMode, setLightMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,15 +28,20 @@ export default function App() {
   }, [lightMode]);
 
   return (
-    <div className="App">
-      <Navbar
-        lightMode={lightMode}
-        toggleLightMode={toggleLightMode}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
-      <AnimeCards searchTerm={searchTerm} />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar
+          lightMode={lightMode}
+          toggleLightMode={toggleLightMode}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+        <Routes>
+          <Route path="/" element={<AnimeCards searchTerm={searchTerm} />} />
+          <Route path="/anime/:id" element={<AnimeDetailsPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }

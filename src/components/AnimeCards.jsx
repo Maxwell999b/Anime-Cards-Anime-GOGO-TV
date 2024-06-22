@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import "./Cards.css";
 
 const AnimeCards = ({ searchTerm }) => {
@@ -9,6 +10,7 @@ const AnimeCards = ({ searchTerm }) => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 10;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -35,22 +37,26 @@ const AnimeCards = ({ searchTerm }) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const handleCardClick = (anime) => {
+    navigate(`/anime/${anime.mal_id}`);
+  };
+
   if (loading)
     return (
-      <div style={{ textAlign: "center", fontWeight: "bold", color: "Green" }}>
+      <div className="loading-icon">
         <h1>Loading...</h1>
       </div>
     );
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
+    <div className="cards-container">
       {filteredAnimeList.length === 0 ? (
         <div className="no-matches">No matches found</div>
       ) : (
         <div className="cards-grid">
           {currentAnimeList.map((anime) => (
-            <div key={anime.mal_id} className="card">
+            <div key={anime.mal_id} className="card" onClick={() => handleCardClick(anime)}>
               <div className="card-image-container">
                 <img src={anime.images.jpg.image_url} alt={anime.title} className="card-image" />
               </div>
