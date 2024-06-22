@@ -41,6 +41,14 @@ const AnimeCards = ({ searchTerm }) => {
     navigate(`/anime/${anime.mal_id}`);
   };
 
+  const getScoreClassName = (score) => {
+    return score && score >= 8 ? "anime-card-top" : "";
+  };
+
+  const hasAwardWinningGenre = (genres) => {
+    return genres.some((genre) => genre.name.toLowerCase().includes("award winning"));
+  };
+
   if (loading)
     return (
       <div className="loading-icon">
@@ -66,10 +74,27 @@ const AnimeCards = ({ searchTerm }) => {
                   Type: <span className="card-tags-type">{anime.type}</span>
                 </p>
                 <p className="card-tags">
-                  Score: <span className="card-tags-score">{anime.score}</span>
+                  Score:{" "}
+                  <span className={`card-tags-score ${getScoreClassName(anime.score)}`}>
+                    {anime.score ? anime.score : "Unknown"}
+                  </span>
                 </p>
                 <p className="card-tags">
-                  Genres: <span className="card-tags-genres">{anime.genres.map((genre) => genre.name).join(", ")}</span>
+                  Genres:{" "}
+                  <span className="card-tags-genres">
+                    {anime.genres.map((genre, index) => (
+                      <span
+                        key={genre.name}
+                        className={`${
+                          hasAwardWinningGenre(anime.genres) && genre.name.toLowerCase().includes("award winning")
+                            ? "anime-genre-award"
+                            : ""
+                        }`}>
+                        {genre.name}
+                        {index !== anime.genres.length - 1 && ", "}
+                      </span>
+                    ))}
+                  </span>
                 </p>
               </div>
             </div>

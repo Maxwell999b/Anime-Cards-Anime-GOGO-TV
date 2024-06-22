@@ -130,11 +130,15 @@
   font-style: oblique;
   font-size: larger;
 }
-.manga-details-values-top {
+.manga-details-values-top,
+.manga-card-top,
+.anime-card-top,
+.manga-genre-award,
+.anime-genre-award {
   color: #ff5f00;
   font-weight: bold;
-  background-color: #1b1a1785;
-  border-radius: 30%;
+  background-color: #1b1a1715;
+  border-radius: 10px 5px 10px 3px;
 }
 
 @media (max-width: 560px) {
