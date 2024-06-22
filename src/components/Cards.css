@@ -19,6 +19,8 @@
 
 .card:hover {
   transform: scale(1.05);
+  filter: blur(5px);
+  opacity: 1;
 }
 
 .card-image-container {
