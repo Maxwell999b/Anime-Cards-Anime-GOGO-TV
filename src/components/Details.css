@@ -36,11 +36,6 @@
   }
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
-  .detail-image {
-  }
-}
-
 .left-side {
   display: flex;
   justify-content: center;
