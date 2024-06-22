@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 import "./Details.css";
 
 const AnimeDetails = ({ anime }) => {
+  const scoreClassName = anime.score && anime.score >= 7 ? "anime-details-values-top" : "";
+  const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
+
   return (
     <div className="anime-details">
       <h2 className="anime-title">{anime.title}</h2>
@@ -24,13 +27,13 @@ const AnimeDetails = ({ anime }) => {
           </p>
           <p>
             <span className="anime-details-ids">Score:</span>
-            <span className="anime-details-values">
+            <span className={`anime-details-values ${scoreClassName}`}>
               {anime.score ? anime.score : <span className="unknown-details">unknown</span>}
             </span>
           </p>
           <p>
             <span className="anime-details-ids">Rank:</span>
-            <span className="anime-details-values">
+            <span className={`anime-details-values ${rankClassName}`}>
               {anime.rank ? anime.rank : <span className="unknown-details">unknown</span>}
             </span>
           </p>

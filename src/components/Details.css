@@ -66,6 +66,12 @@
   font-style: oblique;
   font-size: larger;
 }
+.anime-details-values-top {
+  color: #ff5f00;
+  font-weight: bold;
+  background-color: #1b1a1785;
+  border-radius: 30%;
+}
 @media (max-width: 560px) {
   .anime-title {
     font-size: 1.7rem;
