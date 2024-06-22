@@ -56,9 +56,15 @@ const AnimeCards = ({ searchTerm }) => {
               </div>
               <div className="card-info">
                 <h2 className="card-title">{anime.title}</h2>
-                <p className="card-tags">Type: {anime.type}</p>
-                <p className="card-tags">Score: {anime.score}</p>
-                <p className="card-description">Genres: {anime.genres.map((genre) => genre.name).join(", ")}</p>
+                <p className="card-tags">
+                  Type: <span className="card-tags-type">{anime.type}</span>
+                </p>
+                <p className="card-tags">
+                  Score: <span className="card-tags-score">{anime.score}</span>
+                </p>
+                <p className="card-tags">
+                  Genres: <span className="card-tags-genres">{anime.genres.map((genre) => genre.name).join(", ")}</span>
+                </p>
               </div>
             </div>
           ))}
