@@ -104,3 +104,21 @@ input {
     margin-bottom: 0.5rem;
   }
 }
+.categories {
+  display: flex;
+  gap: 1rem;
+}
+
+.category-link {
+  text-decoration: none;
+  color: #1e97e6;
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.category-link:hover {
+  background-color: #bfc1d2;
+}

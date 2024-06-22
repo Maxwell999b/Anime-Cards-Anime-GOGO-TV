@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import AnimeCards from "./components/AnimeCards";
 import AnimeDetailsPage from "./components/AnimeDetailsPage";
+import MangaCards from "./components/MangaCards"; // Import MangaCards component
+import MangaDetailsPage from "./components/MangaDetailsPage"; // Import MangaDetailsPage component
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
@@ -39,6 +41,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<AnimeCards searchTerm={searchTerm} />} />
           <Route path="/anime/:id" element={<AnimeDetailsPage />} />
+          <Route path="/manga" element={<MangaCards searchTerm={searchTerm} />} /> {/* Add MangaCards route */}
+          <Route path="/manga/:id" element={<MangaDetailsPage />} /> {/* Add MangaDetailsPage route */}
         </Routes>
         <Footer />
       </div>

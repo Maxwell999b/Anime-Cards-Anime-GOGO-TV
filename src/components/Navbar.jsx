@@ -14,6 +14,14 @@ const Navbar = ({ lightMode, toggleLightMode, searchTerm, setSearchTerm }) => {
           <img className="icon-sizing" src={Icon2} alt="Icon" />
         </Link>
       </div>
+      <div className="categories">
+        <Link to="/" className="category-link">
+          Anime
+        </Link>
+        <Link to="/manga" className="category-link">
+          Manga
+        </Link>
+      </div>
       <div className="search-bar">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
