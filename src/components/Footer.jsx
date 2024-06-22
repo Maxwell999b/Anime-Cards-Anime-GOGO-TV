@@ -1,5 +1,5 @@
 import Github from "../assets/github-square-brands.svg";
-import Icon from "../assets/pnga2.png";
+import Icon from "../assets/pnga2.svg";
 import { Link } from "react-router-dom";
 
 export default function Footer() {

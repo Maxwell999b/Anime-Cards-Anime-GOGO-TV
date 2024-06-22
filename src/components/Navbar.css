@@ -58,11 +58,11 @@ input {
   .navbar {
     display: flex;
     flex-direction: column; /* Stack items vertically */
-    justify-content: space-around;
-    align-items: stretch; /* Stretch items to fill container */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
     padding: 10px 20px;
     color: #fff;
-    height: 16rem; /* Increased navbar height */
+    height: auto; /* Auto height to accommodate content */
     background: #161619;
     border-radius: 10px 10px 0px 0px;
     box-shadow: 0 4px 8px rgb(0, 0, 0);
@@ -74,51 +74,33 @@ input {
   }
 
   .logo {
-    display: flex;
-    justify-content: center; /* Center logo horizontally */
-    align-items: center; /* Center logo vertically */
-  }
-
-  .logo img {
-    height: 3rem; /* Adjust logo height */
+    display: none; /* Hide the logo */
   }
 
   .toggle-mode {
-    display: flex;
-    justify-content: center; /* Center logo horizontally */
-    align-items: center; /* Center toggle mode button vertically */
-    margin-bottom: 0.5rem; /* Space between toggle mode button and search bar */
-  }
-
-  .toggle-mode-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    margin-left: auto;
-  }
-
-  .toggle-mode-btn img {
-    width: 24px;
-    height: auto;
+    display: none; /* Hide the toggle mode button */
   }
 
   .search-bar {
     display: flex;
     flex-direction: column; /* Stack items vertically */
-    justify-content: center;
+    justify-content: center; /* Center items vertically */
     align-items: center; /* Center items horizontally */
+    margin-top: 1rem; /* Space above search bar */
+    margin-bottom: 0.5rem; /* Space below search bar */
   }
 
   input {
-    width: calc(100% - 24px); /* Adjust input width to fill navbar, subtracting space for toggle mode button */
-    padding: 8px 12px;
-    font-size: 24px;
+    width: calc(100% - 32px); /* Adjust input width to fill navbar, subtracting padding */
+    max-width: 15rem; /* Limit maximum width of input */
+    padding: 12px 16px; /* Increased padding for better touch usability */
+    font-size: 18px; /* Slightly reduced font size for better fit */
     border: 2px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
     color: #00a675;
     transition: border-color 0.3s ease;
+    margin-top: 0.5rem; /* Space above input */
     margin-bottom: 0.5rem; /* Space below input */
   }
 }

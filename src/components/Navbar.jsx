@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SunIcon from "../assets/brand-sun.svg";
 import MoonIcon from "../assets/brand-moon.svg";
 import SearchBar from "./SearchBar";
-import Icon2 from "../assets/pnga1.png";
+import Icon2 from "../assets/pnga1.svg";
 import "./Navbar.css";
 
 const Navbar = ({ lightMode, toggleLightMode, searchTerm, setSearchTerm }) => {
