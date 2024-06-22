@@ -54,3 +54,71 @@ input {
   width: 24px;
   height: auto;
 }
+@media (max-width: 560px) {
+  .navbar {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-around;
+    align-items: stretch; /* Stretch items to fill container */
+    padding: 10px 20px;
+    color: #fff;
+    height: 16rem; /* Increased navbar height */
+    background: #161619;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .light-mode .navbar {
+    background: #d6d8e3;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center; /* Center logo horizontally */
+    align-items: center; /* Center logo vertically */
+  }
+
+  .logo img {
+    height: 3rem; /* Adjust logo height */
+  }
+
+  .toggle-mode {
+    display: flex;
+    justify-content: center; /* Center logo horizontally */
+    align-items: center; /* Center toggle mode button vertically */
+    margin-bottom: 0.5rem; /* Space between toggle mode button and search bar */
+  }
+
+  .toggle-mode-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin-left: auto;
+  }
+
+  .toggle-mode-btn img {
+    width: 24px;
+    height: auto;
+  }
+
+  .search-bar {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center; /* Center items horizontally */
+  }
+
+  input {
+    width: calc(100% - 24px); /* Adjust input width to fill navbar, subtracting space for toggle mode button */
+    padding: 8px 12px;
+    font-size: 24px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #00a675;
+    transition: border-color 0.3s ease;
+    margin-bottom: 0.5rem; /* Space below input */
+  }
+}

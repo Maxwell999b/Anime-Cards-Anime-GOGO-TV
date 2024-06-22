@@ -112,3 +112,13 @@ html.light-mode {
 .icon-sizing {
   width: 8rem;
 }
+
+@media (max-width: 560px) {
+  .footer--copyright {
+    font-size: 0.7rem;
+    margin-top: 1rem;
+  }
+  .footer-hidden-small {
+    visibility: hidden;
+  }
+}
