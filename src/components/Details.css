@@ -20,7 +20,7 @@
   height: 60vmax;
   object-fit: cover;
   border-radius: 1rem;
-  box-shadow: 0 8px 32px 0 rgba(255, 63, 63, 0.541);
+  box-shadow: 0 8px 32px 0 rgba(63, 233, 255, 0.541);
 }
 
 .details-container {
