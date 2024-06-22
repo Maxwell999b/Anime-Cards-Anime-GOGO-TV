@@ -17,6 +17,17 @@ An interactive web application built using React.js to showcase a frontend devel
 -   CSS3
 -   JavaScript
 -   Axios (for fetching anime data from the API)
+-   
+### API
+​
+This project uses the Jikan API for fetching anime data.
+​
+-   API Link: [Jikan API](https://jikan.moe/)
+​
+#### Endpoints Used
+​
+-   Anime Endpoint: `https://api.jikan.moe/v4/anime`
+-   Manga Endpoint: `https://api.jikan.moe/v4/manga`
 
 ### Installation
 
