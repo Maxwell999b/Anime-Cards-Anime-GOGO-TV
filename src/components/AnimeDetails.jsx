@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import "./Details.css";
 
 const AnimeDetails = ({ anime }) => {
-  const scoreClassName = anime.score && anime.score >= 7 ? "anime-details-values-top" : "";
+  const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
 
   return (
