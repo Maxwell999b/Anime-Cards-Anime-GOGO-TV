@@ -66,3 +66,8 @@
   font-style: oblique;
   font-size: larger;
 }
+@media (max-width: 560px) {
+  .anime-title {
+    font-size: 1.7rem;
+  }
+}
