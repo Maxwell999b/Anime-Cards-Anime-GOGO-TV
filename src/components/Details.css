@@ -10,13 +10,17 @@
   font-size: 3rem;
   text-align: center;
   margin: 0.5rem 0;
-  color: #eeae00;
+  color: #99790f;
+  text-shadow: #1a1a1a 5px 0 5px;
+  text-decoration: underline;
 }
 
 .detail-image {
   max-width: 100%;
   height: 60vmax;
   object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(255, 63, 63, 0.541);
 }
 
 .details-container {
@@ -86,6 +90,8 @@
   text-align: center;
   margin: 0.5rem 0;
   color: #99790f;
+  text-shadow: #1a1a1a 5px 0 5px;
+  text-decoration: underline;
 }
 
 .detail-image {
