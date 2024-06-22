@@ -72,7 +72,7 @@
 .pagination button {
   margin: 0 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: #00a675;
+  background-color: #5c9c89;
   color: white;
   border: none;
   border-radius: 5px;
@@ -80,8 +80,8 @@
 }
 
 .pagination button:hover {
-  background-color: #00ffb3;
-  color: #ff0000;
+  background-color: #fdee67;
+  color: #3a3a3a;
   font-weight: bold;
 }
 .Loading {
