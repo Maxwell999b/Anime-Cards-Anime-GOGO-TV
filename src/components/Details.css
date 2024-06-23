@@ -143,16 +143,16 @@
 
 /* Style for the carousel section */
 .carousel-section {
-  height: 200px; /* Adjust as needed */
-  background-color: #f1f1f1; /* Adjust as needed */
-  border: 1px solid #ccc; /* Adjust as needed */
+  height: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
 }
 
 /* Style for empty sections */
 .empty-section {
-  height: 100px; /* Adjust as needed */
-  background-color: #f9f9f9; /* Adjust as needed */
-  border: 1px solid #ccc; /* Adjust as needed */
+  height: 100px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
 }
 
 /* Style for the IDs */
