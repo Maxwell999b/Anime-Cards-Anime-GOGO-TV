@@ -11,7 +11,7 @@ const Navbar = ({ lightMode, toggleLightMode, searchTerm, setSearchTerm }) => {
     <nav className="navbar">
       <div className="logo">
         <Link to="/">
-          <img className="icon-sizing" src={Icon2} alt="Icon" />
+          <img className="icon-sizing1" src={Icon2} alt="Icon" />
         </Link>
       </div>
       <div className="categories">

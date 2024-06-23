@@ -29,13 +29,13 @@
   margin: 0 auto;
 }
 input {
-  width: 100%;
-  padding: 8px 12px;
+  width: 21rem;
+  padding: 5px 12px;
   font-size: 24px;
   border: 2px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
-  color: #00a675;
+  color: #074173;
   transition: border-color 0.3s ease;
 }
 .toggle-mode {

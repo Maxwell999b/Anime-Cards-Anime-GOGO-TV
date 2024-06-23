@@ -1,3 +1,16 @@
+/* Light Mode Styles */
+:root {
+  --card-title: #c99f14;
+  --card-tags: #4f6c97;
+  --card-tags-values: #00a2b1;
+}
+
+/* Dark Mode Styles */
+:root.light-mode {
+  --card-title: #add5ce;
+  --card-tags: #4f6c97;
+  --card-tags-values: #d2649a;
+}
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -6,13 +19,12 @@
 }
 
 .card {
-  background: rgba(255, 101, 173, 0.2);
+  background: rgba(98, 119, 138, 0.184);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
   overflow: hidden;
   transition: transform 0.4s ease, filter 0.3s ease;
 }
@@ -39,14 +51,14 @@
 .card-title {
   font-size: 1.2rem;
   margin: 0.5rem 0;
-  color: #c99f14;
+  color: var(--card-title);
   text-shadow: #1a1a1a 5px 0 5px;
 }
 
 .card-tags {
   margin-top: 0.5rem;
   font-size: 0.9rem;
-  color: #4f6c97;
+  color: var(--card-tags);
   font-weight: bolder;
 }
 .card-tags-type,
@@ -54,7 +66,7 @@
 .card-tags-score {
   margin-top: 0.5rem;
   font-weight: bold;
-  color: #d2649a;
+  color: var(--card-tags-values);
 }
 
 .tag {

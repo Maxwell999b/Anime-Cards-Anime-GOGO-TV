@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <Link to="/">
-        <img className="icon-sizing" src={Icon} alt="Icon" />
+        <img className="icon-sizing2" src={Icon} alt="Icon" />
       </Link>
 
       <div className="footer--copyright">
