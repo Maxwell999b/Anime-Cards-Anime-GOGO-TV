@@ -4,6 +4,7 @@
   --sub-heading-color-light: #c99f14;
   --sub-heading-border-light: #4f6c96;
   --sub-heading-bg-light: #62778a2f;
+  --details-ids-color-light: #4f6c97;
   --details-values-color-light: #00a2b1;
   --unknown-details-color-light: #62778a;
 }
@@ -79,12 +80,12 @@
 /* Style for the sub heading on the right side */
 .sub-heading-right-side {
   font-size: 1.2rem;
-  color: #826d91;
+  color: var(--sub-heading-color-light, #826d91);
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  border-bottom: 2px solid #4f6c96;
+  border-bottom: 2px solid var(--sub-heading-border-light, #4f6c96);
   padding-bottom: 0.1rem;
-  background-color: #62778a2f;
+  background-color: var(--sub-heading-bg-light, #62778a2f);
 }
 
 /* Layout for the left side */
