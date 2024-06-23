@@ -129,18 +129,15 @@
 
 .breadcrumb-current:hover {
   color: #208dec;
-  animation: breathe 2s infinite alternate ease-in-out;
+  animation: breathe 0.7s infinite alternate ease-in-out;
 }
 
 @keyframes breathe {
   0% {
     transform: scale(1);
   }
-  50% {
-    transform: scale(1.2);
-  }
   100% {
-    transform: scale(2);
+    transform: scale(1.09);
   }
 }
 

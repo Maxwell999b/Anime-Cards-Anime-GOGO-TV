@@ -3,6 +3,10 @@
   --card-title: #c99f14;
   --card-tags: #4f6c97;
   --card-tags-values: #00a2b1;
+  --pagination-bg-button: #00a2b1;
+  --pagination-bg-button-hover: #c99f14;
+  --pagination-bg-text: #fff;
+  --pagination-bg-text-hover: #2557a1;
 }
 
 /* Dark Mode Styles */
@@ -10,6 +14,10 @@
   --card-title: #add5ce;
   --card-tags: #4f6c97;
   --card-tags-values: #d2649a;
+  --pagination-bg-button: #4f6c97;
+  --pagination-bg-button-hover: #d2649a;
+  --pagination-bg-text: #282f3c;
+  --pagination-bg-text-hover: #fff;
 }
 .cards-grid {
   display: grid;
@@ -86,18 +94,31 @@
 .pagination button {
   margin: 0 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: #5c9c89;
-  color: white;
+  background-color: var(--pagination-bg-button);
+  color: var(--pagination-bg-text);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
 }
 
 .pagination button:hover {
-  background-color: #fdee67;
-  color: #3a3a3a;
+  background-color: var(--pagination-bg-button-hover);
+  color: var(--pagination-bg-text-hover);
   font-weight: bold;
+  font-family: "Inter", sans-serif;
+  animation: breathes 0.7s infinite alternate ease-in-out;
 }
+@keyframes breathes {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
 .Loading {
   font: bold blue;
 }
