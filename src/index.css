@@ -13,6 +13,8 @@ html {
   background-color: #1b1f2b;
   font-family: "Inter", sans-serif;
   transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 body.light-mode,
@@ -25,13 +27,16 @@ html.light-mode {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.app {
-  padding: 0;
-  margin: 0;
-  background-color: #dbdde6;
-  color: #333333;
-  font-family: "Inter", sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+/* The App component should take up the full height */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 /* .App {
   margin: auto;
