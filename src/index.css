@@ -10,7 +10,7 @@ body,
 html {
   padding: 0;
   margin: 0;
-  background-color: #23252c;
+  background-color: #1b1f2b;
   font-family: "Inter", sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -33,12 +33,12 @@ html.light-mode {
   font-family: "Inter", sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
-.App {
+/* .App {
   margin: auto;
   padding: 20px;
   width: 90%;
   max-width: 1200px;
-}
+} */
 
 .light-mode .App {
   background-color: #d2d3db;
@@ -47,24 +47,24 @@ html.light-mode {
 
 .navbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 1rem;
 }
 
 .footer {
   display: flex;
-  height: 1.9rem;
+  height: 3rem;
   background: #161619;
   border-radius: 0 0 10px 10px;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 0rem;
+  margin-bottom: auto;
   transition: background-color 0.3s, color 0.3s;
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
+  align-items: flex-end;
 }
 
 .light-mode .footer {
@@ -109,8 +109,13 @@ html.light-mode {
   background-color: transparent;
   color: #333333;
 }
-.icon-sizing {
-  width: 8rem;
+.icon-sizing1 {
+  width: 6rem;
+}
+.icon-sizing2 {
+  width: 3.1em;
+  padding: 1%;
+  margin: 1%;
 }
 
 @media (max-width: 560px) {
