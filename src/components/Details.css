@@ -1,4 +1,5 @@
-.anime-details {
+.anime-details,
+.manga-details {
   padding: 20px;
   background: rgba(255, 101, 173, 0.1);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -6,7 +7,8 @@
   -webkit-backdrop-filter: blur(20px);
 }
 
-.anime-title {
+.anime-title,
+.manga-title {
   font-size: 3rem;
   text-align: center;
   margin: 0.5rem 0;
@@ -22,84 +24,6 @@
   border-radius: 1rem;
   box-shadow: 0 8px 32px 0 rgba(63, 233, 255, 0.541);
   filter: blur(0px) grayscale(65%);
-  /* filter: blur(6px) grayscale(65%); */
-}
-
-.details-container {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  gap: 20px;
-}
-@media (max-width: 576px) {
-  .detail-image {
-    max-width: 100%;
-    height: 80vmax;
-    object-fit: cover;
-  }
-
-  .details-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-.left-side {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.right-side {
-  display: flex;
-  flex-direction: column;
-}
-
-.anime-details-ids {
-  font-weight: bold;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-  color: #4f6c97;
-}
-
-.anime-details-values {
-  margin-left: 0.5rem;
-  color: #d2649a;
-}
-
-.unknown-details {
-  color: rgb(255, 93, 93);
-  font-weight: bold;
-  font-style: oblique;
-  font-size: larger;
-}
-.anime-details-values-top {
-  color: #ff5f00;
-  font-weight: bold;
-  background-color: #1b1a1785;
-  border-radius: 30%;
-}
-
-.manga-details {
-  padding: 20px;
-  background: rgba(255, 101, 173, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-.manga-title {
-  font-size: 3rem;
-  text-align: center;
-  margin: 0.5rem 0;
-  color: #c99f14;
-  text-shadow: #1a1a1a 5px 0 5px;
-  text-decoration: underline;
-}
-
-.detail-image {
-  max-width: 100%;
-  height: 60vmax;
-  object-fit: cover;
 }
 
 .details-container {
@@ -119,6 +43,7 @@
   flex-direction: column;
 }
 
+.anime-details-ids,
 .manga-details-ids {
   font-weight: bold;
   margin-top: 1rem;
@@ -127,6 +52,7 @@
   color: #4f6c97;
 }
 
+.anime-details-values,
 .manga-details-values {
   margin-left: 0.5rem;
   color: #d2649a;
@@ -138,8 +64,9 @@
   font-style: oblique;
   font-size: larger;
 }
-.manga-details-values-top,
+
 .anime-details-values-top,
+.manga-details-values-top,
 .manga-card-top,
 .anime-card-top,
 .manga-genre-award,
@@ -150,22 +77,20 @@
   border-radius: 10px 5px 10px 3px;
 }
 
-@media (max-width: 560px) {
-  .anime-title {
-    font-size: 1.7rem;
-  }
-  .manga-title {
-    font-size: 1.7rem;
-  }
-}
+/* Media Queries */
 @media (max-width: 576px) {
   .detail-image {
-    max-width: 100%;
     height: 80vmax;
-    object-fit: cover;
   }
 
   .details-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .anime-title,
+  .manga-title {
+    font-size: 1.7rem;
   }
 }
