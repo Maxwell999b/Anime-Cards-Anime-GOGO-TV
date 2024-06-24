@@ -8,11 +8,11 @@ const AnimeDetailsPage = () => {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
   const [reviews, setReviews] = useState([]);
-  const [news, setNews] = useState([]); // State to store news
+  const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [loadingNews, setLoadingNews] = useState(true); // Loading state for news
+  const [loadingNews, setLoadingNews] = useState(true);
   const [error, setError] = useState(null);
-  const [errorNews, setErrorNews] = useState(null); // Error state for news
+  const [errorNews, setErrorNews] = useState(null);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -44,7 +44,6 @@ const AnimeDetailsPage = () => {
     fetchReviews();
   }, [anime, id]);
 
-  // Fetch news data
   useEffect(() => {
     if (!anime) return;
 

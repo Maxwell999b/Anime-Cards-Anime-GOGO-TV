@@ -263,9 +263,9 @@ const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) =>
 AnimeDetails.propTypes = {
   anime: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
-  recentNews: PropTypes.array.isRequired, // Add prop type for recentNews
-  loadingNews: PropTypes.bool.isRequired, // Add prop type for loadingNews
-  errorNews: PropTypes.string, // Add prop type for errorNews
+  recentNews: PropTypes.array.isRequired,
+  loadingNews: PropTypes.bool.isRequired,
+  errorNews: PropTypes.string,
 };
 
 export default AnimeDetails;

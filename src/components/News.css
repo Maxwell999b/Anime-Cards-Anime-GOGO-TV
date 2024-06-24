@@ -148,3 +148,8 @@
   color: var(--details-values-color-light);
   text-decoration: underline;
 }
+.news-author a {
+  color: brown;
+  text-decoration: none;
+  font-weight: bold;
+}
