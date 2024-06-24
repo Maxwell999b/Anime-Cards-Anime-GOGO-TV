@@ -5,6 +5,7 @@ import Reviews from "./Reviews";
 
 const AnimeDetails = ({ anime, reviews }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
+  const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
   const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
   const handleRefresh = () => {
     window.location.reload();
@@ -169,6 +170,12 @@ const AnimeDetails = ({ anime, reviews }) => {
             <span className="anime-details-ids">Score:</span>
             <span className={`anime-details-values ${scoreClassName}`}>
               {anime.score ? anime.score : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="anime-details-ids">Scored_by:</span>
+            <span className={`anime-details-values ${scoreClassNameBy}`}>
+              {anime.scored_by ? anime.scored_by : <span className="unknown-details">N/A</span>}
             </span>
           </p>
           <p>
