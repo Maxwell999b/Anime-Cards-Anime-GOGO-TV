@@ -2,8 +2,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Details.css";
 import Reviews from "./Reviews";
+import News from "./News";
 
-const AnimeDetails = ({ anime, reviews }) => {
+const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
   const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
@@ -241,10 +242,18 @@ const AnimeDetails = ({ anime, reviews }) => {
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
           <h3 className="sub-heading-right-side">Staff</h3>
           <div className="empty-section">{/* Staff Section */}</div>
-          <h3 className="sub-heading-right-side">Recent News</h3>
-          <div className="empty-section">{/* Recent News Section */}</div>
           <h3 className="sub-heading-right-side">Reviews</h3>
           <Reviews reviews={reviews} />
+          <h3 className="sub-heading-right-side">Recent News</h3>
+          {loadingNews ? (
+            <div className="loading-icon">
+              <h1>Loading News...</h1>
+            </div>
+          ) : errorNews ? (
+            <div>Error: {errorNews}</div>
+          ) : (
+            <News newsItems={recentNews} />
+          )}
         </div>
       </div>
     </div>
@@ -254,6 +263,9 @@ const AnimeDetails = ({ anime, reviews }) => {
 AnimeDetails.propTypes = {
   anime: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
+  recentNews: PropTypes.array.isRequired, // Add prop type for recentNews
+  loadingNews: PropTypes.bool.isRequired, // Add prop type for loadingNews
+  errorNews: PropTypes.string, // Add prop type for errorNews
 };
 
 export default AnimeDetails;
