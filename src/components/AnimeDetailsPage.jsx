@@ -27,7 +27,7 @@ const AnimeDetailsPage = () => {
   }, [id]);
 
   useEffect(() => {
-    if (!anime) return; // Wait until anime data is loaded
+    if (!anime) return;
 
     const fetchReviews = async () => {
       try {
