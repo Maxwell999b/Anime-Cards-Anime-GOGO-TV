@@ -7,6 +7,9 @@
   --details-ids-color-light: #4f6c97;
   --details-values-color-light: #00a2b1;
   --unknown-details-color-light: #62778a;
+  --emoji-overall-bg-light: #558fc22f;
+  --user-details-color-light: #62778a1c;
+  --emoji-overall-bg-text-light: #558fc211;
 }
 
 /* Dark Mode Styles */
@@ -15,9 +18,11 @@
   --sub-heading-color-light: #826d91;
   --sub-heading-border-light: #4f6c96;
   --sub-heading-bg-light: #62778a2f;
+  --emoji-overall-bg-light: #62778a2f;
   --details-ids-color-light: #4f6c97;
   --details-values-color-light: #d2649a;
   --unknown-details-color-light: #62778a;
+  --emoji-overall-bg-text-light: #62778a10;
 }
 
 /* Ensure there's minimal margin between each detail item */
