@@ -15,12 +15,44 @@ const Reviews = ({ reviews }) => {
 
 const ReviewCard = ({ review }) => {
   const [showMore, setShowMore] = useState(false);
+  const [selectedReaction, setSelectedReaction] = useState(null);
+  const [reactions, setReactions] = useState({ ...review.reactions });
 
   const handleToggleShowMore = () => {
     setShowMore(!showMore);
   };
 
+  const handleReactionClick = (reaction) => {
+    setReactions((prevReactions) => {
+      const updatedReactions = { ...prevReactions };
+      if (selectedReaction === reaction) {
+        updatedReactions[reaction]--;
+        updatedReactions.overall--;
+        setSelectedReaction(null);
+      } else {
+        if (selectedReaction !== null) {
+          updatedReactions[selectedReaction]--;
+          updatedReactions.overall--;
+        }
+        updatedReactions[reaction]++;
+        updatedReactions.overall++;
+        setSelectedReaction(reaction);
+      }
+      return updatedReactions;
+    });
+  };
+
   const reviewText = showMore ? review.review : review.review.slice(0, 300) + "...";
+
+  const reactionEmojis = {
+    nice: "😊",
+    love_it: "❤️",
+    funny: "😂",
+    confusing: "😕",
+    informative: "💡",
+    well_written: "📝",
+    creative: "🎨",
+  };
 
   return (
     <div className="review-card">
@@ -44,7 +76,7 @@ const ReviewCard = ({ review }) => {
       <div className="review-footer">
         <div className="review-reactions">
           <span className="review-emoji-overall-total">
-            Overall 📜: <span className="review-emoji-overall">{review.reactions.overall}</span>
+            Overall 📜: <span className="review-emoji-overall">{reactions.overall}</span>
           </span>
           <button onClick={handleToggleShowMore} className="show-more-less-btn">
             {showMore ? "Show less🔼" : "Show more🔽"}
@@ -52,27 +84,17 @@ const ReviewCard = ({ review }) => {
         </div>
         {showMore && (
           <div className="review-details">
-            <span className="review-emoji">
-              Nice: <span className="review-emoji-copy">{review.reactions.nice} 😊</span>
-            </span>
-            <span className="review-emoji">
-              Love it: <span className="review-emoji-copy">{review.reactions.love_it} ❤️</span>
-            </span>
-            <span className="review-emoji">
-              Funny: <span className="review-emoji-copy">{review.reactions.funny} 😂</span>
-            </span>
-            <span className="review-emoji">
-              Confusing: <span className="review-emoji-copy">{review.reactions.confusing} 😕</span>
-            </span>
-            <span className="review-emoji">
-              Informative: <span className="review-emoji-copy">{review.reactions.informative} 💡</span>
-            </span>
-            <span className="review-emoji">
-              Well written: <span className="review-emoji-copy">{review.reactions.well_written} 📝</span>
-            </span>
-            <span className="review-emoji">
-              Creative: <span className="review-emoji-copy">{review.reactions.creative} 🎨</span>
-            </span>
+            {Object.keys(reactionEmojis).map((reaction) => (
+              <span
+                key={reaction}
+                className={`review-emoji ${selectedReaction === reaction ? "selected" : ""}`}
+                onClick={() => handleReactionClick(reaction)}>
+                {reaction.charAt(0).toUpperCase() + reaction.slice(1)} {reactionEmojis[reaction]}:{" "}
+                <span className={`review-emoji-copy ${selectedReaction === reaction ? "selected" : ""}`}>
+                  {reactions[reaction]}
+                </span>
+              </span>
+            ))}
           </div>
         )}
       </div>

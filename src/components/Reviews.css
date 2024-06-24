@@ -184,6 +184,13 @@
   border-radius: 5px;
   font-size: 0.8em;
 }
+.review-details .review-emoji.selected {
+  display: inline-block;
+  background-color: var(--details-values-color-light);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+}
 .review-emoji-overall-total,
 .review-emoji {
   color: var(--details-ids-color-light);
@@ -195,4 +202,12 @@
 .review-emoji-overall,
 .review-emoji-copy {
   color: var(--details-values-color-light);
+}
+.review-emoji-copy,
+.review-emoji {
+  cursor: pointer;
+}
+
+.review-emoji-copy.selected {
+  color: var(--sub-heading-color-light);
 }
