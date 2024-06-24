@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import AnimeDetails from "./AnimeDetails";
@@ -15,9 +15,7 @@ const AnimeDetailsPage = () => {
     const fetchAnimeData = async () => {
       try {
         const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
-        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
         setAnime(animeResponse.data.data);
-        setReviews(reviewsResponse.data.data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -28,6 +26,23 @@ const AnimeDetailsPage = () => {
     fetchAnimeData();
   }, [id]);
 
+  useEffect(() => {
+    if (!anime) return; // Wait until anime data is loaded
+
+    const fetchReviews = async () => {
+      try {
+        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
+        setReviews(reviewsResponse.data.data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchReviews();
+  }, [anime, id]);
+
+  const memoizedAnimeDetails = useMemo(() => anime, [anime]);
+
   if (loading)
     return (
       <div className="loading-icon">
@@ -36,7 +51,7 @@ const AnimeDetailsPage = () => {
     );
   if (error) return <div>Error: {error}</div>;
 
-  return anime ? <AnimeDetails anime={anime} reviews={reviews} /> : <div>No details available</div>;
+  return anime ? <AnimeDetails anime={memoizedAnimeDetails} reviews={reviews} /> : <div>No details available</div>;
 };
 
 export default AnimeDetailsPage;
