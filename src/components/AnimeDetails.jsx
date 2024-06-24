@@ -232,10 +232,10 @@ const AnimeDetails = ({ anime, reviews }) => {
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
           <h3 className="sub-heading-right-side">Staff</h3>
           <div className="empty-section">{/* Staff Section */}</div>
-          <h3 className="sub-heading-right-side">Reviews</h3>
-          <Reviews reviews={reviews} />
           <h3 className="sub-heading-right-side">Recent News</h3>
           <div className="empty-section">{/* Recent News Section */}</div>
+          <h3 className="sub-heading-right-side">Reviews</h3>
+          <Reviews reviews={reviews} />
         </div>
       </div>
     </div>
