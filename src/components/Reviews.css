@@ -58,6 +58,7 @@
   align-items: center;
   background-color: var(--user-details-color-light);
   border-radius: 5px;
+  padding: 5px;
 }
 
 .user-image {
