@@ -7,14 +7,17 @@ import "./Details.css";
 const AnimeDetailsPage = () => {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
       try {
-        const response = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
-        setAnime(response.data.data);
+        const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
+        setAnime(animeResponse.data.data);
+        setReviews(reviewsResponse.data.data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -33,7 +36,7 @@ const AnimeDetailsPage = () => {
     );
   if (error) return <div>Error: {error}</div>;
 
-  return anime ? <AnimeDetails anime={anime} /> : <div>No details available</div>;
+  return anime ? <AnimeDetails anime={anime} reviews={reviews} /> : <div>No details available</div>;
 };
 
 export default AnimeDetailsPage;

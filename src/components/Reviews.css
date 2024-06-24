@@ -1,0 +1,198 @@
+:root {
+  --title-color-light: #c99f14;
+  --sub-heading-color-light: #c99f14;
+  --sub-heading-border-light: #4f6c96;
+  --sub-heading-bg-light: #62778a2f;
+  --emoji-overall-bg-light: #558fc22f;
+  --details-ids-color-light: #4f6c97;
+  --details-values-color-light: #00a2b1;
+  --unknown-details-color-light: #62778a;
+  --user-details-color-light: #62778a1c;
+  --emoji-overall-bg-text-light: #558fc211;
+}
+
+/* Dark Mode Styles */
+:root.light-mode {
+  --title-color-light: #add5ce;
+  --sub-heading-color-light: #826d91;
+  --sub-heading-border-light: #4f6c96;
+  --sub-heading-bg-light: #62778a2f;
+  --emoji-overall-bg-light: #62778a2f;
+  --details-ids-color-light: #4f6c97;
+  --details-values-color-light: #d2649a;
+  --unknown-details-color-light: #62778a;
+  --emoji-overall-bg-text-light: #62778a10;
+}
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--sub-heading-bg-light);
+}
+
+.show-more-less-btn {
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-light);
+  color: var(--details-ids-color-light);
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 0.85em;
+  border: 0px;
+}
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  background-color: var(--user-details-color-light);
+  border-radius: 5px;
+}
+
+.user-image {
+  width: 42px;
+  height: 62px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.username {
+  font-weight: bold;
+  color: var(--sub-heading-color-light);
+}
+
+.review-date {
+  font-size: 0.9em;
+  color: var(--details-ids-color-light);
+  font-weight: bold;
+  font-style: italic;
+}
+
+.review-tags {
+  margin-bottom: 10px;
+}
+
+.review-tag {
+  display: inline-block;
+  background-color: var(--sub-heading-color-light);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 0.8em;
+}
+
+.review-body {
+  margin-bottom: 10px;
+  color: var(--details-values-color-light);
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-text-light);
+  padding: 5px 10px;
+  line-height: 1.6;
+  border-radius: 5px;
+  font-size: 0.8em;
+}
+
+/* Markdown-specific styles within .review-body */
+.review-body h1,
+.review-body h2,
+.review-body h3,
+.review-body h4,
+.review-body h5,
+.review-body h6 {
+  color: var(--details-ids-color-light);
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.review-body p {
+  margin: 0.5em 0;
+}
+
+.review-body a {
+  color: var(--details-values-color-light);
+  text-decoration: underline;
+}
+
+.review-body ul,
+.review-body ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.review-body li {
+  margin-bottom: 0.5em;
+}
+
+.review-body blockquote {
+  margin: 0.8em 0;
+  padding: 0.5em 1em;
+  background-color: var(--sub-heading-bg-light);
+  border-left: 5px solid var(--sub-heading-border-light);
+  color: var(--unknown-details-color-light);
+}
+
+.review-body code {
+  background-color: var(--sub-heading-bg-light);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+  color: var(--details-ids-color-light);
+}
+
+.review-body pre {
+  background-color: var(--sub-heading-bg-light);
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  color: var(--details-ids-color-light);
+}
+
+.review-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-reactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.review-details .review-emoji {
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-light);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+}
+.review-emoji-overall-total,
+.review-emoji {
+  color: var(--details-ids-color-light);
+  font-weight: bold;
+  font-size: 0.95rem;
+  background-color: var(--emoji-overall-bg-light);
+  border-radius: 5px 12px 10px 5px;
+}
+.review-emoji-overall,
+.review-emoji-copy {
+  color: var(--details-values-color-light);
+}
