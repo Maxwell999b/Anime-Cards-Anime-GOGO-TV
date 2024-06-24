@@ -1,3 +1,13 @@
+:root {
+  --input-search-color: #c99f14;
+  --input-search-bg: #4f6c9725;
+  --input-search-border: #00a2b12f;
+}
+:root .light-mode {
+  --input-search-color: #d2649a;
+  --input-search-bg: #4f6c973a;
+  --input-search-border: #282f3c;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -32,10 +42,10 @@ input {
   width: 21rem;
   padding: 5px 12px;
   font-size: 24px;
-  border: 2px solid #ccc;
+  border: 2px solid var(--input-search-border);
   border-radius: 5px;
-  background-color: #fff;
-  color: #074173;
+  background-color: var(--input-search-bg);
+  color: var(--input-search-color);
   transition: border-color 0.3s ease;
 }
 .toggle-mode {

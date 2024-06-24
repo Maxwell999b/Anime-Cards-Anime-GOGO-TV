@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Details.css";
+import Reviews from "./Reviews";
 
-const AnimeDetails = ({ anime }) => {
+const AnimeDetails = ({ anime, reviews }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
   const handleRefresh = () => {
@@ -213,7 +214,6 @@ const AnimeDetails = ({ anime }) => {
               {anime.title}
             </Link>
           </p>
-
           <p>
             <span className="anime-details-ids">Synopsis:</span>
             <span className="anime-details-values">
@@ -232,10 +232,10 @@ const AnimeDetails = ({ anime }) => {
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
           <h3 className="sub-heading-right-side">Staff</h3>
           <div className="empty-section">{/* Staff Section */}</div>
-          <h3 className="sub-heading-right-side">Reviews</h3>
-          <div className="empty-section">{/* Reviews Section */}</div>
           <h3 className="sub-heading-right-side">Recent News</h3>
           <div className="empty-section">{/* Recent News Section */}</div>
+          <h3 className="sub-heading-right-side">Reviews</h3>
+          <Reviews reviews={reviews} />
         </div>
       </div>
     </div>
@@ -244,6 +244,7 @@ const AnimeDetails = ({ anime }) => {
 
 AnimeDetails.propTypes = {
   anime: PropTypes.object.isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 export default AnimeDetails;

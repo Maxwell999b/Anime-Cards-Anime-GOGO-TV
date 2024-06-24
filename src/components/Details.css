@@ -89,11 +89,11 @@
 }
 
 /* Layout for the left side */
-.left-side {
+/* .left-side {
   display: flex;
   align-items: left;
   flex-direction: column;
-}
+} */
 
 /* Layout for the right side */
 .right-side {
@@ -129,33 +129,30 @@
 
 .breadcrumb-current:hover {
   color: #208dec;
-  animation: breathe 2s infinite alternate ease-in-out;
+  animation: breathe 0.7s infinite alternate ease-in-out;
 }
 
 @keyframes breathe {
   0% {
     transform: scale(1);
   }
-  50% {
-    transform: scale(1.2);
-  }
   100% {
-    transform: scale(2);
+    transform: scale(1.09);
   }
 }
 
 /* Style for the carousel section */
 .carousel-section {
-  height: 200px; /* Adjust as needed */
-  background-color: #f1f1f1; /* Adjust as needed */
-  border: 1px solid #ccc; /* Adjust as needed */
+  height: 200px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
 }
 
 /* Style for empty sections */
 .empty-section {
-  height: 100px; /* Adjust as needed */
-  background-color: #f9f9f9; /* Adjust as needed */
-  border: 1px solid #ccc; /* Adjust as needed */
+  height: 100px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
 }
 
 /* Style for the IDs */
@@ -196,7 +193,7 @@
 /* Media queries for responsiveness */
 @media (max-width: 576px) {
   .detail-image {
-    height: 80vmax;
+    height: 75vmax;
   }
 
   .details-container {
