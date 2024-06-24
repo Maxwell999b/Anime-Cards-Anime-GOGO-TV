@@ -193,7 +193,7 @@
 /* Media queries for responsiveness */
 @media (max-width: 576px) {
   .detail-image {
-    height: 80vmax;
+    height: 75vmax;
   }
 
   .details-container {

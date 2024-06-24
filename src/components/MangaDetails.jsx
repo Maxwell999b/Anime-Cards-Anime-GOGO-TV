@@ -1,46 +1,84 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "./Details.css";
+import Reviews from "./Reviews";
 
-const MangaDetails = ({ manga }) => {
+const MangaDetails = ({ manga, reviews }) => {
   const scoreClassName = manga.score && manga.score >= 8 ? "manga-details-values-top" : "";
+  const scoreClassNameBy = manga.scored_by && manga.scored_by >= 100000 ? "manga-details-values-top" : "";
   const rankClassName = manga.rank && manga.rank <= 100 ? "manga-details-values-top" : "";
+  const handleRefresh = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="manga-details">
-      <h2 className="manga-title">{manga.title}</h2>
+      <div className="title-row">
+        <h1 className="manga-title">{manga.title}</h1>
+      </div>
       <div className="details-container">
         <div className="left-side">
           <img src={manga.images.jpg.image_url} alt={manga.title} className="detail-image" />
-        </div>
-        <div className="right-side">
+          <h3 className="sub-heading-left-side">Alternative Titles</h3>
+          {/* Alternative Titles Content */}
+          <p>
+            <span className="manga-details-ids">Synonyms:</span>
+            <span className="manga-details-values">
+              {manga.title_synonyms && manga.title_synonyms.length > 0 ? (
+                manga.title_synonyms.join(", ")
+              ) : (
+                <span className="unknown-details">N/A</span>
+              )}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">Japanese:</span>
+            <span className="manga-details-values">
+              {manga.title_japanese ? manga.title_japanese : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <h6 className="sub-heading-left-side">Information</h6>
+          {/* Information Content */}
           <p>
             <span className="manga-details-ids">Type:</span>
             <span className="manga-details-values">
-              {manga.type ? manga.type : <span className="unknown-details">unknown</span>}
+              {manga.type ? manga.type : <span className="unknown-details">N/A</span>}
             </span>
           </p>
           <p>
-            <span className="manga-details-ids">Source:</span>
+            <span className="manga-details-ids">Year:</span>
             <span className="manga-details-values">
-              {manga.source ? manga.source : <span className="unknown-details">unknown</span>}
+              {manga.published.string ? manga.published.string : <span className="unknown-details">N/A</span>}
             </span>
           </p>
           <p>
-            <span className="manga-details-ids">Score:</span>
-            <span className={`manga-details-values ${scoreClassName}`}>
-              {manga.score ? manga.score : <span className="unknown-details">unknown</span>}
-            </span>
-          </p>
-          <p>
-            <span className="manga-details-ids">Rank:</span>
-            <span className={`manga-details-values ${rankClassName}`}>
-              {manga.rank ? manga.rank : <span className="unknown-details">unknown</span>}
-            </span>
-          </p>
-          <p>
-            <span className="manga-details-ids">Episodes:</span>
+            <span className="manga-details-ids">Chapters:</span>
             <span className="manga-details-values">
-              {manga.episodes ? manga.episodes : <span className="unknown-details">unknown</span>}
+              {manga.chapters ? manga.chapters : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">Volumes:</span>
+            <span className="manga-details-values">
+              {manga.volumes ? manga.volumes : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">Status:</span>
+            <span className="manga-details-values">
+              {manga.status ? manga.status : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">authors:</span>
+            <span className="manga-details-values">
+              {manga.authors ? manga.authors[0].name : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">serializations:</span>
+            <span className="manga-details-values">
+              {manga.serializations ? manga.serializations[0].name : <span className="unknown-details">N/A</span>}
             </span>
           </p>
           <p>
@@ -49,48 +87,108 @@ const MangaDetails = ({ manga }) => {
               {manga.genres && manga.genres.length > 0 ? (
                 manga.genres.map((genre) => genre.name).join(", ")
               ) : (
-                <span className="unknown-details">unknown</span>
+                <span className="unknown-details">N/A</span>
               )}
             </span>
           </p>
           <p>
-            <span className="manga-details-ids">Producers:</span>
+            <span className="manga-details-ids">Themes:</span>
             <span className="manga-details-values">
-              {manga.producers && manga.producers.length > 0 ? (
-                manga.producers[0].name
+              {manga.themes && manga.themes.length > 0 ? (
+                manga.themes.map((theme) => theme.name).join(", ")
               ) : (
-                <span className="unknown-details">unknown</span>
+                <span className="unknown-details">N/A</span>
               )}
             </span>
           </p>
           <p>
-            <span className="manga-details-ids">Studios:</span>
+            <span className="manga-details-ids">Demographic:</span>
             <span className="manga-details-values">
-              {manga.studios && manga.studios.length > 0 ? (
-                manga.studios[0].name
+              {manga.demographics && manga.demographics.length > 0 ? (
+                manga.demographics.map((demographic) => demographic.name).join(", ")
               ) : (
-                <span className="unknown-details">unknown</span>
+                <span className="unknown-details">N/A</span>
+              )}
+            </span>
+          </p>
+          <h3 className="sub-heading-left-side">Statistics</h3>
+          <p>
+            <span className="manga-details-ids">Score:</span>
+            <span className={`manga-details-values ${scoreClassName}`}>
+              {manga.score ? manga.score : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">Scored_by:</span>
+            <span className={`manga-details-values ${scoreClassNameBy}`}>
+              {manga.scored_by ? manga.scored_by : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">Ranked:</span>
+            <span className={`manga-details-values ${rankClassName}`}>
+              {manga.rank ? manga.rank : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">Popularity:</span>
+            <span className="manga-details-values">
+              #{manga.popularity ? manga.popularity : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
+            <span className="manga-details-ids">Members:</span>
+            <span className="manga-details-values">
+              {manga.members ? (
+                manga.members.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              ) : (
+                <span className="unknown-details">N/A</span>
               )}
             </span>
           </p>
           <p>
-            <span className="manga-details-ids">Year:</span>
+            <span className="manga-details-ids">Favorites:</span>
             <span className="manga-details-values">
-              {manga.year ? manga.year : <span className="unknown-details">unknown</span>}
+              {manga.favorites ? (
+                manga.favorites.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              ) : (
+                <span className="unknown-details">N/A</span>
+              )}
             </span>
+          </p>
+        </div>
+        <div className="right-side">
+          <p className="breadcrumb-link-div">
+            <Link to="/" className="breadcrumb-link">
+              manga
+            </Link>{" "}
+            -&gt;{" "}
+            <Link to={`/manga/${manga.mal_id}`} className="breadcrumb-current" onClick={handleRefresh}>
+              {manga.title}
+            </Link>
           </p>
           <p>
             <span className="manga-details-ids">Synopsis:</span>
             <span className="manga-details-values">
-              {manga.synopsis ? manga.synopsis : <span className="unknown-details">unknown</span>}
+              {manga.synopsis ? manga.synopsis : <span className="unknown-details">N/A</span>}
             </span>
           </p>
           <p>
             <span className="manga-details-ids">Background:</span>
             <span className="manga-details-values">
-              {manga.background ? manga.background : <span className="unknown-details">unknown</span>}
+              {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
             </span>
           </p>
+          <h3 className="sub-heading-right-side">Videos</h3>
+          <div className="carousel-section">{/* Carousel Section */}</div>
+          <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
+          <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
+          <h3 className="sub-heading-right-side">Staff</h3>
+          <div className="empty-section">{/* Staff Section */}</div>
+          <h3 className="sub-heading-right-side">Recent News</h3>
+          <div className="empty-section">{/* Recent News Section */}</div>
+          <h3 className="sub-heading-right-side">Reviews</h3>
+          <Reviews reviews={reviews} />
         </div>
       </div>
     </div>
@@ -99,6 +197,7 @@ const MangaDetails = ({ manga }) => {
 
 MangaDetails.propTypes = {
   manga: PropTypes.object.isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 export default MangaDetails;
