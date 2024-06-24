@@ -221,18 +221,20 @@ const AnimeDetails = ({ anime, reviews }) => {
               {anime.title}
             </Link>
           </p>
-          <p>
-            <span className="anime-details-ids">Synopsis:</span>
-            <span className="anime-details-values">
-              {anime.synopsis ? anime.synopsis : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
-          <p>
-            <span className="anime-details-ids">Background:</span>
-            <span className="anime-details-values">
-              {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
+          <span className="synopsis-background-gap">
+            <p>
+              <span className="anime-details-ids">Synopsis:</span>
+              <span className="anime-details-values">
+                {anime.synopsis ? anime.synopsis : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+            <p>
+              <span className="anime-details-ids">Background:</span>
+              <span className="anime-details-values">
+                {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+          </span>
           <h3 className="sub-heading-right-side">Videos</h3>
           <div className="carousel-section">{/* Carousel Section */}</div>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>

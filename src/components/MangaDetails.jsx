@@ -159,7 +159,7 @@ const MangaDetails = ({ manga, reviews }) => {
         </div>
         <div className="right-side">
           <p className="breadcrumb-link-div">
-            <Link to="/" className="breadcrumb-link">
+            <Link to="/manga" className="breadcrumb-link">
               manga
             </Link>{" "}
             -&gt;{" "}
@@ -167,18 +167,20 @@ const MangaDetails = ({ manga, reviews }) => {
               {manga.title}
             </Link>
           </p>
-          <p>
-            <span className="manga-details-ids">Synopsis:</span>
-            <span className="manga-details-values">
-              {manga.synopsis ? manga.synopsis : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
-          <p>
-            <span className="manga-details-ids">Background:</span>
-            <span className="manga-details-values">
-              {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
+          <span className="synopsis-background-gap">
+            <p>
+              <span className="manga-details-ids">Synopsis:</span>
+              <span className="manga-details-values">
+                {manga.synopsis ? manga.synopsis : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+            <p>
+              <span className="manga-details-ids">Background:</span>
+              <span className="manga-details-values">
+                {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+          </span>
           <h3 className="sub-heading-right-side">Videos</h3>
           <div className="carousel-section">{/* Carousel Section */}</div>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>

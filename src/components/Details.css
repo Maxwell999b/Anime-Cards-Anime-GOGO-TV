@@ -159,7 +159,7 @@
 .anime-details-ids,
 .manga-details-ids {
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--details-ids-color-light);
 }
 
@@ -188,6 +188,10 @@
   font-weight: bold;
   background-color: #fddf87c4;
   border-radius: 10px 5px 10px 3px;
+}
+
+.synopsis-background-gap p {
+  margin-bottom: 2em;
 }
 
 /* Media queries for responsiveness */
