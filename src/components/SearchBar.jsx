@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./Navbar.css";
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
   const handleInputChange = (event) => {

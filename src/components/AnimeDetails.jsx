@@ -12,6 +12,10 @@ const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) =>
     window.location.reload();
   };
 
+  const uniqueNews = recentNews.filter(
+    (item, index, self) => index === self.findIndex((t) => t.mal_id === item.mal_id)
+  );
+
   return (
     <div className="anime-details">
       <div className="title-row">
@@ -19,7 +23,7 @@ const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) =>
       </div>
       <div className="details-container">
         <div className="left-side">
-          <img src={anime.images.jpg.image_url} alt={anime.title} className="detail-image" />
+          <img src={anime.images.webp.large_image_url} alt={anime.title} className="detail-image" />
           <h3 className="sub-heading-left-side">Alternative Titles</h3>
           {/* Alternative Titles Content */}
           <p>
@@ -252,7 +256,7 @@ const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) =>
           ) : errorNews ? (
             <div>Error: {errorNews}</div>
           ) : (
-            <News newsItems={recentNews} />
+            <News newsItems={uniqueNews} />
           )}
         </div>
       </div>

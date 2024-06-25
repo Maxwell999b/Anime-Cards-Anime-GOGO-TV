@@ -62,7 +62,7 @@ const ReviewCard = ({ review }) => {
 
   const reactionEmojis = {
     nice: "😊",
-    love_it: "❤️",
+    love_it: "💕",
     funny: "😂",
     confusing: "😕",
     informative: "💡",

@@ -1,26 +1,3 @@
-/* Light Mode Styles */
-:root {
-  --card-title: #c99f14;
-  --card-tags: #4f6c97;
-  --card-tags-values: #00a2b1;
-  --pagination-bg-button: #00a2b1;
-  --pagination-bg-button-hover: #c99f14;
-  --pagination-bg-text: #fff;
-  --pagination-bg-text-hover: #2557a1;
-  --Loading-icon: #add5ce;
-}
-
-/* Dark Mode Styles */
-:root.light-mode {
-  --card-title: #add5ce;
-  --card-tags: #4f6c97;
-  --card-tags-values: #d2649a;
-  --pagination-bg-button: #4f6c97;
-  --pagination-bg-button-hover: #d2649a;
-  --pagination-bg-text: #282f3c;
-  --pagination-bg-text-hover: #fff;
-  --Loading-icon: #282f3c;
-}
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -41,7 +18,7 @@
 
 .card:hover {
   transform: scale(1.05);
-  filter: blur(0.3px) grayscale(15%) hue-rotate(5deg);
+  filter: Brightness(90%);
 }
 
 .card-image-container {
