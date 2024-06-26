@@ -5,7 +5,7 @@ import SunIcon from "../assets/brand-sun.svg";
 import MoonIcon from "../assets/brand-moon.svg";
 import SearchBar from "./SearchBar";
 import Icon2 from "../assets/pnga1.svg";
-import { Fade as Hamburger } from "hamburger-react";
+import { Sling as Hamburger } from "hamburger-react";
 import "./Navbar.css";
 
 const Navbar = ({ lightMode, toggleLightMode, searchTerm, setSearchTerm }) => {
