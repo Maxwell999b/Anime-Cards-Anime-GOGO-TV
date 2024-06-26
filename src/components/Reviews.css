@@ -1,13 +1,27 @@
 .reviews-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  width: 100%;
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.reviews-slider {
+  overflow: visible; /* Allow overflow for expanded content */
 }
 
 .review-card {
+  width: 100%;
+  max-width: 100%;
   padding: 20px;
   border-radius: 10px;
   background-color: var(--sub-heading-bg-light);
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  transition: height 0.3s ease;
+}
+
+.review-card.expanded {
+  max-height: none;
 }
 
 .show-more-less-btn {
@@ -21,6 +35,7 @@
   font-size: 0.85em;
   border: 0px;
 }
+
 .review-header {
   display: flex;
   justify-content: space-between;
@@ -124,66 +139,109 @@
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: monospace;
-  color: var(--details-ids-color-light);
-}
-
-.review-body pre {
-  background-color: var(--sub-heading-bg-light);
-  padding: 1em;
-  border-radius: 5px;
-  overflow-x: auto;
-  color: var(--details-ids-color-light);
+  color: var(--sub-heading-color-light);
 }
 
 .review-footer {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 2px solid var(--sub-heading-border-light);
+  padding-top: 10px;
+  font-size: 0.85em;
 }
 
 .review-reactions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.review-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.review-emoji {
+  color: var(--details-ids-color-light);
+  font-weight: bold;
+  margin-right: 2px;
+  cursor: pointer;
+  padding: 5px;
+  background-color: var(--emoji-overall-bg-light);
+  border-radius: 10px;
 }
 
-.review-details .review-emoji {
+.review-emoji-overall {
+  display: inline-block;
+  font-size: 1.1em;
+  background-color: var(--emoji-overall-bg-light);
+  border-radius: 50%;
+  padding: 5px;
+  margin: 0 5px;
+  color: var(--sub-heading-color-light);
+}
+
+.review-emoji-overall-total {
   display: inline-block;
   background-color: var(--emoji-overall-bg-light);
+  padding: 5px;
+  margin: 0 5px;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-radius: 10px;
+  color: var(--card-tags);
+}
+.review-emoji.selected {
+  color: var(--details-values-color-light);
+  filter: opacity(90%) brightness(80%);
+}
+.review-details .review-emoji {
+  display: inline-block;
+  /* background-color: var(--emoji-overall-bg-light); */
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 0.8em;
 }
 .review-details .review-emoji.selected {
-  display: inline-block;
-  background-color: var(--details-values-color-light);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8em;
-}
-.review-emoji-overall-total,
-.review-emoji {
-  color: var(--details-ids-color-light);
-  font-weight: bold;
-  font-size: 0.95rem;
-  background-color: var(--emoji-overall-bg-light);
-  border-radius: 5px 12px 10px 5px;
-}
-.review-emoji-overall,
-.review-emoji-copy {
-  color: var(--details-values-color-light);
-}
-.review-emoji-copy,
-.review-emoji {
-  cursor: pointer;
+  background-color: var(--sub-heading-bg-light);
+  color: var(--sub-heading-color-light);
 }
 
 .review-emoji-copy.selected {
   color: var(--sub-heading-color-light);
+}
+.review-details {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (min-width: 575px) and (max-width: 768px) {
+  .reviews-container {
+    max-width: 32rem; /* Tablets (576 x 768) */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+  .reviews-container {
+    max-width: 35rem; /* Laptops (768 x 1024) and Desktops (992 x 1200) */
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .reviews-container {
+    max-width: 40rem; /* Desktops (1200 x 1600) */
+  }
+}
+
+@media (max-width: 375px) {
+  .reviews-container {
+    max-width: 90vw; /* Phones (375 x 667) */
+    padding: 10px;
+  }
+
+  .reviews-image {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1280px) {
+  .reviews-container {
+    max-width: 50rem; /* Large Desktop (1280 x 768) */
+  }
 }
