@@ -7,15 +7,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Reviews = ({ reviews }) => {
-  const [currentSlide, setCurrentSlide] = useState(0); // State to keep track of current slide index
-  const sliderRef = useRef(null); // Ref to the slider component
-  const isMountedRef = useRef(false); // Ref to check if component is mounted
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
+  const isMountedRef = useRef(false);
 
   useEffect(() => {
-    isMountedRef.current = true; // Set to true when component mounts
+    isMountedRef.current = true;
 
     return () => {
-      isMountedRef.current = false; // Cleanup function to set to false when component unmounts
+      isMountedRef.current = false;
     };
   }, []);
 
@@ -118,10 +118,9 @@ const ReviewCard = ({ review, currentSlide }) => {
     <div className={`review-card ${showMore ? "expanded" : ""}`}>
       <div className="review-header">
         <div className="user-info">
-          {review.user.images.jpg &&
-            review.user.images.jpg.image_url && ( // Conditional rendering of user image
-              <img src={review.user.images.jpg.image_url} alt={review.user.username} className="user-image" />
-            )}
+          {review.user.images.jpg && review.user.images.jpg.image_url && (
+            <img src={review.user.images.jpg.image_url} alt={review.user.username} className="user-image" />
+          )}
           <span className="username">{review.user.username}</span>
         </div>
         <span className="review-date">{new Date(review.date).toLocaleDateString()}</span>

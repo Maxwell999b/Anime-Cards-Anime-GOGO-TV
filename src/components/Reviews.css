@@ -24,18 +24,6 @@
   max-height: none;
 }
 
-.show-more-less-btn {
-  display: inline-block;
-  background-color: var(--emoji-overall-bg-light);
-  color: var(--details-ids-color-light);
-  padding: 5px;
-  font-weight: bold;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 0.85em;
-  border: 0px;
-}
-
 .review-header {
   display: flex;
   justify-content: space-between;
@@ -144,9 +132,8 @@
 
 .review-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
+  flex-direction: column;
+  gap: 10px;
   border-top: 2px solid var(--sub-heading-border-light);
   padding-top: 10px;
   font-size: 0.85em;
@@ -154,7 +141,26 @@
 
 .review-reactions {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+
+.show-more-less-btn {
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-light);
+  color: var(--details-ids-color-light);
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 0.85em;
+  border: 0px;
+}
+
+.review-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .review-emoji {
@@ -165,6 +171,10 @@
   padding: 5px;
   background-color: var(--emoji-overall-bg-light);
   border-radius: 10px;
+}
+
+.review-emoji.selected {
+  color: var(--sub-heading-color-light);
 }
 
 .review-emoji-overall {
@@ -187,28 +197,14 @@
   border-radius: 10px;
   color: var(--card-tags);
 }
-.review-emoji.selected {
-  color: var(--details-values-color-light);
-  filter: opacity(90%) brightness(80%);
-}
-.review-details .review-emoji {
-  display: inline-block;
-  /* background-color: var(--emoji-overall-bg-light); */
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8em;
-}
-.review-details .review-emoji.selected {
-  background-color: var(--sub-heading-bg-light);
-  color: var(--sub-heading-color-light);
-}
 
 .review-emoji-copy.selected {
   color: var(--sub-heading-color-light);
 }
-.review-details {
-  display: flex;
-  flex-direction: row;
+
+.review-details .review-emoji.selected {
+  background-color: var(--details-values-color-light);
+  color: var(--sub-heading-color-light);
 }
 
 @media (min-width: 575px) and (max-width: 768px) {
