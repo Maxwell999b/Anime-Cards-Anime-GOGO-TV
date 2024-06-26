@@ -1,38 +1,76 @@
 import PropTypes from "prop-types";
 import "./Reviews.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
-import axios from "axios";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Reviews = ({ reviews }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
+  const isMountedRef = useRef(false);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 3000,
+    arrows: false,
+    beforeChange: (oldIndex, newIndex) => {
+      handleBeforeChange(oldIndex, newIndex);
+    },
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+    ],
+  };
+
+  const handleBeforeChange = (oldIndex, newIndex) => {
+    if (isMountedRef.current) {
+      setCurrentSlide(newIndex); // Update current slide index
+    }
+  };
+
   return (
     <div className="reviews-container">
-      {reviews.map((review) => (
-        <ReviewCard key={review.mal_id} review={review} />
-      ))}
+      <Slider ref={sliderRef} {...sliderSettings} className="reviews-slider">
+        {reviews.map((review, index) => (
+          <div key={review.mal_id}>
+            <ReviewCard review={review} currentSlide={currentSlide === index} />
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };
 
-const ReviewCard = ({ review }) => {
+Reviews.propTypes = {
+  reviews: PropTypes.array.isRequired,
+};
+
+const ReviewCard = ({ review, currentSlide }) => {
   const [showMore, setShowMore] = useState(false);
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [reactions, setReactions] = useState({ ...review.reactions });
-
-  useEffect(() => {
-    if (!review) return;
-
-    const fetchReactions = async () => {
-      try {
-        const reactionResponse = await axios.get(`https://api.jikan.moe/v4/reactions/${review.mal_id}`);
-        setReactions(reactionResponse.data.data.reactions);
-      } catch (error) {
-        console.error("Error fetching reactions:", error.message);
-      }
-    };
-
-    fetchReactions();
-  }, [review]);
 
   const handleToggleShowMore = () => {
     setShowMore(!showMore);
@@ -62,7 +100,7 @@ const ReviewCard = ({ review }) => {
 
   const reactionEmojis = {
     nice: "😊",
-    love_it: "❤️",
+    love_it: "💕",
     funny: "😂",
     confusing: "😕",
     informative: "💡",
@@ -70,11 +108,19 @@ const ReviewCard = ({ review }) => {
     creative: "🎨",
   };
 
+  useEffect(() => {
+    if (!currentSlide) {
+      setShowMore(false); // Reset showMore state when sliding away from this card
+    }
+  }, [currentSlide]);
+
   return (
-    <div className="review-card">
+    <div className={`review-card ${showMore ? "expanded" : ""}`}>
       <div className="review-header">
         <div className="user-info">
-          <img src={review.user.images.jpg.image_url} alt={review.user.username} className="user-image" />
+          {review.user.images.jpg && review.user.images.jpg.image_url && (
+            <img src={review.user.images.jpg.image_url} alt={review.user.username} className="user-image" />
+          )}
           <span className="username">{review.user.username}</span>
         </div>
         <span className="review-date">{new Date(review.date).toLocaleDateString()}</span>
@@ -118,12 +164,9 @@ const ReviewCard = ({ review }) => {
   );
 };
 
-Reviews.propTypes = {
-  reviews: PropTypes.array.isRequired,
-};
-
 ReviewCard.propTypes = {
   review: PropTypes.object.isRequired,
+  currentSlide: PropTypes.bool.isRequired,
 };
 
 export default Reviews;

@@ -1,26 +1,3 @@
-/* Light Mode Styles */
-:root {
-  --title-color-light: #c99f14;
-  --sub-heading-color-light: #c99f14;
-  --sub-heading-border-light: #4f6c96;
-  --sub-heading-bg-light: #62778a2f;
-  --details-ids-color-light: #4f6c97;
-  --details-values-color-light: #00a2b1;
-  --unknown-details-color-light: #62778a;
-}
-
-/* Dark Mode Styles */
-:root.light-mode {
-  --title-color-light: #add5ce;
-  --sub-heading-color-light: #826d91;
-  --sub-heading-border-light: #4f6c96;
-  --sub-heading-bg-light: #62778a2f;
-  --details-ids-color-light: #4f6c97;
-  --details-values-color-light: #d2649a;
-  --unknown-details-color-light: #62778a;
-}
-
-/* Ensure there's minimal margin between each detail item */
 .left-side p,
 .right-side p {
   margin: 3px 0;
@@ -30,9 +7,6 @@
 .anime-details,
 .manga-details {
   padding: 20px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
 /* Style for the title row */
@@ -159,7 +133,7 @@
 .anime-details-ids,
 .manga-details-ids {
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--details-ids-color-light);
 }
 
@@ -190,10 +164,14 @@
   border-radius: 10px 5px 10px 3px;
 }
 
+.synopsis-background-gap p {
+  margin-bottom: 2em;
+}
+
 /* Media queries for responsiveness */
 @media (max-width: 576px) {
   .detail-image {
-    height: 75vmax;
+    width: 100%;
   }
 
   .details-container {

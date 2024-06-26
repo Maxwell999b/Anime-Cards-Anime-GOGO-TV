@@ -8,8 +8,11 @@ const MangaDetailsPage = () => {
   const { id } = useParams();
   const [manga, setManga] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingNews, setLoadingNews] = useState(true);
   const [error, setError] = useState(null);
+  const [errorNews, setErrorNews] = useState(null);
 
   useEffect(() => {
     const fetchMangaData = async () => {
@@ -40,7 +43,23 @@ const MangaDetailsPage = () => {
 
     fetchReviews();
   }, [manga, id]);
+  // Fetch news data
+  useEffect(() => {
+    if (!manga) return;
 
+    const fetchNews = async () => {
+      try {
+        const newsResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}/news`);
+        setNews(newsResponse.data.data);
+      } catch (error) {
+        setErrorNews(error.message);
+      } finally {
+        setLoadingNews(false);
+      }
+    };
+
+    fetchNews();
+  }, [manga, id]);
   const memoizedMangaDetails = useMemo(() => manga, [manga]);
 
   if (loading)
@@ -51,7 +70,17 @@ const MangaDetailsPage = () => {
     );
   if (error) return <div>Error: {error}</div>;
 
-  return manga ? <MangaDetails manga={memoizedMangaDetails} reviews={reviews} /> : <div>No details available</div>;
+  return manga ? (
+    <MangaDetails
+      manga={memoizedMangaDetails}
+      reviews={reviews}
+      recentNews={news}
+      loadingNews={loadingNews}
+      errorNews={errorNews}
+    />
+  ) : (
+    <div>No details available</div>
+  );
 };
 
 export default MangaDetailsPage;

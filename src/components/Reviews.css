@@ -1,51 +1,29 @@
-:root {
-  --title-color-light: #c99f14;
-  --sub-heading-color-light: #c99f14;
-  --sub-heading-border-light: #4f6c96;
-  --sub-heading-bg-light: #62778a2f;
-  --emoji-overall-bg-light: #558fc22f;
-  --details-ids-color-light: #4f6c97;
-  --details-values-color-light: #00a2b1;
-  --unknown-details-color-light: #62778a;
-  --user-details-color-light: #62778a1c;
-  --emoji-overall-bg-text-light: #558fc211;
+.reviews-container {
+  width: 100%;
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
 }
 
-/* Dark Mode Styles */
-:root.light-mode {
-  --title-color-light: #add5ce;
-  --sub-heading-color-light: #826d91;
-  --sub-heading-border-light: #4f6c96;
-  --sub-heading-bg-light: #62778a2f;
-  --emoji-overall-bg-light: #62778a2f;
-  --details-ids-color-light: #4f6c97;
-  --details-values-color-light: #d2649a;
-  --unknown-details-color-light: #62778a;
-  --emoji-overall-bg-text-light: #62778a10;
-}
-.reviews-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.reviews-slider {
+  overflow: visible; /* Allow overflow for expanded content */
 }
 
 .review-card {
+  width: 100%;
+  max-width: 100%;
   padding: 20px;
   border-radius: 10px;
   background-color: var(--sub-heading-bg-light);
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  transition: height 0.3s ease;
 }
 
-.show-more-less-btn {
-  display: inline-block;
-  background-color: var(--emoji-overall-bg-light);
-  color: var(--details-ids-color-light);
-  padding: 5px;
-  font-weight: bold;
-  border-radius: 5px;
-  margin-right: 5px;
-  font-size: 0.85em;
-  border: 0px;
+.review-card.expanded {
+  max-height: none;
 }
+
 .review-header {
   display: flex;
   justify-content: space-between;
@@ -58,6 +36,7 @@
   align-items: center;
   background-color: var(--user-details-color-light);
   border-radius: 5px;
+  padding: 5px;
 }
 
 .user-image {
@@ -148,21 +127,16 @@
   padding: 0.2em 0.4em;
   border-radius: 3px;
   font-family: monospace;
-  color: var(--details-ids-color-light);
-}
-
-.review-body pre {
-  background-color: var(--sub-heading-bg-light);
-  padding: 1em;
-  border-radius: 5px;
-  overflow-x: auto;
-  color: var(--details-ids-color-light);
+  color: var(--sub-heading-color-light);
 }
 
 .review-footer {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border-top: 2px solid var(--sub-heading-border-light);
+  padding-top: 10px;
+  font-size: 0.85em;
 }
 
 .review-reactions {
@@ -171,43 +145,99 @@
   align-items: center;
 }
 
+.show-more-less-btn {
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-light);
+  color: var(--details-ids-color-light);
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 0.85em;
+  border: 0px;
+}
+
 .review-details {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.review-details .review-emoji {
-  display: inline-block;
-  background-color: var(--emoji-overall-bg-light);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8em;
-}
-.review-details .review-emoji.selected {
-  display: inline-block;
-  background-color: var(--details-values-color-light);
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8em;
-}
-.review-emoji-overall-total,
 .review-emoji {
   color: var(--details-ids-color-light);
   font-weight: bold;
-  font-size: 0.95rem;
-  background-color: var(--emoji-overall-bg-light);
-  border-radius: 5px 12px 10px 5px;
-}
-.review-emoji-overall,
-.review-emoji-copy {
-  color: var(--details-values-color-light);
-}
-.review-emoji-copy,
-.review-emoji {
+  margin-right: 2px;
   cursor: pointer;
+  padding: 5px;
+  background-color: var(--emoji-overall-bg-light);
+  border-radius: 10px;
+}
+
+.review-emoji.selected {
+  color: var(--sub-heading-color-light);
+}
+
+.review-emoji-overall {
+  display: inline-block;
+  font-size: 1.1em;
+  background-color: var(--emoji-overall-bg-light);
+  border-radius: 50%;
+  padding: 5px;
+  margin: 0 5px;
+  color: var(--sub-heading-color-light);
+}
+
+.review-emoji-overall-total {
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-light);
+  padding: 5px;
+  margin: 0 5px;
+  font-size: 0.9em;
+  font-weight: bold;
+  border-radius: 10px;
+  color: var(--card-tags);
 }
 
 .review-emoji-copy.selected {
   color: var(--sub-heading-color-light);
+}
+
+.review-details .review-emoji.selected {
+  background-color: var(--details-values-color-light);
+  color: var(--sub-heading-color-light);
+}
+
+@media (min-width: 575px) and (max-width: 768px) {
+  .reviews-container {
+    max-width: 32rem; /* Tablets (576 x 768) */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+  .reviews-container {
+    max-width: 35rem; /* Laptops (768 x 1024) and Desktops (992 x 1200) */
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .reviews-container {
+    max-width: 40rem; /* Desktops (1200 x 1600) */
+  }
+}
+
+@media (max-width: 375px) {
+  .reviews-container {
+    max-width: 90vw; /* Phones (375 x 667) */
+    padding: 10px;
+  }
+
+  .reviews-image {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1280px) {
+  .reviews-container {
+    max-width: 50rem; /* Large Desktop (1280 x 768) */
+  }
 }

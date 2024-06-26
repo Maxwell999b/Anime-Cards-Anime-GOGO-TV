@@ -2,8 +2,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Details.css";
 import Reviews from "./Reviews";
+import News from "./News";
 
-const MangaDetails = ({ manga, reviews }) => {
+const MangaDetails = ({ manga, reviews, recentNews, loadingNews, errorNews }) => {
   const scoreClassName = manga.score && manga.score >= 8 ? "manga-details-values-top" : "";
   const scoreClassNameBy = manga.scored_by && manga.scored_by >= 100000 ? "manga-details-values-top" : "";
   const rankClassName = manga.rank && manga.rank <= 100 ? "manga-details-values-top" : "";
@@ -159,7 +160,7 @@ const MangaDetails = ({ manga, reviews }) => {
         </div>
         <div className="right-side">
           <p className="breadcrumb-link-div">
-            <Link to="/" className="breadcrumb-link">
+            <Link to="/manga" className="breadcrumb-link">
               manga
             </Link>{" "}
             -&gt;{" "}
@@ -167,28 +168,38 @@ const MangaDetails = ({ manga, reviews }) => {
               {manga.title}
             </Link>
           </p>
-          <p>
-            <span className="manga-details-ids">Synopsis:</span>
-            <span className="manga-details-values">
-              {manga.synopsis ? manga.synopsis : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
-          <p>
-            <span className="manga-details-ids">Background:</span>
-            <span className="manga-details-values">
-              {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
+          <span className="synopsis-background-gap">
+            <p>
+              <span className="manga-details-ids">Synopsis:</span>
+              <span className="manga-details-values">
+                {manga.synopsis ? manga.synopsis : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+            <p>
+              <span className="manga-details-ids">Background:</span>
+              <span className="manga-details-values">
+                {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+          </span>
           <h3 className="sub-heading-right-side">Videos</h3>
           <div className="carousel-section">{/* Carousel Section */}</div>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
           <h3 className="sub-heading-right-side">Staff</h3>
           <div className="empty-section">{/* Staff Section */}</div>
-          <h3 className="sub-heading-right-side">Recent News</h3>
-          <div className="empty-section">{/* Recent News Section */}</div>
           <h3 className="sub-heading-right-side">Reviews</h3>
           <Reviews reviews={reviews} />
+          <h3 className="sub-heading-right-side">Recent News</h3>
+          {loadingNews ? (
+            <div className="loading-icon">
+              <h1>Loading News...</h1>
+            </div>
+          ) : errorNews ? (
+            <div>Error: {errorNews}</div>
+          ) : (
+            <News newsItems={recentNews} />
+          )}
         </div>
       </div>
     </div>
@@ -198,6 +209,9 @@ const MangaDetails = ({ manga, reviews }) => {
 MangaDetails.propTypes = {
   manga: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
+  recentNews: PropTypes.array.isRequired,
+  loadingNews: PropTypes.bool.isRequired,
+  errorNews: PropTypes.string,
 };
 
 export default MangaDetails;

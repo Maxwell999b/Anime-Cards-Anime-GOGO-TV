@@ -2,13 +2,19 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Details.css";
 import Reviews from "./Reviews";
+import News from "./News";
 
-const AnimeDetails = ({ anime, reviews }) => {
+const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
+  const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
   const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
   const handleRefresh = () => {
     window.location.reload();
   };
+
+  const uniqueNews = recentNews.filter(
+    (item, index, self) => index === self.findIndex((t) => t.mal_id === item.mal_id)
+  );
 
   return (
     <div className="anime-details">
@@ -17,7 +23,7 @@ const AnimeDetails = ({ anime, reviews }) => {
       </div>
       <div className="details-container">
         <div className="left-side">
-          <img src={anime.images.jpg.image_url} alt={anime.title} className="detail-image" />
+          <img src={anime.images.webp.large_image_url} alt={anime.title} className="detail-image" />
           <h3 className="sub-heading-left-side">Alternative Titles</h3>
           {/* Alternative Titles Content */}
           <p>
@@ -172,6 +178,12 @@ const AnimeDetails = ({ anime, reviews }) => {
             </span>
           </p>
           <p>
+            <span className="anime-details-ids">Scored_by:</span>
+            <span className={`anime-details-values ${scoreClassNameBy}`}>
+              {anime.scored_by ? anime.scored_by : <span className="unknown-details">N/A</span>}
+            </span>
+          </p>
+          <p>
             <span className="anime-details-ids">Ranked:</span>
             <span className={`anime-details-values ${rankClassName}`}>
               {anime.rank ? anime.rank : <span className="unknown-details">N/A</span>}
@@ -214,28 +226,38 @@ const AnimeDetails = ({ anime, reviews }) => {
               {anime.title}
             </Link>
           </p>
-          <p>
-            <span className="anime-details-ids">Synopsis:</span>
-            <span className="anime-details-values">
-              {anime.synopsis ? anime.synopsis : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
-          <p>
-            <span className="anime-details-ids">Background:</span>
-            <span className="anime-details-values">
-              {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
-            </span>
-          </p>
+          <span className="synopsis-background-gap">
+            <p>
+              <span className="anime-details-ids">Synopsis:</span>
+              <span className="anime-details-values">
+                {anime.synopsis ? anime.synopsis : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+            <p>
+              <span className="anime-details-ids">Background:</span>
+              <span className="anime-details-values">
+                {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
+              </span>
+            </p>
+          </span>
           <h3 className="sub-heading-right-side">Videos</h3>
           <div className="carousel-section">{/* Carousel Section */}</div>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
           <h3 className="sub-heading-right-side">Staff</h3>
           <div className="empty-section">{/* Staff Section */}</div>
-          <h3 className="sub-heading-right-side">Recent News</h3>
-          <div className="empty-section">{/* Recent News Section */}</div>
           <h3 className="sub-heading-right-side">Reviews</h3>
           <Reviews reviews={reviews} />
+          <h3 className="sub-heading-right-side">Recent News</h3>
+          {loadingNews ? (
+            <div className="loading-icon">
+              <h1>Loading News...</h1>
+            </div>
+          ) : errorNews ? (
+            <div>Error: {errorNews}</div>
+          ) : (
+            <News newsItems={uniqueNews} />
+          )}
         </div>
       </div>
     </div>
@@ -245,6 +267,9 @@ const AnimeDetails = ({ anime, reviews }) => {
 AnimeDetails.propTypes = {
   anime: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
+  recentNews: PropTypes.array.isRequired,
+  loadingNews: PropTypes.bool.isRequired,
+  errorNews: PropTypes.string,
 };
 
 export default AnimeDetails;

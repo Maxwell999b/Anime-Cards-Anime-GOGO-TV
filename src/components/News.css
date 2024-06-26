@@ -1,0 +1,224 @@
+.news-container {
+  width: 100%;
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.news-card {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--sub-heading-bg-light);
+}
+
+.show-more-less-btn {
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-light);
+  color: var(--details-ids-color-light);
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 0.85em;
+  border: 0px;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.news-info {
+  display: flex;
+  align-items: center;
+  background-color: var(--user-details-color-light);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.news-image {
+  width: 42px;
+  height: 62px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.news-title {
+  font-weight: bold;
+  color: var(--sub-heading-color-light);
+}
+
+.news-title a {
+  color: var(--sub-heading-color-light);
+  text-decoration: none;
+}
+
+.news-date {
+  font-size: 0.9em;
+  color: var(--details-ids-color-light);
+  font-weight: bold;
+  font-style: italic;
+}
+
+.news-body {
+  margin-bottom: 10px;
+  color: var(--details-values-color-light);
+  display: inline-block;
+  background-color: var(--emoji-overall-bg-text-light);
+  padding: 5px 10px;
+  line-height: 1.6;
+  border-radius: 5px;
+  font-size: 0.8em;
+}
+
+/* Markdown-specific styles within .news-body */
+.news-body h1,
+.news-body h2,
+.news-body h3,
+.news-body h4,
+.news-body h5,
+.news-body h6 {
+  color: var(--details-ids-color-light);
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.news-body p {
+  margin: 0.5em 0;
+}
+
+.news-body a {
+  color: var(--details-values-color-light);
+  text-decoration: underline;
+}
+
+.news-body ul,
+.news-body ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.news-body li {
+  margin-bottom: 0.5em;
+}
+
+.news-body blockquote {
+  margin: 0.8em 0;
+  padding: 0.5em 1em;
+  background-color: var(--sub-heading-bg-light);
+  border-left: 5px solid var(--sub-heading-border-light);
+  color: var(--unknown-details-color-light);
+}
+
+.news-body code {
+  background-color: var(--sub-heading-bg-light);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+  color: var(--details-ids-color-light);
+}
+
+.news-body pre {
+  background-color: var(--sub-heading-bg-light);
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  color: var(--details-ids-color-light);
+}
+
+.news-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.news-author {
+  font-size: 0.9em;
+  color: var(--details-ids-color-light);
+}
+
+.news-comments {
+  font-size: 0.9em;
+  color: var(--details-ids-color-light);
+}
+
+.news-link {
+  font-size: 0.9em;
+  color: var(--details-values-color-light);
+  text-decoration: underline;
+}
+.news-author a {
+  color: brown;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.slick-dots {
+  bottom: -30px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  color: gray;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--details-values-color-light);
+}
+
+/* Slider arrows customization */
+.slick-prev,
+.slick-next {
+  width: 30px;
+  height: 30px;
+  z-index: 1;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px;
+  color: var(--details-values-color-light);
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+  color: var(--sub-heading-color-light);
+}
+@media (min-width: 575px) and (max-width: 768px) {
+  .news-container {
+    max-width: 32rem; /* Tablets (576 x 768) */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+  .news-container {
+    max-width: 35rem; /* Laptops (768 x 1024) and Desktops (992 x 1200) */
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .news-container {
+    max-width: 40rem; /* Desktops (1200 x 1600) */
+  }
+}
+
+@media (max-width: 375px) {
+  .news-container {
+    max-width: 90vw; /* Phones (375 x 667) */
+    padding: 10px;
+  }
+
+  .news-image {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1280px) {
+  .news-container {
+    max-width: 50rem; /* Large Desktop (1280 x 768) */
+  }
+}
