@@ -7,6 +7,7 @@ import "./Details.css";
 const AnimeDetailsPage = () => {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
+  const [episodes, setEpisodes] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,6 +20,10 @@ const AnimeDetailsPage = () => {
       try {
         const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
         setAnime(animeResponse.data.data);
+
+        // Fetch episodes data
+        const episodesResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/episodes`);
+        setEpisodes(episodesResponse.data.data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -78,6 +83,7 @@ const AnimeDetailsPage = () => {
       recentNews={news}
       loadingNews={loadingNews}
       errorNews={errorNews}
+      episodes={episodes}
     />
   ) : (
     <div>No details available</div>

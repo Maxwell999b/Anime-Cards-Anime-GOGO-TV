@@ -2,12 +2,14 @@
 
 /* Dark Mode Styles */
 :root {
+  --mode-theme-primary: #1b1f2b;
   --title-color-light: #c99f14;
   --sub-heading-color-light: #c99f14;
   --sub-heading-border-light: #4f6c96;
   --sub-heading-bg-light: #62778a2f;
   --details-ids-color-light: #4f6c97;
   --details-values-color-light: #00a2b1;
+  --details-values-color-light-2: #c1fbff;
   --unknown-details-color-light: #62778a;
   --emoji-overall-bg-light: #558fc22f;
   --user-details-color-light: #62778a1c;
@@ -28,6 +30,7 @@
 
 /* light Mode Styles */
 :root.light-mode {
+  --mode-theme-primary: #dbdde6;
   --title-color-light: #add5ce;
   --sub-heading-color-light: #826d91;
   --sub-heading-border-light: #4f6c96;
@@ -35,6 +38,7 @@
   --emoji-overall-bg-light: #62778a2f;
   --details-ids-color-light: #4f6c97;
   --details-values-color-light: #d2649a;
+  --details-values-color-light-2: #f7cfe2;
   --unknown-details-color-light: #62778a;
   --emoji-overall-bg-text-light: #62778a10;
   --card-title: #add5ce;
