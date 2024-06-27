@@ -209,7 +209,7 @@
 
 @media (min-width: 575px) and (max-width: 768px) {
   .reviews-container {
-    max-width: 32rem; /* Tablets (576 x 768) */
+    max-width: 25rem; /* Tablets (576 x 768) */
   }
 }
 

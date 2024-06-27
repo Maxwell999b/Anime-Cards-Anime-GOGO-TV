@@ -69,7 +69,7 @@
 /* Responsive styles */
 @media (min-width: 575px) and (max-width: 768px) {
   .videos-container {
-    max-width: 32rem;
+    max-width: 25rem;
   }
 }
 
