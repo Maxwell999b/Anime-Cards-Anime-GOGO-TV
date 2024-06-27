@@ -18,15 +18,27 @@ const AnimeDetailsPage = () => {
   useEffect(() => {
     const fetchAnimeData = async () => {
       try {
-        const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
-        setAnime(animeResponse.data.data);
+        // Check if anime details are already cached in sessionStorage
+        const cachedAnimeDetails = sessionStorage.getItem(`animeDetails_${id}`);
+        if (cachedAnimeDetails) {
+          setAnime(JSON.parse(cachedAnimeDetails));
+          setLoading(false);
+        } else {
+          const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+          setAnime(animeResponse.data.data);
+          sessionStorage.setItem(`animeDetails_${id}`, JSON.stringify(animeResponse.data.data)); // Cache the anime details
+          setLoading(false);
+        }
 
         // Fetch episodes data
         const episodesResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/episodes`);
         setEpisodes(episodesResponse.data.data);
+
+        // Fetch reviews
+        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
+        setReviews(reviewsResponse.data.data);
       } catch (error) {
         setError(error.message);
-      } finally {
         setLoading(false);
       }
     };
@@ -37,28 +49,21 @@ const AnimeDetailsPage = () => {
   useEffect(() => {
     if (!anime) return;
 
-    const fetchReviews = async () => {
-      try {
-        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
-        setReviews(reviewsResponse.data.data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchReviews();
-  }, [anime, id]);
-
-  useEffect(() => {
-    if (!anime) return;
-
     const fetchNews = async () => {
       try {
-        const newsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/news`);
-        setNews(newsResponse.data.data);
+        // Check if news data is already cached in sessionStorage
+        const cachedNewsData = sessionStorage.getItem(`news_${id}`);
+        if (cachedNewsData) {
+          setNews(JSON.parse(cachedNewsData));
+          setLoadingNews(false);
+        } else {
+          const newsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/news`);
+          setNews(newsResponse.data.data);
+          sessionStorage.setItem(`news_${id}`, JSON.stringify(newsResponse.data.data)); // Cache the news data
+          setLoadingNews(false);
+        }
       } catch (error) {
         setErrorNews(error.message);
-      } finally {
         setLoadingNews(false);
       }
     };

@@ -97,7 +97,7 @@ News.propTypes = {
       forum_url: PropTypes.string.isRequired,
       images: PropTypes.shape({
         jpg: PropTypes.shape({
-          image_url: PropTypes.string.isRequired,
+          image_url: PropTypes.string,
         }),
       }),
       comments: PropTypes.number.isRequired,

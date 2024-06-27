@@ -17,11 +17,23 @@ const MangaDetailsPage = () => {
   useEffect(() => {
     const fetchMangaData = async () => {
       try {
-        const response = await axios.get(`https://api.jikan.moe/v4/manga/${id}`);
-        setManga(response.data.data);
+        // Check if manga details are already cached in sessionStorage
+        const cachedMangaDetails = sessionStorage.getItem(`mangaDetails_${id}`);
+        if (cachedMangaDetails) {
+          setManga(JSON.parse(cachedMangaDetails));
+          setLoading(false);
+        } else {
+          const mangaResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}`);
+          setManga(mangaResponse.data.data);
+          sessionStorage.setItem(`mangaDetails_${id}`, JSON.stringify(mangaResponse.data.data)); // Cache the manga details
+          setLoading(false);
+        }
+
+        // Fetch reviews
+        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}/reviews`);
+        setReviews(reviewsResponse.data.data);
       } catch (error) {
         setError(error.message);
-      } finally {
         setLoading(false);
       }
     };
@@ -32,34 +44,28 @@ const MangaDetailsPage = () => {
   useEffect(() => {
     if (!manga) return;
 
-    const fetchReviews = async () => {
-      try {
-        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}/reviews`);
-        setReviews(reviewsResponse.data.data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchReviews();
-  }, [manga, id]);
-  // Fetch news data
-  useEffect(() => {
-    if (!manga) return;
-
     const fetchNews = async () => {
       try {
-        const newsResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}/news`);
-        setNews(newsResponse.data.data);
+        // Check if news data is already cached in sessionStorage
+        const cachedNewsData = sessionStorage.getItem(`mangaNews_${id}`);
+        if (cachedNewsData) {
+          setNews(JSON.parse(cachedNewsData));
+          setLoadingNews(false);
+        } else {
+          const newsResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}/news`);
+          setNews(newsResponse.data.data);
+          sessionStorage.setItem(`mangaNews_${id}`, JSON.stringify(newsResponse.data.data)); // Cache the news data
+          setLoadingNews(false);
+        }
       } catch (error) {
         setErrorNews(error.message);
-      } finally {
         setLoadingNews(false);
       }
     };
 
     fetchNews();
   }, [manga, id]);
+
   const memoizedMangaDetails = useMemo(() => manga, [manga]);
 
   if (loading)
