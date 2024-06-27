@@ -53,7 +53,7 @@ const Videos = ({ episodes }) => {
 
   const sliderSettings = {
     infinite: true,
-    speed: 500,
+    speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 5,
     autoplay: true,
