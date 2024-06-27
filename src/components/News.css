@@ -188,37 +188,54 @@
 .slick-next:hover:before {
   color: var(--sub-heading-color-light);
 }
-@media (min-width: 575px) and (max-width: 768px) {
+
+/* General breakpoints */
+/* Responsive styles */
+
+/* Mobile devices (phones, 320px and up) to small devices (phones, 480px and down) */
+/* Suitable for mobile devices */
+@media (min-width: 320px) and (max-width: 480px) {
   .news-container {
-    max-width: 25rem; /* Tablets (576 x 768) */
+    max-width: 90vw; /* Suitable for mobile devices */
   }
 }
 
-@media (min-width: 769px) and (max-width: 991px) {
+/* Small tablets (481px and up) to medium devices (tablets, 768px and down) */
+/* Suitable for small tablets */
+@media (min-width: 481px) and (max-width: 768px) {
   .news-container {
-    max-width: 35rem; /* Laptops (768 x 1024) and Desktops (992 x 1200) */
+    max-width: 25rem; /* Suitable for small tablets */
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
+/* Medium devices (tablets, 769px and up) to large devices (desktops, 1024px and down) */
+/* Suitable for tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
   .news-container {
-    max-width: 40rem; /* Desktops (1200 x 1600) */
+    max-width: 35rem; /* Suitable for tablets */
   }
 }
 
-@media (max-width: 375px) {
+/* Large devices (desktops, 1025px and up) to extra large devices (large desktops, 1200px and down) */
+/* Suitable for small desktops */
+@media (min-width: 1025px) and (max-width: 1200px) {
   .news-container {
-    max-width: 90vw; /* Phones (375 x 667) */
-    padding: 10px;
-  }
-
-  .news-image {
-    width: 100%;
+    max-width: 40rem; /* Suitable for small desktops */
   }
 }
 
+/* Extra large devices (large desktops, 1201px and up) */
+/* Suitable for large desktops */
+@media (min-width: 1201px) {
+  .news-container {
+    max-width: 50rem; /* Suitable for large desktops */
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) to extra extra large devices (very large desktops, 1280px and down) */
+/* Suitable for very large desktops */
 @media (min-width: 1200px) and (max-width: 1280px) {
   .news-container {
-    max-width: 50rem; /* Large Desktop (1280 x 768) */
+    max-width: 50rem; /* Suitable for very large desktops */
   }
 }
