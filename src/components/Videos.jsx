@@ -55,8 +55,8 @@ const Videos = ({ episodes }) => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: false,
+    slidesToScroll: 5,
+    autoplay: true,
     arrows: false,
     beforeChange: (oldIndex, newIndex) => {
       handleBeforeChange(oldIndex, newIndex);
