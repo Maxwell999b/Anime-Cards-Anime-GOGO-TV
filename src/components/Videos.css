@@ -1,0 +1,99 @@
+.videos-container {
+  width: 100%;
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a floating effect */
+  background-color: var(--sub-heading-bg-light); /* Light background color */
+}
+
+.videos-slider {
+  overflow: visible; /* Allow overflow for expanded content */
+}
+
+.episode-card {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.episode-card.current {
+  transform: scale(1.05); /* Slightly enlarge the current card */
+  border: 2px solid var(--card-tags-values); /* Border color for current card */
+}
+
+.episode-card h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: var(--sub-heading-color-light);
+}
+
+.episode-card p {
+  margin-bottom: 5px;
+  color: var(--details-values-color-light); /* Medium text color */
+}
+
+.episode-card a {
+  display: inline-block;
+  background-color: var(--mode-theme-primary);
+  color: var(--sub-heading-color-light);
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.episode-card a:hover {
+  background-color: var(--details-values-color-light-2);
+}
+.episode-card span {
+  color: var(--sub-heading-border-light);
+  font-size: smaller;
+}
+/* Slider styling */
+.mui-slider {
+  margin-top: 0.1rem;
+}
+.title-japanese.hidden {
+  visibility: hidden;
+}
+.episode-score {
+  font-weight: bold;
+}
+
+/* Responsive styles */
+@media (min-width: 575px) and (max-width: 768px) {
+  .videos-container {
+    max-width: 32rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+  .videos-container {
+    max-width: 35rem;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .videos-container {
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .videos-container {
+    max-width: 90vw;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1280px) {
+  .videos-container {
+    max-width: 50rem;
+  }
+}

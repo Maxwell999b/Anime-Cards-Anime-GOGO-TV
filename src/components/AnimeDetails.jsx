@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import "./Details.css";
 import Reviews from "./Reviews";
 import News from "./News";
+import Videos from "./Videos";
 
-const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) => {
+const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews, episodes }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
   const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
@@ -241,7 +242,7 @@ const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews }) =>
             </p>
           </span>
           <h3 className="sub-heading-right-side">Videos</h3>
-          <div className="carousel-section">{/* Carousel Section */}</div>
+          <Videos episodes={episodes} />
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
           <h3 className="sub-heading-right-side">Staff</h3>
@@ -270,6 +271,7 @@ AnimeDetails.propTypes = {
   recentNews: PropTypes.array.isRequired,
   loadingNews: PropTypes.bool.isRequired,
   errorNews: PropTypes.string,
+  episodes: PropTypes.array.isRequired,
 };
 
 export default AnimeDetails;
