@@ -73,7 +73,7 @@ const MangaCards = ({ searchTerm }) => {
           {currentMangaList.map((manga) => (
             <div key={manga.mal_id} className={"card"} onClick={() => handleCardClick(manga)}>
               <div className="card-image-container">
-                <img src={manga.images.jpg.image_url} alt={manga.title} className="card-image" />
+                <img src={manga.images.webp.image_url} alt={manga.title} className="card-image" />
               </div>
               <div className="card-info">
                 <h2 className="card-title">{manga.title}</h2>
