@@ -111,9 +111,13 @@ const EpisodeCard = ({ episode, currentSlide }) => {
       <h3>{episode.title}</h3>
       <span
         className={`title-japanese ${
-          episode.title.toLowerCase() === episode.title_japanese.toLowerCase() ? "hidden" : ""
+          episode.title &&
+          episode.title_japanese &&
+          episode.title.toLowerCase() === episode.title_japanese.toLowerCase()
+            ? "hidden"
+            : ""
         }`}>
-        {episode.title_japanese}
+        {episode.title_japanese || ""}
       </span>
       <p className="anime-details-ids">
         Aired: <span className="anime-details-values">{new Date(episode.aired).toLocaleDateString()}</span>
