@@ -15,13 +15,20 @@ const MangaCards = ({ searchTerm }) => {
   useEffect(() => {
     const fetchMangaData = async () => {
       try {
-        const response = await axios.get("https://api.jikan.moe/v4/manga");
-        const mangaData = response.data.data || [];
-
-        setMangaList(mangaData);
+        // Check if manga data is already cached in sessionStorage
+        const cachedMangaData = sessionStorage.getItem("mangaData");
+        if (cachedMangaData) {
+          setMangaList(JSON.parse(cachedMangaData));
+          setLoading(false);
+        } else {
+          const response = await axios.get("https://api.jikan.moe/v4/manga");
+          const mangaData = response.data.data || [];
+          setMangaList(mangaData);
+          sessionStorage.setItem("mangaData", JSON.stringify(mangaData)); // Cache the manga data
+          setLoading(false);
+        }
       } catch (error) {
         setError(error.message);
-      } finally {
         setLoading(false);
       }
     };
@@ -66,7 +73,7 @@ const MangaCards = ({ searchTerm }) => {
           {currentMangaList.map((manga) => (
             <div key={manga.mal_id} className={"card"} onClick={() => handleCardClick(manga)}>
               <div className="card-image-container">
-                <img src={manga.images.jpg.image_url} alt={manga.title} className="card-image" />
+                <img src={manga.images.webp.image_url} alt={manga.title} className="card-image" />
               </div>
               <div className="card-info">
                 <h2 className="card-title">{manga.title}</h2>

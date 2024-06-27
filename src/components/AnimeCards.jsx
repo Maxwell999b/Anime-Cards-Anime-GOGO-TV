@@ -15,13 +15,20 @@ const AnimeCards = ({ searchTerm }) => {
   useEffect(() => {
     const fetchAnimeData = async () => {
       try {
-        const response = await axios.get("https://api.jikan.moe/v4/anime");
-        const animeData = response.data.data || [];
-
-        setAnimeList(animeData);
+        // Check if data is already cached in sessionStorage
+        const cachedAnimeData = sessionStorage.getItem("animeData");
+        if (cachedAnimeData) {
+          setAnimeList(JSON.parse(cachedAnimeData));
+          setLoading(false);
+        } else {
+          const response = await axios.get("https://api.jikan.moe/v4/anime");
+          const animeData = response.data.data || [];
+          setAnimeList(animeData);
+          sessionStorage.setItem("animeData", JSON.stringify(animeData)); // Cache the data in sessionStorage
+          setLoading(false);
+        }
       } catch (error) {
         setError(error.message);
-      } finally {
         setLoading(false);
       }
     };

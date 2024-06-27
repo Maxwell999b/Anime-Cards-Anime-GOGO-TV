@@ -19,7 +19,7 @@ const MangaDetails = ({ manga, reviews, recentNews, loadingNews, errorNews }) =>
       </div>
       <div className="details-container">
         <div className="left-side">
-          <img src={manga.images.jpg.image_url} alt={manga.title} className="detail-image" />
+          <img src={manga.images.webp.image_url} alt={manga.title} className="detail-image" />
           <h3 className="sub-heading-left-side">Alternative Titles</h3>
           {/* Alternative Titles Content */}
           <p>
@@ -182,8 +182,6 @@ const MangaDetails = ({ manga, reviews, recentNews, loadingNews, errorNews }) =>
               </span>
             </p>
           </span>
-          <h3 className="sub-heading-right-side">Videos</h3>
-          <div className="carousel-section">{/* Carousel Section */}</div>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
           <h3 className="sub-heading-right-side">Staff</h3>
