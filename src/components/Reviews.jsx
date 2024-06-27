@@ -46,7 +46,7 @@ const Reviews = ({ reviews }) => {
 
   const handleBeforeChange = (oldIndex, newIndex) => {
     if (isMountedRef.current) {
-      setCurrentSlide(newIndex); // Update current slide index
+      setCurrentSlide(newIndex);
     }
   };
 

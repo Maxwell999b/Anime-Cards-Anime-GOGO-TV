@@ -10,6 +10,7 @@ const AnimeDetailsPage = () => {
   const [episodes, setEpisodes] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [news, setNews] = useState([]);
+  const [voiceActors, setVoiceActors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingNews, setLoadingNews] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +19,6 @@ const AnimeDetailsPage = () => {
   useEffect(() => {
     const fetchAnimeData = async () => {
       try {
-        // Check if anime details are already cached in sessionStorage
         const cachedAnimeDetails = sessionStorage.getItem(`animeDetails_${id}`);
         if (cachedAnimeDetails) {
           setAnime(JSON.parse(cachedAnimeDetails));
@@ -26,15 +26,13 @@ const AnimeDetailsPage = () => {
         } else {
           const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
           setAnime(animeResponse.data.data);
-          sessionStorage.setItem(`animeDetails_${id}`, JSON.stringify(animeResponse.data.data)); // Cache the anime details
+          sessionStorage.setItem(`animeDetails_${id}`, JSON.stringify(animeResponse.data.data));
           setLoading(false);
         }
 
-        // Fetch episodes data
         const episodesResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/episodes`);
         setEpisodes(episodesResponse.data.data);
 
-        // Fetch reviews
         const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
         setReviews(reviewsResponse.data.data);
       } catch (error) {
@@ -51,7 +49,6 @@ const AnimeDetailsPage = () => {
 
     const fetchNews = async () => {
       try {
-        // Check if news data is already cached in sessionStorage
         const cachedNewsData = sessionStorage.getItem(`news_${id}`);
         if (cachedNewsData) {
           setNews(JSON.parse(cachedNewsData));
@@ -59,7 +56,7 @@ const AnimeDetailsPage = () => {
         } else {
           const newsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/news`);
           setNews(newsResponse.data.data);
-          sessionStorage.setItem(`news_${id}`, JSON.stringify(newsResponse.data.data)); // Cache the news data
+          sessionStorage.setItem(`news_${id}`, JSON.stringify(newsResponse.data.data));
           setLoadingNews(false);
         }
       } catch (error) {
@@ -71,15 +68,31 @@ const AnimeDetailsPage = () => {
     fetchNews();
   }, [anime, id]);
 
+  useEffect(() => {
+    const fetchVoiceActors = async () => {
+      try {
+        const voiceActorsResponse = await axios.get(`https://api.jikan.moe/v4/characters/${id}/voices`);
+        setVoiceActors(voiceActorsResponse.data.data);
+      } catch (error) {
+        console.error("Failed to fetch voice actors:", error);
+      }
+    };
+
+    fetchVoiceActors();
+  }, [id]);
+
   const memoizedAnimeDetails = useMemo(() => anime, [anime]);
 
-  if (loading)
+  if (loading) {
     return (
       <div className="loading-icon">
         <h1>Loading...</h1>
       </div>
     );
-  if (error) return <div>Error: {error}</div>;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return anime ? (
     <AnimeDetails
@@ -89,6 +102,7 @@ const AnimeDetailsPage = () => {
       loadingNews={loadingNews}
       errorNews={errorNews}
       episodes={episodes}
+      voiceActors={voiceActors}
     />
   ) : (
     <div>No details available</div>
