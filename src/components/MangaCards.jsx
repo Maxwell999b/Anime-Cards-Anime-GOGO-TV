@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import http from "./services/http";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./Cards.css";
@@ -21,7 +21,7 @@ const MangaCards = ({ searchTerm }) => {
           setMangaList(JSON.parse(cachedMangaData));
           setLoading(false);
         } else {
-          const response = await axios.get("https://api.jikan.moe/v4/manga");
+          const response = await http.get("https://api.jikan.moe/v4/manga");
           const mangaData = response.data.data || [];
           setMangaList(mangaData);
           sessionStorage.setItem("mangaData", JSON.stringify(mangaData)); // Cache the manga data

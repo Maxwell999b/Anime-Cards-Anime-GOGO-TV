@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import http from "./services/http";
 import AnimeDetails from "./AnimeDetails";
 import "./Details.css";
 
@@ -24,16 +24,16 @@ const AnimeDetailsPage = () => {
           setAnime(JSON.parse(cachedAnimeDetails));
           setLoading(false);
         } else {
-          const animeResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+          const animeResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}`);
           setAnime(animeResponse.data.data);
           sessionStorage.setItem(`animeDetails_${id}`, JSON.stringify(animeResponse.data.data));
           setLoading(false);
         }
 
-        const episodesResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/episodes`);
+        const episodesResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/episodes`);
         setEpisodes(episodesResponse.data.data);
 
-        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
+        const reviewsResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
         setReviews(reviewsResponse.data.data);
       } catch (error) {
         setError(error.message);
@@ -54,7 +54,7 @@ const AnimeDetailsPage = () => {
           setNews(JSON.parse(cachedNewsData));
           setLoadingNews(false);
         } else {
-          const newsResponse = await axios.get(`https://api.jikan.moe/v4/anime/${id}/news`);
+          const newsResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/news`);
           setNews(newsResponse.data.data);
           sessionStorage.setItem(`news_${id}`, JSON.stringify(newsResponse.data.data));
           setLoadingNews(false);
@@ -71,7 +71,7 @@ const AnimeDetailsPage = () => {
   useEffect(() => {
     const fetchVoiceActors = async () => {
       try {
-        const voiceActorsResponse = await axios.get(`https://api.jikan.moe/v4/characters/${id}/voices`);
+        const voiceActorsResponse = await http.get(`https://api.jikan.moe/v4/characters/${id}/voices`);
         setVoiceActors(voiceActorsResponse.data.data);
       } catch (error) {
         console.error("Failed to fetch voice actors:", error);

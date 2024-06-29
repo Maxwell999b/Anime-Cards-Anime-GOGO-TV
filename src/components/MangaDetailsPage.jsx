@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import http from "./services/http";
 import MangaDetails from "./MangaDetails";
 import "./Details.css";
 
@@ -23,14 +23,14 @@ const MangaDetailsPage = () => {
           setManga(JSON.parse(cachedMangaDetails));
           setLoading(false);
         } else {
-          const mangaResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}`);
+          const mangaResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}`);
           setManga(mangaResponse.data.data);
           sessionStorage.setItem(`mangaDetails_${id}`, JSON.stringify(mangaResponse.data.data)); // Cache the manga details
           setLoading(false);
         }
 
         // Fetch reviews
-        const reviewsResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}/reviews`);
+        const reviewsResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/reviews`);
         setReviews(reviewsResponse.data.data);
       } catch (error) {
         setError(error.message);
@@ -52,7 +52,7 @@ const MangaDetailsPage = () => {
           setNews(JSON.parse(cachedNewsData));
           setLoadingNews(false);
         } else {
-          const newsResponse = await axios.get(`https://api.jikan.moe/v4/manga/${id}/news`);
+          const newsResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/news`);
           setNews(newsResponse.data.data);
           sessionStorage.setItem(`mangaNews_${id}`, JSON.stringify(newsResponse.data.data)); // Cache the news data
           setLoadingNews(false);
