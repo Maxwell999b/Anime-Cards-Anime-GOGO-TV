@@ -5,8 +5,18 @@ import Reviews from "./Reviews";
 import News from "./News";
 import Videos from "./Videos";
 import VoiceActors from "./VoiceActors";
+import GalleryPictures from "./GalleryPictures";
 
-const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews, episodes, voiceActors }) => {
+const AnimeDetails = ({
+  anime,
+  reviews,
+  recentNews,
+  loadingNews,
+  errorNews,
+  episodes,
+  voiceActors,
+  galleryPictures,
+}) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
   const rankClassName = anime.rank && anime.rank <= 100 ? "anime-details-values-top" : "";
@@ -260,6 +270,8 @@ const AnimeDetails = ({ anime, reviews, recentNews, loadingNews, errorNews, epis
           ) : (
             <News newsItems={uniqueNews} />
           )}
+          <h3 className="sub-heading-right-side">Manga Pictures</h3>
+          <GalleryPictures pictures={galleryPictures} />
         </div>
       </div>
     </div>
@@ -274,6 +286,7 @@ AnimeDetails.propTypes = {
   errorNews: PropTypes.string,
   episodes: PropTypes.array.isRequired,
   voiceActors: PropTypes.array.isRequired,
+  galleryPictures: PropTypes.array.isRequired,
 };
 
 export default AnimeDetails;
