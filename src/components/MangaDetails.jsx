@@ -3,8 +3,19 @@ import { Link } from "react-router-dom";
 import "./Details.css";
 import Reviews from "./Reviews";
 import News from "./News";
+import GalleryPictures from "./GalleryPictures";
 
-const MangaDetails = ({ manga, reviews, recentNews, loadingNews, errorNews }) => {
+const MangaDetails = ({
+  manga,
+  reviews,
+  recentNews,
+  loadingNews,
+  errorNews,
+  moreInfo,
+  loadingMoreInfo,
+  errorMoreInfo,
+  galleryPictures,
+}) => {
   const scoreClassName = manga.score && manga.score >= 8 ? "manga-details-values-top" : "";
   const scoreClassNameBy = manga.scored_by && manga.scored_by >= 100000 ? "manga-details-values-top" : "";
   const rankClassName = manga.rank && manga.rank <= 100 ? "manga-details-values-top" : "";
@@ -181,6 +192,19 @@ const MangaDetails = ({ manga, reviews, recentNews, loadingNews, errorNews }) =>
                 {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
+            {/* Display moreInfo here */}
+            <p>
+              <span className="manga-details-ids">More Info:</span>
+              {loadingMoreInfo ? (
+                <span>Loading More Info...</span>
+              ) : errorMoreInfo ? (
+                <div>Error: {errorMoreInfo}</div>
+              ) : (
+                <span className="manga-details-values">
+                  {moreInfo ? moreInfo : <span className="unknown-details">N/A</span>}
+                </span>
+              )}
+            </p>
           </span>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
           <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
@@ -198,6 +222,8 @@ const MangaDetails = ({ manga, reviews, recentNews, loadingNews, errorNews }) =>
           ) : (
             <News newsItems={recentNews} />
           )}
+          <h3 className="sub-heading-right-side">Manga Pictures</h3>
+          <GalleryPictures pictures={galleryPictures} />
         </div>
       </div>
     </div>
@@ -210,6 +236,10 @@ MangaDetails.propTypes = {
   recentNews: PropTypes.array.isRequired,
   loadingNews: PropTypes.bool.isRequired,
   errorNews: PropTypes.string,
+  moreInfo: PropTypes.string,
+  loadingMoreInfo: PropTypes.bool.isRequired,
+  errorMoreInfo: PropTypes.string,
+  galleryPictures: PropTypes.array.isRequired,
 };
 
 export default MangaDetails;

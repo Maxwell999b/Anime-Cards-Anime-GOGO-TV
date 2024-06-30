@@ -15,6 +15,7 @@ const AnimeDetailsPage = () => {
   const [loadingNews, setLoadingNews] = useState(true);
   const [error, setError] = useState(null);
   const [errorNews, setErrorNews] = useState(null);
+  const [galleryPictures, setGalleryPictures] = useState([]);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -81,6 +82,19 @@ const AnimeDetailsPage = () => {
     fetchVoiceActors();
   }, [id]);
 
+  useEffect(() => {
+    const fetchGalleryPictures = async () => {
+      try {
+        const picturesResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/pictures`);
+        setGalleryPictures(picturesResponse.data.data); // Update GalleryPictures state
+      } catch (error) {
+        console.error("Failed to fetch manga pictures:", error);
+      }
+    };
+
+    fetchGalleryPictures();
+  }, [id]);
+
   const memoizedAnimeDetails = useMemo(() => anime, [anime]);
 
   if (loading) {
@@ -103,6 +117,7 @@ const AnimeDetailsPage = () => {
       errorNews={errorNews}
       episodes={episodes}
       voiceActors={voiceActors}
+      galleryPictures={galleryPictures}
     />
   ) : (
     <div>No details available</div>
