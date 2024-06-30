@@ -270,7 +270,7 @@ const AnimeDetails = ({
           ) : (
             <News newsItems={uniqueNews} />
           )}
-          <h3 className="sub-heading-right-side">Manga Pictures</h3>
+          <h3 className="sub-heading-right-side">Anime Pictures</h3>
           <GalleryPictures pictures={galleryPictures} />
         </div>
       </div>
