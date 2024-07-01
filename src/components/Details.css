@@ -167,6 +167,9 @@
 .synopsis-background-gap p {
   margin-bottom: 2em;
 }
+.loading-icon {
+  color: var(--loading-icon);
+}
 
 /* Media queries for responsiveness */
 @media (max-width: 576px) {

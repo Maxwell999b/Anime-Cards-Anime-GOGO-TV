@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import http from "./services/http";
 import AnimeDetails from "./AnimeDetails";
 import "./Details.css";
+import Loader from "./Loader";
 
 const AnimeDetailsPage = () => {
   const { id } = useParams();
@@ -100,7 +101,7 @@ const AnimeDetailsPage = () => {
   if (loading) {
     return (
       <div className="loading-icon">
-        <h1>Loading...</h1>
+        <Loader />
       </div>
     );
   }

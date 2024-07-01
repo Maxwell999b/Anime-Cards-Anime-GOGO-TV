@@ -19,6 +19,7 @@
     "axios": "^1.7.2",
     "axios-rate-limit": "^1.4.0",
     "axios-retry": "^4.4.1",
+    "core-js": "^3.37.1",
     "hamburger-react": "^2.5.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

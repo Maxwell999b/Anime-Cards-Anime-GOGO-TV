@@ -22,6 +22,7 @@
   --pagination-bg-text: #fff;
   --pagination-bg-text-hover: #2557a1;
   --loading-icon: #add5ce;
+  --loader-icon: #ffe388;
   --input-search-color: #c99f14;
   --input-search-bg: #4f6c9725;
   --input-search-border: #00a2b12f;
@@ -49,6 +50,7 @@
   --pagination-bg-text: #282f3c;
   --pagination-bg-text-hover: #fff;
   --loading-icon: #282f3c;
+  --loader-icon: #826d91;
   --input-search-color: #d2649a;
   --input-search-bg: #4f6c973a;
   --input-search-border: #282f3c;

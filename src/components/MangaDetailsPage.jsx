@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import http from "./services/http";
 import MangaDetails from "./MangaDetails";
 import "./Details.css";
-
+import Loader from "./Loader";
 const MangaDetailsPage = () => {
   const { id } = useParams();
   const [manga, setManga] = useState(null);
@@ -102,7 +102,7 @@ const MangaDetailsPage = () => {
   if (loading || loadingMoreInfo)
     return (
       <div className="loading-icon">
-        <h1>Loading...</h1>
+        <Loader />
       </div>
     );
   if (error || errorMoreInfo) return <div>Error: {error || errorMoreInfo}</div>;
