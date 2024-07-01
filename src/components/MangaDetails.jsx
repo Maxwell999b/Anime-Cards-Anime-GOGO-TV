@@ -4,6 +4,7 @@ import "./Details.css";
 import Reviews from "./Reviews";
 import News from "./News";
 import GalleryPictures from "./GalleryPictures";
+import CharactersTable from "./CharactersTable";
 import Loader from "./Loader";
 
 const MangaDetails = ({
@@ -19,6 +20,9 @@ const MangaDetails = ({
   externalLinks,
   loadingExternalLinks,
   errorExternalLinks,
+  characters,
+  loadingCharacters,
+  errorCharacters,
 }) => {
   const scoreClassName = manga.score && manga.score >= 8 ? "manga-details-values-top" : "";
   const scoreClassNameBy = manga.scored_by && manga.scored_by >= 100000 ? "manga-details-values-top" : "";
@@ -235,9 +239,13 @@ const MangaDetails = ({
             </p>
           </span>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
-          <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
-          <h3 className="sub-heading-right-side">Staff</h3>
-          <div className="empty-section">{/* Staff Section */}</div>
+          {loadingCharacters ? (
+            <Loader />
+          ) : errorCharacters ? (
+            <div>Error: {errorCharacters}</div>
+          ) : (
+            <CharactersTable characters={characters} />
+          )}
           <h3 className="sub-heading-right-side">Reviews</h3>
           <Reviews reviews={reviews} />
           <h3 className="sub-heading-right-side">Recent News</h3>
@@ -272,6 +280,9 @@ MangaDetails.propTypes = {
   loadingExternalLinks: PropTypes.bool.isRequired,
   errorExternalLinks: PropTypes.string,
   galleryPictures: PropTypes.array.isRequired,
+  characters: PropTypes.array.isRequired,
+  loadingCharacters: PropTypes.bool.isRequired,
+  errorCharacters: PropTypes.string,
 };
 
 export default MangaDetails;

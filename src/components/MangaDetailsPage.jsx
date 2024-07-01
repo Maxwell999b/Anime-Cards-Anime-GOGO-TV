@@ -2,8 +2,8 @@ import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import http from "./services/http";
 import MangaDetails from "./MangaDetails";
-import "./Details.css";
 import Loader from "./Loader";
+import "./Details.css";
 
 const MangaDetailsPage = () => {
   const { id } = useParams();
@@ -21,6 +21,9 @@ const MangaDetailsPage = () => {
   const [externalLinks, setExternalLinks] = useState(null);
   const [loadingExternalLinks, setLoadingExternalLinks] = useState(true);
   const [errorExternalLinks, setErrorExternalLinks] = useState(null);
+  const [characters, setCharacters] = useState([]);
+  const [loadingCharacters, setLoadingCharacters] = useState(true);
+  const [errorCharacters, setErrorCharacters] = useState(null);
 
   useEffect(() => {
     const fetchMangaData = async () => {
@@ -116,16 +119,31 @@ const MangaDetailsPage = () => {
     fetchExternalLinks();
   }, [id]);
 
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const charactersResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/characters`);
+        setCharacters(charactersResponse.data.data);
+        setLoadingCharacters(false);
+      } catch (error) {
+        setErrorCharacters(error.message);
+        setLoadingCharacters(false);
+      }
+    };
+
+    fetchCharacters();
+  }, [id]);
+
   const memoizedMangaDetails = useMemo(() => manga, [manga]);
 
-  if (loading || loadingMoreInfo || loadingExternalLinks)
+  if (loading || loadingMoreInfo || loadingExternalLinks || loadingCharacters)
     return (
       <div className="loading-icon">
         <Loader />
       </div>
     );
-  if (error || errorMoreInfo || errorExternalLinks)
-    return <div>Error: {error || errorMoreInfo || errorExternalLinks}</div>;
+  if (error || errorMoreInfo || errorExternalLinks || errorCharacters)
+    return <div>Error: {error || errorMoreInfo || errorExternalLinks || errorCharacters}</div>;
 
   return manga ? (
     <MangaDetails
@@ -141,6 +159,9 @@ const MangaDetailsPage = () => {
       externalLinks={externalLinks}
       loadingExternalLinks={loadingExternalLinks}
       errorExternalLinks={errorExternalLinks}
+      characters={characters}
+      loadingCharacters={loadingCharacters}
+      errorCharacters={errorCharacters}
     />
   ) : (
     <div>No details available</div>
