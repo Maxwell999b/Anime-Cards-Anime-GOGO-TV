@@ -6,6 +6,7 @@ import News from "./News";
 import AnimeEpisodes from "./AnimeEpisodes";
 import VoiceActors from "./VoiceActors";
 import GalleryPictures from "./GalleryPictures";
+import CharactersTable from "./CharactersTable";
 import Loader from "./Loader";
 
 const AnimeDetails = ({
@@ -17,6 +18,12 @@ const AnimeDetails = ({
   episodes,
   voiceActors,
   galleryPictures,
+  externalLinks,
+  loadingExternalLinks,
+  errorExternalLinks,
+  characters,
+  loadingCharacters,
+  errorCharacters,
 }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
@@ -252,10 +259,38 @@ const AnimeDetails = ({
                 {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
+            <span className="anime-details-ids">External Links:</span>
+            {loadingExternalLinks ? (
+              <span>
+                Loading External Links
+                <Loader />
+              </span>
+            ) : errorExternalLinks ? (
+              <div>Error: {errorExternalLinks}</div>
+            ) : (
+              <div className="external-links">
+                {externalLinks.map((link, index) => (
+                  <span key={index} className="external-links-span">
+                    {index + 1} -&nbsp;
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
+                      {link.name} <br></br>
+                    </a>
+                  </span>
+                ))}
+              </div>
+            )}
           </span>
           <h3 className="sub-heading-right-side">Anime Episodes</h3>
           <AnimeEpisodes episodes={episodes} />
-          <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
+          <h3 className="sub-heading-right-side">Characters</h3>
+          {loadingCharacters ? (
+            <Loader />
+          ) : errorCharacters ? (
+            <div>Error: {errorCharacters}</div>
+          ) : (
+            <CharactersTable characters={characters} />
+          )}
+          <h3 className="sub-heading-right-side">Voice Actors</h3>
           <VoiceActors voiceActors={voiceActors} />
           <h3 className="sub-heading-right-side">Staff</h3>
           <div className="empty-section">{/* Staff Section */}</div>
@@ -288,7 +323,13 @@ AnimeDetails.propTypes = {
   errorNews: PropTypes.string,
   episodes: PropTypes.array.isRequired,
   voiceActors: PropTypes.array.isRequired,
+  externalLinks: PropTypes.array.isRequired,
+  loadingExternalLinks: PropTypes.bool,
+  errorExternalLinks: PropTypes.string,
   galleryPictures: PropTypes.array.isRequired,
+  characters: PropTypes.array.isRequired,
+  loadingCharacters: PropTypes.bool,
+  errorCharacters: PropTypes.string,
 };
 
 export default AnimeDetails;

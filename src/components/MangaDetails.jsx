@@ -215,28 +215,26 @@ const MangaDetails = ({
                 </span>
               )}
             </p>
-            <p>
-              <span className="manga-details-ids">External Links:</span>
-              {loadingExternalLinks ? (
-                <span>
-                  Loading External Links
-                  <Loader />
-                </span>
-              ) : errorExternalLinks ? (
-                <div>Error: {errorExternalLinks}</div>
-              ) : (
-                <div className="external-links">
-                  {externalLinks.map((link, index) => (
-                    <span key={index} className="external-links-span">
-                      {index + 1} -&nbsp;
-                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
-                        {link.name} <br></br>
-                      </a>
-                    </span>
-                  ))}
-                </div>
-              )}
-            </p>
+            <span className="manga-details-ids">External Links:</span>
+            {loadingExternalLinks ? (
+              <span>
+                Loading External Links
+                <Loader />
+              </span>
+            ) : errorExternalLinks ? (
+              <div>Error: {errorExternalLinks}</div>
+            ) : (
+              <div className="external-links">
+                {externalLinks.map((link, index) => (
+                  <span key={index} className="external-links-span">
+                    {index + 1} -&nbsp;
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
+                      {link.name} <br></br>
+                    </a>
+                  </span>
+                ))}
+              </div>
+            )}
           </span>
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
           {loadingCharacters ? (
@@ -276,7 +274,7 @@ MangaDetails.propTypes = {
   moreInfo: PropTypes.string,
   loadingMoreInfo: PropTypes.bool.isRequired,
   errorMoreInfo: PropTypes.string,
-  externalLinks: PropTypes.string,
+  externalLinks: PropTypes.array,
   loadingExternalLinks: PropTypes.bool.isRequired,
   errorExternalLinks: PropTypes.string,
   galleryPictures: PropTypes.array.isRequired,

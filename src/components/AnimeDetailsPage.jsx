@@ -12,10 +12,16 @@ const AnimeDetailsPage = () => {
   const [episodes, setEpisodes] = useState([]);
   const [voiceActors, setVoiceActors] = useState([]);
   const [galleryPictures, setGalleryPictures] = useState([]);
+  const [characters, setCharacters] = useState([]);
+  const [externalLinks, setExternalLinks] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [loadingNews, setLoadingNews] = useState(true);
   const [errorNews, setErrorNews] = useState(null);
+  const [loadingCharacters, setLoadingCharacters] = useState(true);
+  const [errorCharacters, setErrorCharacters] = useState(null);
+  const [loadingExternalLinks, setLoadingExternalLinks] = useState(true);
+  const [errorExternalLinks, setErrorExternalLinks] = useState(null);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -113,19 +119,47 @@ const AnimeDetailsPage = () => {
     fetchGalleryPictures();
   }, [id]);
 
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const charactersResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/characters`);
+        setCharacters(charactersResponse.data.data);
+        setLoadingCharacters(false);
+      } catch (error) {
+        setErrorCharacters(error.message);
+        setLoadingCharacters(false);
+      }
+    };
+
+    fetchCharacters();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchExternalLinks = async () => {
+      try {
+        const externalLinksResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/external`);
+        setExternalLinks(externalLinksResponse.data.data);
+        setLoadingExternalLinks(false);
+      } catch (error) {
+        setErrorExternalLinks(error.message);
+        setLoadingExternalLinks(false);
+      }
+    };
+
+    fetchExternalLinks();
+  }, [id]);
+
   const memoizedAnimeDetails = useMemo(() => anime, [anime]);
 
-  if (loading) {
+  if (loading || loadingNews || loadingCharacters || loadingExternalLinks)
     return (
       <div className="loading-icon">
         <Loader />
       </div>
     );
-  }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  if (error || errorNews || errorCharacters || errorExternalLinks)
+    return <div>Error: {error || errorNews || errorCharacters || errorExternalLinks}</div>;
 
   return anime ? (
     <AnimeDetails
@@ -137,6 +171,8 @@ const AnimeDetailsPage = () => {
       episodes={episodes}
       voiceActors={voiceActors}
       galleryPictures={galleryPictures}
+      characters={characters}
+      externalLinks={externalLinks}
     />
   ) : (
     <div>No details available</div>
