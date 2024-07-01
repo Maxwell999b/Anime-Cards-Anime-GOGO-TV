@@ -4,6 +4,7 @@ import http from "./services/http";
 import MangaDetails from "./MangaDetails";
 import "./Details.css";
 import Loader from "./Loader";
+
 const MangaDetailsPage = () => {
   const { id } = useParams();
   const [manga, setManga] = useState(null);
@@ -17,6 +18,9 @@ const MangaDetailsPage = () => {
   const [loadingMoreInfo, setLoadingMoreInfo] = useState(true);
   const [errorMoreInfo, setErrorMoreInfo] = useState(null);
   const [galleryPictures, setGalleryPictures] = useState([]);
+  const [externalLinks, setExternalLinks] = useState(null);
+  const [loadingExternalLinks, setLoadingExternalLinks] = useState(true);
+  const [errorExternalLinks, setErrorExternalLinks] = useState(null);
 
   useEffect(() => {
     const fetchMangaData = async () => {
@@ -97,15 +101,31 @@ const MangaDetailsPage = () => {
     fetchGalleryPictures();
   }, [id]);
 
+  useEffect(() => {
+    const fetchExternalLinks = async () => {
+      try {
+        const externalLinksResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/external`);
+        setExternalLinks(externalLinksResponse.data.data);
+        setLoadingExternalLinks(false);
+      } catch (error) {
+        setErrorExternalLinks(error.message);
+        setLoadingExternalLinks(false);
+      }
+    };
+
+    fetchExternalLinks();
+  }, [id]);
+
   const memoizedMangaDetails = useMemo(() => manga, [manga]);
 
-  if (loading || loadingMoreInfo)
+  if (loading || loadingMoreInfo || loadingExternalLinks)
     return (
       <div className="loading-icon">
         <Loader />
       </div>
     );
-  if (error || errorMoreInfo) return <div>Error: {error || errorMoreInfo}</div>;
+  if (error || errorMoreInfo || errorExternalLinks)
+    return <div>Error: {error || errorMoreInfo || errorExternalLinks}</div>;
 
   return manga ? (
     <MangaDetails
@@ -118,6 +138,9 @@ const MangaDetailsPage = () => {
       loadingMoreInfo={loadingMoreInfo}
       errorMoreInfo={errorMoreInfo}
       galleryPictures={galleryPictures}
+      externalLinks={externalLinks}
+      loadingExternalLinks={loadingExternalLinks}
+      errorExternalLinks={errorExternalLinks}
     />
   ) : (
     <div>No details available</div>

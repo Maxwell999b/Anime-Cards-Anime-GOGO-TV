@@ -16,6 +16,9 @@ const MangaDetails = ({
   loadingMoreInfo,
   errorMoreInfo,
   galleryPictures,
+  externalLinks,
+  loadingExternalLinks,
+  errorExternalLinks,
 }) => {
   const scoreClassName = manga.score && manga.score >= 8 ? "manga-details-values-top" : "";
   const scoreClassNameBy = manga.scored_by && manga.scored_by >= 100000 ? "manga-details-values-top" : "";
@@ -193,7 +196,6 @@ const MangaDetails = ({
                 {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
-            {/* Display moreInfo here */}
             <p>
               <span className="manga-details-ids">More Info:</span>
               {loadingMoreInfo ? (
@@ -207,6 +209,28 @@ const MangaDetails = ({
                 <span className="manga-details-values">
                   {moreInfo ? moreInfo : <span className="unknown-details">N/A</span>}
                 </span>
+              )}
+            </p>
+            <p>
+              <span className="manga-details-ids">External Links:</span>
+              {loadingExternalLinks ? (
+                <span>
+                  Loading External Links
+                  <Loader />
+                </span>
+              ) : errorExternalLinks ? (
+                <div>Error: {errorExternalLinks}</div>
+              ) : (
+                <div className="external-links">
+                  {externalLinks.map((link, index) => (
+                    <span key={index} className="external-links-span">
+                      {index + 1} -&nbsp;
+                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
+                        {link.name} <br></br>
+                      </a>
+                    </span>
+                  ))}
+                </div>
               )}
             </p>
           </span>
@@ -244,6 +268,9 @@ MangaDetails.propTypes = {
   moreInfo: PropTypes.string,
   loadingMoreInfo: PropTypes.bool.isRequired,
   errorMoreInfo: PropTypes.string,
+  externalLinks: PropTypes.string,
+  loadingExternalLinks: PropTypes.bool.isRequired,
+  errorExternalLinks: PropTypes.string,
   galleryPictures: PropTypes.array.isRequired,
 };
 

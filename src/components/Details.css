@@ -171,6 +171,19 @@
   color: var(--loading-icon);
 }
 
+.external-links-span {
+  color: var(--details-ids-color-light);
+  font-weight: bold;
+}
+.external-links-a {
+  color: var(--sub-heading-color-light);
+  font-weight: bold;
+}
+.external-links-a:hover {
+  text-decoration: none;
+  color: var(--details-values-color-light);
+  font-weight: bold;
+}
 /* Media queries for responsiveness */
 @media (max-width: 576px) {
   .detail-image {
