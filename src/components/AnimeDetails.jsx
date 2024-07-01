@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Details.css";
 import Reviews from "./Reviews";
 import News from "./News";
-import Videos from "./Videos";
+import AnimeEpisodes from "./AnimeEpisodes";
 import VoiceActors from "./VoiceActors";
 import GalleryPictures from "./GalleryPictures";
 
@@ -252,8 +252,8 @@ const AnimeDetails = ({
               </span>
             </p>
           </span>
-          <h3 className="sub-heading-right-side">Videos</h3>
-          <Videos episodes={episodes} />
+          <h3 className="sub-heading-right-side">Anime Episodes</h3>
+          <AnimeEpisodes episodes={episodes} />
           <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
           <VoiceActors voiceActors={voiceActors} />
           <h3 className="sub-heading-right-side">Staff</h3>

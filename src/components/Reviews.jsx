@@ -100,7 +100,7 @@ const ReviewCard = ({ review, currentSlide }) => {
 
   const reactionEmojis = {
     nice: "😊",
-    love_it: "💕",
+    love_it: "💖",
     funny: "😂",
     confusing: "😕",
     informative: "💡",

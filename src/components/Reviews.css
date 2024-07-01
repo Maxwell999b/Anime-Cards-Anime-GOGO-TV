@@ -97,6 +97,7 @@
 
 .review-body p {
   margin: 0.5em 0;
+  color: var(--details-ids-color-light-2);
 }
 
 .review-body a {
@@ -128,6 +129,7 @@
   border-radius: 3px;
   font-family: monospace;
   color: var(--sub-heading-color-light);
+  font-weight: bold;
 }
 
 .review-footer {
