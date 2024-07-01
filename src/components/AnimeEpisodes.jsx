@@ -77,6 +77,9 @@ const AnimeEpisodes = ({ episodes }) => {
   const handleSliderChange = (event, newValue) => {
     sliderRef.current.slickGoTo(newValue);
   };
+  if (!episodes || episodes.length === 0) {
+    return <h2 className="checking-no-data">&quot;&gt; No Anime Episodes Found 😔&quot;</h2>;
+  }
 
   return (
     <div className="videos-container">

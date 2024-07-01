@@ -6,6 +6,7 @@ import News from "./News";
 import AnimeEpisodes from "./AnimeEpisodes";
 import VoiceActors from "./VoiceActors";
 import GalleryPictures from "./GalleryPictures";
+import Loader from "./Loader";
 
 const AnimeDetails = ({
   anime,
@@ -263,7 +264,8 @@ const AnimeDetails = ({
           <h3 className="sub-heading-right-side">Recent News</h3>
           {loadingNews ? (
             <div className="loading-icon">
-              <h1>Loading News...</h1>
+              Loading News
+              <Loader />
             </div>
           ) : errorNews ? (
             <div>Error: {errorNews}</div>

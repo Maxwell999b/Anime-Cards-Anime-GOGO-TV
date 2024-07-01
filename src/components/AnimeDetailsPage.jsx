@@ -2,21 +2,20 @@ import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import http from "./services/http";
 import AnimeDetails from "./AnimeDetails";
-import "./Details.css";
 import Loader from "./Loader";
 
 const AnimeDetailsPage = () => {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
-  const [episodes, setEpisodes] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [news, setNews] = useState([]);
+  const [episodes, setEpisodes] = useState([]);
   const [voiceActors, setVoiceActors] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [loadingNews, setLoadingNews] = useState(true);
-  const [error, setError] = useState(null);
-  const [errorNews, setErrorNews] = useState(null);
   const [galleryPictures, setGalleryPictures] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [loadingNews, setLoadingNews] = useState(true);
+  const [errorNews, setErrorNews] = useState(null);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -24,21 +23,14 @@ const AnimeDetailsPage = () => {
         const cachedAnimeDetails = sessionStorage.getItem(`animeDetails_${id}`);
         if (cachedAnimeDetails) {
           setAnime(JSON.parse(cachedAnimeDetails));
-          setLoading(false);
         } else {
           const animeResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}`);
           setAnime(animeResponse.data.data);
           sessionStorage.setItem(`animeDetails_${id}`, JSON.stringify(animeResponse.data.data));
-          setLoading(false);
         }
-
-        const episodesResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/episodes`);
-        setEpisodes(episodesResponse.data.data);
-
-        const reviewsResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
-        setReviews(reviewsResponse.data.data);
       } catch (error) {
         setError(error.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -47,28 +39,53 @@ const AnimeDetailsPage = () => {
   }, [id]);
 
   useEffect(() => {
-    if (!anime) return;
-
     const fetchNews = async () => {
       try {
         const cachedNewsData = sessionStorage.getItem(`news_${id}`);
         if (cachedNewsData) {
           setNews(JSON.parse(cachedNewsData));
-          setLoadingNews(false);
         } else {
           const newsResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/news`);
           setNews(newsResponse.data.data);
           sessionStorage.setItem(`news_${id}`, JSON.stringify(newsResponse.data.data));
-          setLoadingNews(false);
         }
       } catch (error) {
         setErrorNews(error.message);
+      } finally {
         setLoadingNews(false);
       }
     };
 
-    fetchNews();
+    if (anime) {
+      fetchNews();
+    }
   }, [anime, id]);
+
+  useEffect(() => {
+    const fetchEpisodes = async () => {
+      try {
+        const episodesResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/episodes`);
+        setEpisodes(episodesResponse.data.data);
+      } catch (error) {
+        console.error("Failed to fetch episodes:", error);
+      }
+    };
+
+    fetchEpisodes();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviewsResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/reviews`);
+        setReviews(reviewsResponse.data.data);
+      } catch (error) {
+        console.error("Failed to fetch reviews:", error);
+      }
+    };
+
+    fetchReviews();
+  }, [id]);
 
   useEffect(() => {
     const fetchVoiceActors = async () => {
@@ -87,9 +104,9 @@ const AnimeDetailsPage = () => {
     const fetchGalleryPictures = async () => {
       try {
         const picturesResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/pictures`);
-        setGalleryPictures(picturesResponse.data.data); // Update GalleryPictures state
+        setGalleryPictures(picturesResponse.data.data);
       } catch (error) {
-        console.error("Failed to fetch manga pictures:", error);
+        console.error("Failed to fetch anime pictures:", error);
       }
     };
 
@@ -105,6 +122,7 @@ const AnimeDetailsPage = () => {
       </div>
     );
   }
+
   if (error) {
     return <div>Error: {error}</div>;
   }

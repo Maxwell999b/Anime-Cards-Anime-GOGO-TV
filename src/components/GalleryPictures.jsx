@@ -50,6 +50,9 @@ const GalleryPictures = ({ pictures }) => {
       setCurrentImageIndex(0); // Loop to first image
     }
   };
+  if (!pictures || pictures.length === 0) {
+    return <h2 className="checking-no-data">&quot;&gt; Pictures Found 😔&quot;</h2>;
+  }
 
   return (
     <div className={`galleryPic-pictures-container ${isZoomed ? "zoomed" : ""}`}>

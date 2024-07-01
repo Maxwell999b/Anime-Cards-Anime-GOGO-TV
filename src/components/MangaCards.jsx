@@ -3,6 +3,7 @@ import http from "./services/http";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./Cards.css";
+import Loader from "./Loader";
 
 const MangaCards = ({ searchTerm }) => {
   const [mangaList, setMangaList] = useState([]);
@@ -59,7 +60,8 @@ const MangaCards = ({ searchTerm }) => {
   if (loading)
     return (
       <div className="loading-icon">
-        <h1>Loading...</h1>
+        Loading
+        <Loader />
       </div>
     );
   if (error) return <div>Error: {error}</div>;

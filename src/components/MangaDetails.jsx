@@ -4,6 +4,7 @@ import "./Details.css";
 import Reviews from "./Reviews";
 import News from "./News";
 import GalleryPictures from "./GalleryPictures";
+import Loader from "./Loader";
 
 const MangaDetails = ({
   manga,
@@ -196,7 +197,10 @@ const MangaDetails = ({
             <p>
               <span className="manga-details-ids">More Info:</span>
               {loadingMoreInfo ? (
-                <span>Loading More Info...</span>
+                <span>
+                  Loading More Info
+                  <Loader />
+                </span>
               ) : errorMoreInfo ? (
                 <div>Error: {errorMoreInfo}</div>
               ) : (
@@ -215,7 +219,8 @@ const MangaDetails = ({
           <h3 className="sub-heading-right-side">Recent News</h3>
           {loadingNews ? (
             <div className="loading-icon">
-              <h1>Loading News...</h1>
+              Loading News
+              <Loader />
             </div>
           ) : errorNews ? (
             <div>Error: {errorNews}</div>

@@ -50,6 +50,10 @@ const Reviews = ({ reviews }) => {
     }
   };
 
+  if (!reviews || reviews.length === 0) {
+    return <h2 className="checking-no-data">&quot;&gt; No Reviews Found 😔&quot;</h2>;
+  }
+
   return (
     <div className="reviews-container">
       <Slider ref={sliderRef} {...sliderSettings} className="reviews-slider">

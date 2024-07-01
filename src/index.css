@@ -27,6 +27,7 @@
   --input-search-bg: #4f6c9725;
   --input-search-border: #00a2b12f;
   --dropdown-toggle: #1b1f2b;
+  --no-data-found: #d2649a;
 }
 
 /* light Mode Styles */
@@ -55,6 +56,7 @@
   --input-search-bg: #4f6c973a;
   --input-search-border: #282f3c;
   --dropdown-toggle: #dbdde6;
+  --no-data-found: #62778a;
 }
 
 *,
@@ -168,7 +170,16 @@ html.light-mode {
   padding: 1%;
   margin: 1%;
 }
-
+.checking-no-data {
+  color: var(--no-data-found);
+  width: 100%;
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(250, 142, 70, 0.075);
+  border-radius: 8px;
+}
 @media (max-width: 560px) {
   .footer--copyright {
     font-size: 0.7rem;
