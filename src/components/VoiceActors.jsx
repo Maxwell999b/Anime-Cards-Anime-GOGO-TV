@@ -33,9 +33,11 @@ const VoiceActors = ({ voiceActors }) => {
       },
     ],
   };
+
   if (!voiceActors || voiceActors.length === 0) {
-    return <h2 className="checking-no-data">&quot;&gt; No Voice Actors Found 😔&quot;</h2>;
+    return <h2 className="checking-no-data">No Voice Actors Found 😔</h2>;
   }
+
   return (
     <div className="voice-actors-container">
       <div className="voice-actors-slider-container">
@@ -43,7 +45,7 @@ const VoiceActors = ({ voiceActors }) => {
           {voiceActors.map((actor) => (
             <div key={actor.person.mal_id} className="voice-actor-card">
               <div className="voice-actor-image">
-                <img src={actor.person.images.jpg.image_url} alt={actor.person.name} />
+                <img src={actor.person.images?.jpg?.image_url} alt={actor.person.name} />
               </div>
               <div className="voice-actor-info">
                 <h3>{actor.person.name}</h3>
@@ -63,13 +65,17 @@ const VoiceActors = ({ voiceActors }) => {
 VoiceActors.propTypes = {
   voiceActors: PropTypes.arrayOf(
     PropTypes.shape({
-      mal_id: PropTypes.number.isRequired,
-      images: PropTypes.shape({
-        jpg: PropTypes.shape({
-          image_url: PropTypes.string.isRequired,
-        }).isRequired,
-      }).isRequired,
-      name: PropTypes.string.isRequired,
+      person: PropTypes.shape({
+        mal_id: PropTypes.number.isRequired,
+        images: PropTypes.shape({
+          jpg: PropTypes.shape({
+            image_url: PropTypes.string.isRequired,
+          }),
+        }),
+        name: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+      }),
+      language: PropTypes.string.isRequired,
     })
   ),
 };
