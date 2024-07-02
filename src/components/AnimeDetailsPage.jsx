@@ -108,8 +108,19 @@ const AnimeDetailsPage = () => {
   useEffect(() => {
     const fetchVoiceActors = async () => {
       try {
+        // Throttling setup
+        const MIN_TIME_INTERVAL = 1000; // 1 second
+        const currentTime = Date.now();
+        const lastRequestTime = sessionStorage.getItem(`lastRequestTime_voiceActors_${id}`) || 0;
+
+        if (currentTime - lastRequestTime < MIN_TIME_INTERVAL) {
+          await new Promise((resolve) => setTimeout(resolve, MIN_TIME_INTERVAL - (currentTime - lastRequestTime)));
+        }
+
         const voiceActorsResponse = await http.get(`https://api.jikan.moe/v4/characters/${id}/voices`);
         setVoiceActors(voiceActorsResponse.data.data);
+
+        sessionStorage.setItem(`lastRequestTime_voiceActors_${id}`, Date.now().toString());
       } catch (error) {
         console.error("Failed to fetch voice actors:", error);
       }
