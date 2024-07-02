@@ -275,6 +275,8 @@ const AnimeDetailsPage = () => {
       galleryPictures={galleryPictures}
       characters={characters}
       externalLinks={externalLinks}
+      loadingCharacters={loadingCharacters}
+      errorCharacters={errorCharacters}
       staff={staff}
       loadingStaff={loadingStaff}
       errorStaff={errorStaff}
@@ -282,7 +284,11 @@ const AnimeDetailsPage = () => {
       loadingMoreInfo={loadingMoreInfo}
       errorMoreInfo={errorMoreInfo}
       streaming={streaming}
+      loadingStreaming={loadingStreaming}
+      errorStreaming={errorStreaming}
       themes={themes}
+      loadingThemes={loadingThemes}
+      errorThemes={errorThemes}
     />
   ) : (
     <div>No details available</div>
