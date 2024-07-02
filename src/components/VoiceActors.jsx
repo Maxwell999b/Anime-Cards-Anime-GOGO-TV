@@ -61,7 +61,17 @@ const VoiceActors = ({ voiceActors }) => {
 };
 
 VoiceActors.propTypes = {
-  voiceActors: PropTypes.array.isRequired,
+  voiceActors: PropTypes.arrayOf(
+    PropTypes.shape({
+      mal_id: PropTypes.number.isRequired,
+      images: PropTypes.shape({
+        jpg: PropTypes.shape({
+          image_url: PropTypes.string.isRequired,
+        }).isRequired,
+      }).isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default VoiceActors;
