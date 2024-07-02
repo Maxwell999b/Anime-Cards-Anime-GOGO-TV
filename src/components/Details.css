@@ -170,7 +170,9 @@
 .loading-icon {
   color: var(--loading-icon);
 }
-
+.external-links {
+  margin-bottom: 1rem;
+}
 .external-links-span {
   color: var(--details-ids-color-light);
   font-weight: bold;

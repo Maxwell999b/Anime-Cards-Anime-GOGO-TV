@@ -236,7 +236,7 @@ const MangaDetails = ({
               </div>
             )}
           </span>
-          <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
+          <h3 className="sub-heading-right-side">Characters</h3>
           {loadingCharacters ? (
             <Loader />
           ) : errorCharacters ? (

@@ -240,8 +240,8 @@
   }
 }
 /* iPad Pro 11" (both landscape and portrait) */
-@media (min-width: 834px) and (max-width: 1194px) and (orientation: portrait),
-  (min-width: 1194px) and (max-width: 1668px) and (orientation: landscape) {
+@media (min-width: 834px) and (max-width: 1194px) and (orientation: portrait) and (aspect-ratio: 4/3),
+  (min-width: 1194px) and (max-width: 1668px) and (orientation: landscape) and (aspect-ratio: 4/3) {
   .news-container {
     max-width: 30rem; /* iPad Pro 11" */
   }

@@ -28,6 +28,9 @@ const AnimeDetails = ({
   staff,
   loadingStaff,
   errorStaff,
+  moreInfo,
+  loadingMoreInfo,
+  errorMoreInfo,
 }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
@@ -263,6 +266,21 @@ const AnimeDetails = ({
                 {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
+            <p>
+              <span className="anime-details-ids">More Info:</span>
+              {loadingMoreInfo ? (
+                <span>
+                  Loading More Info
+                  <Loader />
+                </span>
+              ) : errorMoreInfo ? (
+                <div>Error: {errorMoreInfo}</div>
+              ) : (
+                <span className="anime-details-values">
+                  {moreInfo ? moreInfo : <span className="unknown-details">N/A</span>}
+                </span>
+              )}
+            </p>
             <span className="anime-details-ids">External Links:</span>
             {loadingExternalLinks ? (
               <span>
@@ -337,6 +355,9 @@ AnimeDetails.propTypes = {
   staff: PropTypes.array.isRequired,
   loadingStaff: PropTypes.bool.isRequired,
   errorStaff: PropTypes.string,
+  moreInfo: PropTypes.string,
+  loadingMoreInfo: PropTypes.bool.isRequired,
+  errorMoreInfo: PropTypes.string,
 };
 
 export default AnimeDetails;
