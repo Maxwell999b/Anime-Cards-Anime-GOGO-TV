@@ -28,6 +28,8 @@
   --input-search-border: #00a2b12f;
   --dropdown-toggle: #1b1f2b;
   --no-data-found: #d2649a;
+  --strong-theme: #deb7e6;
+  --strong-theme-inside: #e6b7b7;
 }
 
 /* light Mode Styles */
@@ -57,6 +59,8 @@
   --input-search-border: #282f3c;
   --dropdown-toggle: #dbdde6;
   --no-data-found: #62778a;
+  --strong-theme: #c064d2;
+  --strong-theme-inside: rgb(0, 67, 94);
 }
 
 *,

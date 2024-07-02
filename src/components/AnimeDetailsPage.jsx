@@ -28,6 +28,12 @@ const AnimeDetailsPage = () => {
   const [moreInfo, setMoreInfo] = useState(null);
   const [loadingMoreInfo, setLoadingMoreInfo] = useState(true);
   const [errorMoreInfo, setErrorMoreInfo] = useState(null);
+  const [streaming, setStreaming] = useState([]);
+  const [themes, setThemes] = useState([]);
+  const [loadingStreaming, setLoadingStreaming] = useState(true);
+  const [errorStreaming, setErrorStreaming] = useState(null);
+  const [loadingThemes, setLoadingThemes] = useState(true);
+  const [errorThemes, setErrorThemes] = useState(null);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -185,18 +191,76 @@ const AnimeDetailsPage = () => {
     fetchMoreInfo();
   }, [id]);
 
+  useEffect(() => {
+    const fetchStreaming = async () => {
+      try {
+        const streamingResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/streaming`);
+        setStreaming(streamingResponse.data.data);
+      } catch (error) {
+        setErrorStreaming(error.message);
+      } finally {
+        setLoadingStreaming(false);
+      }
+    };
+
+    fetchStreaming();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchThemes = async () => {
+      try {
+        const themesResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/themes`);
+        setThemes(themesResponse.data.data);
+      } catch (error) {
+        setErrorThemes(error.message);
+      } finally {
+        setLoadingThemes(false);
+      }
+    };
+
+    fetchThemes();
+  }, [id]);
+
   const memoizedAnimeDetails = useMemo(() => anime, [anime]);
 
-  if (loading || loadingNews || loadingCharacters || loadingExternalLinks || loadingStaff || loadingMoreInfo)
+  if (
+    loading ||
+    loadingNews ||
+    loadingCharacters ||
+    loadingExternalLinks ||
+    loadingStaff ||
+    loadingMoreInfo ||
+    loadingStreaming ||
+    loadingThemes
+  )
     return (
       <div className="loading-icon">
         <Loader />
       </div>
     );
 
-  if (error || errorNews || errorCharacters || errorExternalLinks || errorStaff || errorMoreInfo)
+  if (
+    error ||
+    errorNews ||
+    errorCharacters ||
+    errorExternalLinks ||
+    errorStaff ||
+    errorMoreInfo ||
+    errorStreaming ||
+    errorThemes
+  )
     return (
-      <div>Error: {error || errorNews || errorCharacters || errorExternalLinks || errorStaff || errorMoreInfo}</div>
+      <div>
+        Error:{" "}
+        {error ||
+          errorNews ||
+          errorCharacters ||
+          errorExternalLinks ||
+          errorStaff ||
+          errorMoreInfo ||
+          errorStreaming ||
+          errorThemes}
+      </div>
     );
 
   return anime ? (
@@ -217,6 +281,8 @@ const AnimeDetailsPage = () => {
       moreInfo={moreInfo}
       loadingMoreInfo={loadingMoreInfo}
       errorMoreInfo={errorMoreInfo}
+      streaming={streaming}
+      themes={themes}
     />
   ) : (
     <div>No details available</div>

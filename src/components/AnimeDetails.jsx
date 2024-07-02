@@ -31,6 +31,12 @@ const AnimeDetails = ({
   moreInfo,
   loadingMoreInfo,
   errorMoreInfo,
+  streaming,
+  loadingStreaming,
+  errorStreaming,
+  themes,
+  loadingThemes,
+  errorThemes,
 }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
@@ -281,6 +287,73 @@ const AnimeDetails = ({
                 </span>
               )}
             </p>
+            <span className="anime-details-ids">Themes:</span>
+            {loadingThemes ? (
+              <span>
+                Loading themes
+                <Loader />
+              </span>
+            ) : errorThemes ? (
+              <div>Error: {errorThemes}</div>
+            ) : (
+              <span className="anime-details-values">
+                {themes.openings.length > 0 || themes.endings.length > 0 ? (
+                  <>
+                    {themes.openings.length > 0 && (
+                      <>
+                        <br />
+                        <strong className="strong-theme">Opening🎶:</strong>
+                        {themes.openings.map((opening, index) => (
+                          <div key={index} className="strong-theme-inside">
+                            {opening}
+                          </div>
+                        ))}
+                      </>
+                    )}
+                    {themes.endings.length > 0 && (
+                      <>
+                        <strong className="strong-theme">Ending🎶:</strong>
+                        {themes.endings.map((ending, index) => (
+                          <div key={index} className="strong-theme-inside">
+                            {ending}
+                          </div>
+                        ))}
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <span className="unknown-details">N/A</span>
+                )}
+              </span>
+            )}
+
+            <p>
+              <span className="anime-details-ids">Streaming:</span>
+              {loadingStreaming ? (
+                <span>
+                  Loading Streaming
+                  <Loader />
+                </span>
+              ) : errorStreaming ? (
+                <div>Error: {errorStreaming}</div>
+              ) : (
+                <div className="external-links">
+                  {streaming.length > 0 ? (
+                    streaming.map((platform, index) => (
+                      <span key={index} className="external-links-span">
+                        {index + 1} -&nbsp;
+                        <a href={platform.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
+                          {platform.name} <br></br>
+                        </a>
+                      </span>
+                    ))
+                  ) : (
+                    <span className="unknown-details">N/A</span>
+                  )}
+                </div>
+              )}
+            </p>
+
             <span className="anime-details-ids">External Links:</span>
             {loadingExternalLinks ? (
               <span>
@@ -345,10 +418,10 @@ AnimeDetails.propTypes = {
   errorNews: PropTypes.string,
   episodes: PropTypes.array.isRequired,
   voiceActors: PropTypes.array.isRequired,
+  galleryPictures: PropTypes.array.isRequired,
   externalLinks: PropTypes.array.isRequired,
   loadingExternalLinks: PropTypes.bool,
   errorExternalLinks: PropTypes.string,
-  galleryPictures: PropTypes.array.isRequired,
   characters: PropTypes.array.isRequired,
   loadingCharacters: PropTypes.bool,
   errorCharacters: PropTypes.string,
@@ -358,6 +431,20 @@ AnimeDetails.propTypes = {
   moreInfo: PropTypes.string,
   loadingMoreInfo: PropTypes.bool.isRequired,
   errorMoreInfo: PropTypes.string,
+  streaming: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ),
+  loadingStreaming: PropTypes.bool,
+  errorStreaming: PropTypes.string,
+  themes: PropTypes.shape({
+    openings: PropTypes.arrayOf(PropTypes.string.isRequired),
+    endings: PropTypes.arrayOf(PropTypes.string.isRequired),
+  }),
+  loadingThemes: PropTypes.bool,
+  errorThemes: PropTypes.string,
 };
 
 export default AnimeDetails;
