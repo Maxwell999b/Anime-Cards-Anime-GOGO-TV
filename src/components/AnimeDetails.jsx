@@ -7,6 +7,7 @@ import AnimeEpisodes from "./AnimeEpisodes";
 import VoiceActors from "./VoiceActors";
 import GalleryPictures from "./GalleryPictures";
 import CharactersTable from "./CharactersTable";
+import StaffTable from "./StaffTable";
 import Loader from "./Loader";
 
 const AnimeDetails = ({
@@ -24,6 +25,9 @@ const AnimeDetails = ({
   characters,
   loadingCharacters,
   errorCharacters,
+  staff,
+  loadingStaff,
+  errorStaff,
 }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
@@ -293,7 +297,7 @@ const AnimeDetails = ({
           <h3 className="sub-heading-right-side">Voice Actors</h3>
           <VoiceActors voiceActors={voiceActors} />
           <h3 className="sub-heading-right-side">Staff</h3>
-          <div className="empty-section">{/* Staff Section */}</div>
+          {loadingStaff ? <Loader /> : errorStaff ? <div>Error: {errorStaff}</div> : <StaffTable staff={staff} />}
           <h3 className="sub-heading-right-side">Reviews</h3>
           <Reviews reviews={reviews} />
           <h3 className="sub-heading-right-side">Recent News</h3>
@@ -330,6 +334,9 @@ AnimeDetails.propTypes = {
   characters: PropTypes.array.isRequired,
   loadingCharacters: PropTypes.bool,
   errorCharacters: PropTypes.string,
+  staff: PropTypes.array.isRequired,
+  loadingStaff: PropTypes.bool.isRequired,
+  errorStaff: PropTypes.string,
 };
 
 export default AnimeDetails;

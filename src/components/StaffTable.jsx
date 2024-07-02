@@ -1,15 +1,15 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import "./CharactersTable.css";
+import "./StaffTable.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const CharactersTable = ({ characters }) => {
+const StaffTable = ({ staff }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomedImage, setZoomedImage] = useState(null);
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(characters.length / itemsPerPage);
+  const totalPages = Math.ceil(staff.length / itemsPerPage);
 
   const handleClick = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -27,7 +27,7 @@ const CharactersTable = ({ characters }) => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = characters.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = staff.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div className="characters-table">
@@ -41,22 +41,21 @@ const CharactersTable = ({ characters }) => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((character, index) => (
+          {currentItems.map((staffMember, index) => (
             <tr key={indexOfFirstItem + index + 1}>
               <td>{indexOfFirstItem + index + 1}</td>
               <td>
-                {" "}
-                <a href={character.character.url} target="_blank" rel="noopener noreferrer" className="">
-                  {character.character.name}
+                <a href={staffMember.person.url} target="_blank" rel="noopener noreferrer" className="">
+                  {staffMember.person.name}
                 </a>
               </td>
-              <td>{character.role}</td>
+              <td>{staffMember.positions.join(", ")}</td>
               <td>
                 <img
                   className="unzoomed-image"
-                  src={character.character.images.webp.image_url}
-                  alt={character.character.name}
-                  onClick={() => handleImageClick(character.character.images.webp.image_url)}
+                  src={staffMember.person.images.jpg.image_url}
+                  alt={staffMember.person.name}
+                  onClick={() => handleImageClick(staffMember.person.images.jpg.image_url)}
                 />
               </td>
             </tr>
@@ -88,8 +87,8 @@ const CharactersTable = ({ characters }) => {
   );
 };
 
-CharactersTable.propTypes = {
-  characters: PropTypes.array.isRequired,
+StaffTable.propTypes = {
+  staff: PropTypes.array.isRequired,
 };
 
-export default CharactersTable;
+export default StaffTable;

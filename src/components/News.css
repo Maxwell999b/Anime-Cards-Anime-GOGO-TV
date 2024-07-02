@@ -239,3 +239,10 @@
     max-width: 50rem; /* Suitable for very large desktops */
   }
 }
+/* iPad Pro 11" (both landscape and portrait) */
+@media (min-width: 834px) and (max-width: 1194px) and (orientation: portrait),
+  (min-width: 1194px) and (max-width: 1668px) and (orientation: landscape) {
+  .news-container {
+    max-width: 30rem; /* iPad Pro 11" */
+  }
+}

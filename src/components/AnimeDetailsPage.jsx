@@ -14,6 +14,7 @@ const AnimeDetailsPage = () => {
   const [galleryPictures, setGalleryPictures] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [externalLinks, setExternalLinks] = useState(null);
+  const [staff, setStaff] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [loadingNews, setLoadingNews] = useState(true);
@@ -22,6 +23,8 @@ const AnimeDetailsPage = () => {
   const [errorCharacters, setErrorCharacters] = useState(null);
   const [loadingExternalLinks, setLoadingExternalLinks] = useState(true);
   const [errorExternalLinks, setErrorExternalLinks] = useState(null);
+  const [loadingStaff, setLoadingStaff] = useState(true);
+  const [errorStaff, setErrorStaff] = useState(null);
 
   useEffect(() => {
     const fetchAnimeData = async () => {
@@ -149,17 +152,33 @@ const AnimeDetailsPage = () => {
     fetchExternalLinks();
   }, [id]);
 
+  useEffect(() => {
+    const fetchStaff = async () => {
+      setLoadingStaff(true); // Set loadingStaff to true before fetching data
+      try {
+        const staffResponse = await http.get(`https://api.jikan.moe/v4/anime/${id}/staff`);
+        setStaff(staffResponse.data.data);
+      } catch (error) {
+        setErrorStaff(error.message);
+      } finally {
+        setLoadingStaff(false); // Set loadingStaff to false after fetching data
+      }
+    };
+
+    fetchStaff();
+  }, [id]);
+
   const memoizedAnimeDetails = useMemo(() => anime, [anime]);
 
-  if (loading || loadingNews || loadingCharacters || loadingExternalLinks)
+  if (loading || loadingNews || loadingCharacters || loadingExternalLinks || loadingStaff)
     return (
       <div className="loading-icon">
         <Loader />
       </div>
     );
 
-  if (error || errorNews || errorCharacters || errorExternalLinks)
-    return <div>Error: {error || errorNews || errorCharacters || errorExternalLinks}</div>;
+  if (error || errorNews || errorCharacters || errorExternalLinks || errorStaff)
+    return <div>Error: {error || errorNews || errorCharacters || errorExternalLinks || errorStaff}</div>;
 
   return anime ? (
     <AnimeDetails
@@ -173,6 +192,7 @@ const AnimeDetailsPage = () => {
       galleryPictures={galleryPictures}
       characters={characters}
       externalLinks={externalLinks}
+      staff={staff}
     />
   ) : (
     <div>No details available</div>
