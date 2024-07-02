@@ -93,7 +93,7 @@ html.light-mode {
   width: 100%;
   max-width: 100%;
   /* this is special for /anime/5 since i don't see the point of doing this for customize the whole pages just for 1 page */
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 .content {
@@ -187,6 +187,20 @@ html.light-mode {
   background-color: rgba(250, 142, 70, 0.075);
   border-radius: 8px;
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sub-heading-bg-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--details-values-color-light);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sub-heading-color-light);
+}
+
 @media (max-width: 560px) {
   .footer--copyright {
     font-size: 0.7rem;
