@@ -11,7 +11,7 @@ export default function Footer() {
 
       <div className="footer--copyright">
         <p>
-          &copy;2024 -<span style={{ color: "red" }}>Anime GOGO TV.</span>{" "}
+          &copy;2024 -<span className="footer-md">Anime GOGO TV.</span>{" "}
           <span className="footer-hidden-small">All rights reserved. </span>
         </p>
       </div>

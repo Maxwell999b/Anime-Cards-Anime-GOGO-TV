@@ -97,6 +97,7 @@
 
 .review-body p {
   margin: 0.5em 0;
+  color: var(--details-ids-color-light-2);
 }
 
 .review-body a {
@@ -128,6 +129,7 @@
   border-radius: 3px;
   font-family: monospace;
   color: var(--sub-heading-color-light);
+  font-weight: bold;
 }
 
 .review-footer {
@@ -255,5 +257,13 @@
 @media (min-width: 1200px) and (max-width: 1280px) {
   .reviews-container {
     max-width: 50rem; /* Suitable for very large desktops */
+  }
+}
+
+/* iPad Pro 11" (both landscape and portrait) */
+@media (min-width: 834px) and (max-width: 1194px) and (orientation: portrait) and (aspect-ratio: 4/3),
+  (min-width: 1194px) and (max-width: 1668px) and (orientation: landscape) and (aspect-ratio: 4/3) {
+  .reviews-container {
+    max-width: 30rem; /* iPad Pro 11" */
   }
 }

@@ -1,0 +1,130 @@
+.characters-table {
+  width: 100%;
+  margin-top: 0.5rem;
+  max-width: 55rem;
+  margin: 0 auto;
+}
+
+.characters-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.characters-table th,
+.characters-table td {
+  border: 2px solid var(--sub-heading-color-light);
+  text-align: center;
+}
+
+.characters-table th {
+  background-color: var(--sub-heading-color-light);
+  text-align: center;
+}
+
+.characters-table th {
+  color: var(--pagination-bg-text);
+}
+
+.characters-table td {
+  color: var(--details-values-color-light);
+  font-weight: 600;
+}
+
+.characters-table a {
+  color: var(--details-values-color-light);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.characters-table a:hover {
+  color: var(--details-ids-color-light);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.characters-table .unzoomed-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.zoomed-image {
+  width: none;
+  height: none;
+}
+
+.pagination {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination button {
+  margin: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: var(--sub-heading-color-light);
+  cursor: pointer;
+  color: var(--pagination-bg-text);
+}
+
+.pagination button.active {
+  background-color: var(--sub-heading-border-light);
+  color: var(--details-values-color-light-2);
+}
+
+.pagination button:hover:not(.active) {
+  background-color: var(--card-tags);
+  color: var(--mode-theme-primary);
+}
+
+.zoomed-image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.zoomed-image-container {
+  position: relative;
+}
+
+.zoomed-image {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.zoom-out-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.page-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 500;
+}
+
+/* iPad Pro 11" (both landscape and portrait) */
+@media (min-width: 834px) and (max-width: 1194px) and (orientation: portrait) and (aspect-ratio: 4/3),
+  (min-width: 1194px) and (max-width: 1668px) and (orientation: landscape) and (aspect-ratio: 4/3) {
+  .characters-table {
+    max-width: 30rem; /* iPad Pro 11" */
+  }
+}

@@ -22,10 +22,14 @@
   --pagination-bg-text: #fff;
   --pagination-bg-text-hover: #2557a1;
   --loading-icon: #add5ce;
+  --loader-icon: #ffe388;
   --input-search-color: #c99f14;
   --input-search-bg: #4f6c9725;
   --input-search-border: #00a2b12f;
   --dropdown-toggle: #1b1f2b;
+  --no-data-found: #d2649a;
+  --strong-theme: #deb7e6;
+  --strong-theme-inside: #e6b7b7;
 }
 
 /* light Mode Styles */
@@ -49,10 +53,14 @@
   --pagination-bg-text: #282f3c;
   --pagination-bg-text-hover: #fff;
   --loading-icon: #282f3c;
+  --loader-icon: #826d91;
   --input-search-color: #d2649a;
   --input-search-bg: #4f6c973a;
   --input-search-border: #282f3c;
   --dropdown-toggle: #dbdde6;
+  --no-data-found: #62778a;
+  --strong-theme: #c064d2;
+  --strong-theme-inside: rgb(0, 67, 94);
 }
 
 *,
@@ -84,6 +92,8 @@ html.light-mode {
   min-height: 100vh;
   width: 100%;
   max-width: 100%;
+  /* this is special for /anime/5 since i don't see the point of doing this for customize the whole pages just for 1 page */
+  /* overflow-x: hidden; */
 }
 
 .content {
@@ -124,12 +134,15 @@ html.light-mode {
 
 .footer--copyright {
   color: #f3ed99;
-  font-weight: 400;
+  font-weight: bolder;
   line-height: 15px;
   text-align: center;
   transition: color 0.3s;
 }
-
+.footer-md {
+  color: var(--unknown-details-color-light);
+  font-weight: bold;
+}
 .light-mode .footer--copyright {
   color: #074173;
 }
@@ -164,7 +177,16 @@ html.light-mode {
   padding: 1%;
   margin: 1%;
 }
-
+.checking-no-data {
+  color: var(--no-data-found);
+  width: 100%;
+  max-width: 55rem;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(250, 142, 70, 0.075);
+  border-radius: 8px;
+}
 @media (max-width: 560px) {
   .footer--copyright {
     font-size: 0.7rem;

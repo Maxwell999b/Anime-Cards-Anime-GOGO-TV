@@ -4,6 +4,10 @@
   justify-content: center;
   gap: 20px;
   margin: 20px 0;
+  width: 100%;
+  max-width: 25rem;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .voice-actors-slider-container {
@@ -46,6 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .voice-actor-image img {
@@ -137,5 +142,12 @@
 @media (min-width: 1201px) {
   .voice-actors-container {
     max-width: 50rem; /* Adjust for large desktops */
+  }
+}
+/* iPad Pro 11" (both landscape and portrait) */
+@media (min-width: 834px) and (max-width: 1194px) and (orientation: portrait) and (aspect-ratio: 4/3),
+  (min-width: 1194px) and (max-width: 1668px) and (orientation: landscape) and (aspect-ratio: 4/3) {
+  .voice-actors-container {
+    max-width: 30rem; /* iPad Pro 11" */
   }
 }

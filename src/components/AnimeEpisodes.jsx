@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./Videos.css";
+import "./AnimeEpisodes.css";
 import { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -39,7 +39,7 @@ const CustomSlider = styled(MuiSlider)({
     },
   },
 });
-const Videos = ({ episodes }) => {
+const AnimeEpisodes = ({ episodes }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
   const isMountedRef = useRef(false);
@@ -77,6 +77,9 @@ const Videos = ({ episodes }) => {
   const handleSliderChange = (event, newValue) => {
     sliderRef.current.slickGoTo(newValue);
   };
+  if (!episodes || episodes.length === 0) {
+    return <h2 className="checking-no-data">&quot;&gt; No Anime Episodes Found 😔&quot;</h2>;
+  }
 
   return (
     <div className="videos-container">
@@ -101,7 +104,7 @@ const Videos = ({ episodes }) => {
   );
 };
 
-Videos.propTypes = {
+AnimeEpisodes.propTypes = {
   episodes: PropTypes.array.isRequired,
 };
 
@@ -137,4 +140,4 @@ EpisodeCard.propTypes = {
   currentSlide: PropTypes.bool.isRequired,
 };
 
-export default Videos;
+export default AnimeEpisodes;

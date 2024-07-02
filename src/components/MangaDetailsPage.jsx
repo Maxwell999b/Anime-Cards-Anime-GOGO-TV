@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import http from "./services/http";
 import MangaDetails from "./MangaDetails";
+import Loader from "./Loader";
 import "./Details.css";
 
 const MangaDetailsPage = () => {
@@ -17,6 +18,12 @@ const MangaDetailsPage = () => {
   const [loadingMoreInfo, setLoadingMoreInfo] = useState(true);
   const [errorMoreInfo, setErrorMoreInfo] = useState(null);
   const [galleryPictures, setGalleryPictures] = useState([]);
+  const [externalLinks, setExternalLinks] = useState(null);
+  const [loadingExternalLinks, setLoadingExternalLinks] = useState(true);
+  const [errorExternalLinks, setErrorExternalLinks] = useState(null);
+  const [characters, setCharacters] = useState([]);
+  const [loadingCharacters, setLoadingCharacters] = useState(true);
+  const [errorCharacters, setErrorCharacters] = useState(null);
 
   useEffect(() => {
     const fetchMangaData = async () => {
@@ -97,15 +104,46 @@ const MangaDetailsPage = () => {
     fetchGalleryPictures();
   }, [id]);
 
+  useEffect(() => {
+    const fetchExternalLinks = async () => {
+      try {
+        const externalLinksResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/external`);
+        setExternalLinks(externalLinksResponse.data.data);
+        setLoadingExternalLinks(false);
+      } catch (error) {
+        setErrorExternalLinks(error.message);
+        setLoadingExternalLinks(false);
+      }
+    };
+
+    fetchExternalLinks();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const charactersResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/characters`);
+        setCharacters(charactersResponse.data.data);
+        setLoadingCharacters(false);
+      } catch (error) {
+        setErrorCharacters(error.message);
+        setLoadingCharacters(false);
+      }
+    };
+
+    fetchCharacters();
+  }, [id]);
+
   const memoizedMangaDetails = useMemo(() => manga, [manga]);
 
-  if (loading || loadingMoreInfo)
+  if (loading || loadingMoreInfo || loadingExternalLinks || loadingCharacters)
     return (
       <div className="loading-icon">
-        <h1>Loading...</h1>
+        <Loader />
       </div>
     );
-  if (error || errorMoreInfo) return <div>Error: {error || errorMoreInfo}</div>;
+  if (error || errorMoreInfo || errorExternalLinks || errorCharacters)
+    return <div>Error: {error || errorMoreInfo || errorExternalLinks || errorCharacters}</div>;
 
   return manga ? (
     <MangaDetails
@@ -118,6 +156,12 @@ const MangaDetailsPage = () => {
       loadingMoreInfo={loadingMoreInfo}
       errorMoreInfo={errorMoreInfo}
       galleryPictures={galleryPictures}
+      externalLinks={externalLinks}
+      loadingExternalLinks={loadingExternalLinks}
+      errorExternalLinks={errorExternalLinks}
+      characters={characters}
+      loadingCharacters={loadingCharacters}
+      errorCharacters={errorCharacters}
     />
   ) : (
     <div>No details available</div>

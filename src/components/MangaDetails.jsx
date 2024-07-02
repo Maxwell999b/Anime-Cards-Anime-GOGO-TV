@@ -4,6 +4,8 @@ import "./Details.css";
 import Reviews from "./Reviews";
 import News from "./News";
 import GalleryPictures from "./GalleryPictures";
+import CharactersTable from "./CharactersTable";
+import Loader from "./Loader";
 
 const MangaDetails = ({
   manga,
@@ -15,6 +17,12 @@ const MangaDetails = ({
   loadingMoreInfo,
   errorMoreInfo,
   galleryPictures,
+  externalLinks,
+  loadingExternalLinks,
+  errorExternalLinks,
+  characters,
+  loadingCharacters,
+  errorCharacters,
 }) => {
   const scoreClassName = manga.score && manga.score >= 8 ? "manga-details-values-top" : "";
   const scoreClassNameBy = manga.scored_by && manga.scored_by >= 100000 ? "manga-details-values-top" : "";
@@ -192,11 +200,13 @@ const MangaDetails = ({
                 {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
-            {/* Display moreInfo here */}
             <p>
               <span className="manga-details-ids">More Info:</span>
               {loadingMoreInfo ? (
-                <span>Loading More Info...</span>
+                <span>
+                  Loading More Info
+                  <Loader />
+                </span>
               ) : errorMoreInfo ? (
                 <div>Error: {errorMoreInfo}</div>
               ) : (
@@ -205,17 +215,42 @@ const MangaDetails = ({
                 </span>
               )}
             </p>
+            <span className="manga-details-ids">External Links:</span>
+            {loadingExternalLinks ? (
+              <span>
+                Loading External Links
+                <Loader />
+              </span>
+            ) : errorExternalLinks ? (
+              <div>Error: {errorExternalLinks}</div>
+            ) : (
+              <div className="external-links">
+                {externalLinks.map((link, index) => (
+                  <span key={index} className="external-links-span">
+                    {index + 1} -&nbsp;
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
+                      {link.name} <br></br>
+                    </a>
+                  </span>
+                ))}
+              </div>
+            )}
           </span>
-          <h3 className="sub-heading-right-side">Characters & Voice Actors</h3>
-          <div className="empty-section">{/* Characters & Voice Actors Section */}</div>
-          <h3 className="sub-heading-right-side">Staff</h3>
-          <div className="empty-section">{/* Staff Section */}</div>
+          <h3 className="sub-heading-right-side">Characters</h3>
+          {loadingCharacters ? (
+            <Loader />
+          ) : errorCharacters ? (
+            <div>Error: {errorCharacters}</div>
+          ) : (
+            <CharactersTable characters={characters} />
+          )}
           <h3 className="sub-heading-right-side">Reviews</h3>
           <Reviews reviews={reviews} />
           <h3 className="sub-heading-right-side">Recent News</h3>
           {loadingNews ? (
             <div className="loading-icon">
-              <h1>Loading News...</h1>
+              Loading News
+              <Loader />
             </div>
           ) : errorNews ? (
             <div>Error: {errorNews}</div>
@@ -239,7 +274,13 @@ MangaDetails.propTypes = {
   moreInfo: PropTypes.string,
   loadingMoreInfo: PropTypes.bool.isRequired,
   errorMoreInfo: PropTypes.string,
+  externalLinks: PropTypes.array,
+  loadingExternalLinks: PropTypes.bool.isRequired,
+  errorExternalLinks: PropTypes.string,
   galleryPictures: PropTypes.array.isRequired,
+  characters: PropTypes.array.isRequired,
+  loadingCharacters: PropTypes.bool.isRequired,
+  errorCharacters: PropTypes.string,
 };
 
 export default MangaDetails;

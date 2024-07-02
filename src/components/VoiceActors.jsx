@@ -33,7 +33,9 @@ const VoiceActors = ({ voiceActors }) => {
       },
     ],
   };
-
+  if (!voiceActors || voiceActors.length === 0) {
+    return <h2 className="checking-no-data">&quot;&gt; No Voice Actors Found 😔&quot;</h2>;
+  }
   return (
     <div className="voice-actors-container">
       <div className="voice-actors-slider-container">

@@ -24,7 +24,7 @@ const GalleryPictures = ({ pictures }) => {
     autoplay: false,
     arrows: !isZoomed, // Show arrows only when not zoomed
     centerMode: pictures.length < 5, // Enable center mode if there are fewer than 5 pictures
-    centerPadding: "50px", // Adjust as needed for spacing between slides
+    centerPadding: "50px", // for spacing between slides
   };
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
@@ -50,6 +50,9 @@ const GalleryPictures = ({ pictures }) => {
       setCurrentImageIndex(0); // Loop to first image
     }
   };
+  if (!pictures || pictures.length === 0) {
+    return <h2 className="checking-no-data">&quot;&gt; Pictures Found 😔&quot;</h2>;
+  }
 
   return (
     <div className={`galleryPic-pictures-container ${isZoomed ? "zoomed" : ""}`}>

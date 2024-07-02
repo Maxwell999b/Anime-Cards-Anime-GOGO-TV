@@ -30,7 +30,9 @@ const News = ({ newsItems }) => {
   const uniqueNewsItems = newsItems.filter(
     (item, index, self) => index === self.findIndex((t) => t.mal_id === item.mal_id)
   );
-
+  if (newsItems.length === 0) {
+    return <h2 className="checking-no-data">&quot;&gt; No News Found 😔&quot;</h2>;
+  }
   return (
     <div className="news-container">
       {uniqueNewsItems.length > 1 ? (
