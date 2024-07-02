@@ -327,32 +327,30 @@ const AnimeDetails = ({
               </span>
             )}
 
-            <p>
-              <span className="anime-details-ids">Streaming:</span>
-              {loadingStreaming ? (
-                <span>
-                  Loading Streaming
-                  <Loader />
-                </span>
-              ) : errorStreaming ? (
-                <div>Error: {errorStreaming}</div>
-              ) : (
-                <div className="external-links">
-                  {streaming.length > 0 ? (
-                    streaming.map((platform, index) => (
-                      <span key={index} className="external-links-span">
-                        {index + 1} -&nbsp;
-                        <a href={platform.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
-                          {platform.name} <br></br>
-                        </a>
-                      </span>
-                    ))
-                  ) : (
-                    <span className="unknown-details">N/A</span>
-                  )}
-                </div>
-              )}
-            </p>
+            <span className="anime-details-ids">Streaming:</span>
+            {loadingStreaming ? (
+              <span>
+                Loading Streaming
+                <Loader />
+              </span>
+            ) : errorStreaming ? (
+              <div>Error: {errorStreaming}</div>
+            ) : (
+              <div className="external-links">
+                {streaming.length > 0 ? (
+                  streaming.map((platform, index) => (
+                    <span key={index} className="external-links-span">
+                      {index + 1} -&nbsp;
+                      <a href={platform.url} target="_blank" rel="noopener noreferrer" className="external-links-a">
+                        {platform.name} <br></br>
+                      </a>
+                    </span>
+                  ))
+                ) : (
+                  <span className="unknown-details">N/A</span>
+                )}
+              </div>
+            )}
 
             <span className="anime-details-ids">External Links:</span>
             {loadingExternalLinks ? (
