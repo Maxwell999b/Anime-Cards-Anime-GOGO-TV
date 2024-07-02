@@ -134,12 +134,15 @@ html.light-mode {
 
 .footer--copyright {
   color: #f3ed99;
-  font-weight: 400;
+  font-weight: bolder;
   line-height: 15px;
   text-align: center;
   transition: color 0.3s;
 }
-
+.footer-md {
+  color: var(--unknown-details-color-light);
+  font-weight: bold;
+}
 .light-mode .footer--copyright {
   color: #074173;
 }
