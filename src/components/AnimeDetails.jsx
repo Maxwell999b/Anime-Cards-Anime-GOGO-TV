@@ -17,7 +17,7 @@ const AnimeDetails = ({
   loadingNews,
   errorNews,
   episodes,
-  voiceActors,
+  voiceActors = [],
   galleryPictures,
   externalLinks,
   loadingExternalLinks,
@@ -283,7 +283,19 @@ const AnimeDetails = ({
                 <div>Error: {errorMoreInfo}</div>
               ) : (
                 <span className="anime-details-values">
-                  {moreInfo ? moreInfo : <span className="unknown-details">N/A</span>}
+                  {moreInfo ? (
+                    typeof moreInfo === "object" ? (
+                      Object.entries(moreInfo).map(([key, value]) => (
+                        <div key={key}>
+                          <strong>{key}: </strong> {value}
+                        </div>
+                      ))
+                    ) : (
+                      moreInfo
+                    )
+                  ) : (
+                    <span className="unknown-details">N/A</span>
+                  )}
                 </span>
               )}
             </p>
@@ -415,7 +427,7 @@ AnimeDetails.propTypes = {
   loadingNews: PropTypes.bool.isRequired,
   errorNews: PropTypes.string,
   episodes: PropTypes.array.isRequired,
-  voiceActors: PropTypes.array.isRequired,
+  voiceActors: PropTypes.array,
   galleryPictures: PropTypes.array.isRequired,
   externalLinks: PropTypes.array.isRequired,
   loadingExternalLinks: PropTypes.bool,
@@ -426,7 +438,7 @@ AnimeDetails.propTypes = {
   staff: PropTypes.array.isRequired,
   loadingStaff: PropTypes.bool.isRequired,
   errorStaff: PropTypes.string,
-  moreInfo: PropTypes.string,
+  moreInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   loadingMoreInfo: PropTypes.bool.isRequired,
   errorMoreInfo: PropTypes.string,
   streaming: PropTypes.arrayOf(
@@ -443,6 +455,17 @@ AnimeDetails.propTypes = {
   }),
   loadingThemes: PropTypes.bool,
   errorThemes: PropTypes.string,
+};
+
+AnimeDetails.defaultProps = {
+  voiceActors: [],
+  errorNews: "",
+  errorExternalLinks: "",
+  errorCharacters: "",
+  errorStaff: "",
+  errorMoreInfo: "",
+  errorStreaming: "",
+  errorThemes: "",
 };
 
 export default AnimeDetails;
