@@ -5,7 +5,7 @@ import AnimeDetailsPage from "./components/AnimeDetailsPage";
 import MangaCards from "./components/MangaCards";
 import MangaDetailsPage from "./components/MangaDetailsPage";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 
 export default function App() {
@@ -46,7 +46,7 @@ export default function App() {
             <Route path="/manga/:id" element={<MangaDetailsPage />} />
           </Routes>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
