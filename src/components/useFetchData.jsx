@@ -13,9 +13,32 @@ const useFetchData = (url, cacheKey) => {
         if (cachedData) {
           setData(JSON.parse(cachedData));
         } else {
-          const response = await http.get(url);
-          setData(response.data.data);
-          sessionStorage.setItem(cacheKey, JSON.stringify(response.data.data));
+          let retryCount = 0;
+          let response = null;
+
+          while (retryCount < 3) {
+            // Retry up to 3 times
+            try {
+              response = await http.get(url);
+              break; // Break out of retry loop if request is successful
+            } catch (error) {
+              if (error.response && error.response.status === 429) {
+                // Retry after exponentially increasing time
+                const delay = Math.pow(2, retryCount) * 1000; // exponential backoff
+                await new Promise((resolve) => setTimeout(resolve, delay));
+                retryCount++;
+              } else {
+                throw error; // Throw any other errors
+              }
+            }
+          }
+
+          if (response) {
+            setData(response.data.data);
+            sessionStorage.setItem(cacheKey, JSON.stringify(response.data.data));
+          } else {
+            throw new Error("Request failed after multiple retries");
+          }
         }
       } catch (error) {
         setError(error.message);
