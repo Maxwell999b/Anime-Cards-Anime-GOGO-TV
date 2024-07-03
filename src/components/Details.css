@@ -76,7 +76,7 @@
 /* Style for the title */
 .anime-title,
 .manga-title {
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: var(--title-color-light);
   text-shadow: #1a1a1a 5px 0 5px;
   text-decoration: underline;
