@@ -30,6 +30,25 @@ class LRUCache {
 
 const lruCache = new LRUCache(20);
 
+const fetchWithRetry = async (url, retryCount = 3) => {
+  let attempts = 0;
+  while (attempts < retryCount) {
+    try {
+      const response = await http.get(url);
+      return response.data.data || [];
+    } catch (error) {
+      if (error.response && error.response.status === 429) {
+        const delay = Math.pow(2, attempts) * 1000; // exponential backoff
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        attempts++;
+      } else {
+        throw error;
+      }
+    }
+  }
+  throw new Error(`Request failed after ${retryCount} retries`);
+};
+
 const fetchAnimeDetails = async (id) => {
   const urls = [
     { key: "anime", url: `https://api.jikan.moe/v4/anime/${id}` },
@@ -56,8 +75,7 @@ const fetchAnimeDetails = async (id) => {
       if (cachedData) {
         data[key] = JSON.parse(cachedData);
       } else {
-        const response = await http.get(url);
-        const responseData = response.data.data || [];
+        const responseData = await fetchWithRetry(url);
         lruCache.set(cacheKey, responseData);
         sessionStorage.setItem(cacheKey, JSON.stringify(responseData));
         data[key] = responseData;

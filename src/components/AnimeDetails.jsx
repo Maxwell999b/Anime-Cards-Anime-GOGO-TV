@@ -432,7 +432,7 @@ AnimeDetails.propTypes = {
   anime: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
   recentNews: PropTypes.array.isRequired,
-  loadingNews: PropTypes.bool.isRequired,
+  loadingNews: PropTypes.bool,
   errorNews: PropTypes.string,
   episodes: PropTypes.array.isRequired,
   voiceActors: PropTypes.array,
@@ -444,10 +444,10 @@ AnimeDetails.propTypes = {
   loadingCharacters: PropTypes.bool,
   errorCharacters: PropTypes.string,
   staff: PropTypes.array.isRequired,
-  loadingStaff: PropTypes.bool.isRequired,
+  loadingStaff: PropTypes.bool,
   errorStaff: PropTypes.string,
   moreInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  loadingMoreInfo: PropTypes.bool.isRequired,
+  loadingMoreInfo: PropTypes.bool,
   errorMoreInfo: PropTypes.string,
   streaming: PropTypes.arrayOf(
     PropTypes.shape({
