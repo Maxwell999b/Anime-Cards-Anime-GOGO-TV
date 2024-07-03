@@ -93,7 +93,7 @@ html.light-mode {
   width: 100%;
   max-width: 100%;
   /* this is special for /anime/5 since i don't see the point of doing this for customize the whole pages just for 1 page */
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .content {
