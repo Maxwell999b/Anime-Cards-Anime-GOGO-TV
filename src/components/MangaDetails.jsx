@@ -200,7 +200,7 @@ const MangaDetails = ({
                 {manga.background ? manga.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
-            <p>
+            <span>
               <span className="manga-details-ids">More Info:</span>
               {loadingMoreInfo ? (
                 <span>
@@ -214,7 +214,7 @@ const MangaDetails = ({
                   {moreInfo ? moreInfo : <span className="unknown-details">N/A</span>}
                 </span>
               )}
-            </p>
+            </span>
             <span className="manga-details-ids">External Links:</span>
             {loadingExternalLinks ? (
               <span>

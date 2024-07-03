@@ -15,28 +15,28 @@ const AnimeDetails = ({
   reviews,
   recentNews,
   loadingNews,
-  errorNews,
+  errorNews = "",
   episodes,
   voiceActors = [],
   galleryPictures,
   externalLinks,
   loadingExternalLinks,
-  errorExternalLinks,
+  errorExternalLinks = "",
   characters,
   loadingCharacters,
-  errorCharacters,
+  errorCharacters = "",
   staff,
   loadingStaff,
-  errorStaff,
+  errorStaff = "",
   moreInfo,
   loadingMoreInfo,
-  errorMoreInfo,
+  errorMoreInfo = "",
   streaming,
   loadingStreaming,
-  errorStreaming,
+  errorStreaming = "",
   themes,
   loadingThemes,
-  errorThemes,
+  errorThemes = "",
 }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
@@ -272,7 +272,7 @@ const AnimeDetails = ({
                 {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
-            <p>
+            <span>
               <span className="anime-details-ids">More Info:</span>
               {loadingMoreInfo ? (
                 <span>
@@ -298,7 +298,7 @@ const AnimeDetails = ({
                   )}
                 </span>
               )}
-            </p>
+            </span>
             <span className="anime-details-ids">Themes:</span>
             {loadingThemes ? (
               <span>
@@ -455,17 +455,6 @@ AnimeDetails.propTypes = {
   }),
   loadingThemes: PropTypes.bool,
   errorThemes: PropTypes.string,
-};
-
-AnimeDetails.defaultProps = {
-  voiceActors: [],
-  errorNews: "",
-  errorExternalLinks: "",
-  errorCharacters: "",
-  errorStaff: "",
-  errorMoreInfo: "",
-  errorStreaming: "",
-  errorThemes: "",
 };
 
 export default AnimeDetails;

@@ -9,7 +9,14 @@ const useFetchData = (url, cacheKey) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const cachedData = sessionStorage.getItem(cacheKey);
+        let cachedData = null;
+        try {
+          cachedData = sessionStorage.getItem(cacheKey);
+        } catch (storageError) {
+          console.error("Error accessing sessionStorage:", storageError);
+          // Optionally handle or log the storage error here
+        }
+
         if (cachedData) {
           setData(JSON.parse(cachedData));
         } else {
@@ -34,8 +41,13 @@ const useFetchData = (url, cacheKey) => {
           }
 
           if (response) {
+            try {
+              sessionStorage.setItem(cacheKey, JSON.stringify(response.data.data));
+            } catch (storageError) {
+              console.error("Error storing data in sessionStorage:", storageError);
+              // Optionally handle or log the storage error here
+            }
             setData(response.data.data);
-            sessionStorage.setItem(cacheKey, JSON.stringify(response.data.data));
           } else {
             throw new Error("Request failed after multiple retries");
           }
