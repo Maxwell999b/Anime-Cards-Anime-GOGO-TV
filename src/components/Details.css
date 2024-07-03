@@ -225,6 +225,10 @@
 .synopsis-background-gap p {
   margin-bottom: 2em;
 }
+.id-theme {
+  margin-top: 2rem;
+  display: block;
+}
 .loading-icon {
   color: var(--loading-icon);
 }
@@ -251,6 +255,7 @@
   color: var(--strong-theme-inside);
   font-weight: bold;
 }
+
 /* Media queries for responsiveness */
 @media (max-width: 576px) {
   .detail-image {

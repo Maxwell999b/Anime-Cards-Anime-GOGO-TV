@@ -274,32 +274,40 @@ const AnimeDetails = ({
             </p>
             <span>
               <span className="anime-details-ids">More Info:</span>
-              {loadingMoreInfo ? (
-                <span>
-                  Loading More Info
-                  <Loader />
-                </span>
-              ) : errorMoreInfo ? (
-                <div>Error: {errorMoreInfo}</div>
-              ) : (
-                <span className="anime-details-values">
-                  {moreInfo ? (
-                    typeof moreInfo === "object" ? (
-                      Object.entries(moreInfo).map(([key, value]) => (
-                        <div key={key}>
-                          <strong>{key}: </strong> {value}
-                        </div>
-                      ))
+              <span className="anime-details-values">
+                {loadingMoreInfo ? (
+                  <>
+                    Loading More Info
+                    <Loader />
+                  </>
+                ) : errorMoreInfo ? (
+                  <span>Error: {errorMoreInfo}</span>
+                ) : (
+                  <>
+                    {moreInfo !== null && moreInfo !== undefined ? (
+                      typeof moreInfo === "object" ? (
+                        Object.entries(moreInfo).map(([key, value]) => (
+                          <span key={key}>
+                            {value !== null && value !== undefined ? (
+                              <>
+                                <strong>{key}: </strong> {value}
+                              </>
+                            ) : (
+                              <span className="unknown-details">N/A</span>
+                            )}
+                          </span>
+                        ))
+                      ) : (
+                        moreInfo
+                      )
                     ) : (
-                      moreInfo
-                    )
-                  ) : (
-                    <span className="unknown-details">N/A</span>
-                  )}
-                </span>
-              )}
+                      <span className="unknown-details">N/A</span>
+                    )}
+                  </>
+                )}
+              </span>
             </span>
-            <span className="anime-details-ids">Themes:</span>
+            <span className="anime-details-ids id-theme">Themes:</span>
             {loadingThemes ? (
               <span>
                 Loading themes
