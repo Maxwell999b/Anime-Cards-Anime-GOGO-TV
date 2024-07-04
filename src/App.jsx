@@ -5,10 +5,40 @@ import AnimeDetailsPage from "./components/AnimeDetailsPage";
 import MangaCards from "./components/MangaCards";
 import MangaDetailsPage from "./components/MangaDetailsPage";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 
 export default function App() {
+  // // Function to adjust zoom level based on screen width
+  // const adjustZoomLevel = () => {
+  //   const screenWidth = window.innerWidth;
+
+  //   if (screenWidth <= 480) {
+  //     document.body.style.zoom = "100%"; // Zoom level for mobile devices
+  //   } else if (screenWidth <= 768) {
+  //     document.body.style.zoom = "88%"; // Zoom level for small tablets
+  //   } else if (screenWidth <= 1024) {
+  //     document.body.style.zoom = "100%"; // Zoom level for tablets
+  //   } else if (screenWidth <= 1200) {
+  //     document.body.style.zoom = "100%"; // Zoom level for small desktops
+  //   } else if (screenWidth <= 1280) {
+  //     document.body.style.zoom = "100%"; // Zoom level for very large desktops
+  //   } else {
+  //     document.body.style.zoom = "100%"; // Default zoom level for larger screens
+  //   }
+  // };
+
+  // // Call adjustZoomLevel initially and on window resize
+  // useEffect(() => {
+  //   adjustZoomLevel();
+  //   window.addEventListener("resize", adjustZoomLevel);
+
+  //   // Cleanup the event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener("resize", adjustZoomLevel);
+  //   };
+  // }, []);
+
   const [lightMode, setLightMode] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -46,7 +76,7 @@ export default function App() {
             <Route path="/manga/:id" element={<MangaDetailsPage />} />
           </Routes>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

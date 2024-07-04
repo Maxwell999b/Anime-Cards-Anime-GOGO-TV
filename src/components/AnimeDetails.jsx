@@ -15,28 +15,28 @@ const AnimeDetails = ({
   reviews,
   recentNews,
   loadingNews,
-  errorNews,
+  errorNews = "",
   episodes,
   voiceActors = [],
   galleryPictures,
   externalLinks,
   loadingExternalLinks,
-  errorExternalLinks,
+  errorExternalLinks = "",
   characters,
   loadingCharacters,
-  errorCharacters,
+  errorCharacters = "",
   staff,
   loadingStaff,
-  errorStaff,
+  errorStaff = "",
   moreInfo,
   loadingMoreInfo,
-  errorMoreInfo,
+  errorMoreInfo = "",
   streaming,
   loadingStreaming,
-  errorStreaming,
+  errorStreaming = "",
   themes,
   loadingThemes,
-  errorThemes,
+  errorThemes = "",
 }) => {
   const scoreClassName = anime.score && anime.score >= 8 ? "anime-details-values-top" : "";
   const scoreClassNameBy = anime.scored_by && anime.scored_by >= 100000 ? "anime-details-values-top" : "";
@@ -272,34 +272,42 @@ const AnimeDetails = ({
                 {anime.background ? anime.background : <span className="unknown-details">N/A</span>}
               </span>
             </p>
-            <p>
+            <span>
               <span className="anime-details-ids">More Info:</span>
-              {loadingMoreInfo ? (
-                <span>
-                  Loading More Info
-                  <Loader />
-                </span>
-              ) : errorMoreInfo ? (
-                <div>Error: {errorMoreInfo}</div>
-              ) : (
-                <span className="anime-details-values">
-                  {moreInfo ? (
-                    typeof moreInfo === "object" ? (
-                      Object.entries(moreInfo).map(([key, value]) => (
-                        <div key={key}>
-                          <strong>{key}: </strong> {value}
-                        </div>
-                      ))
+              <span className="anime-details-values">
+                {loadingMoreInfo ? (
+                  <>
+                    Loading More Info
+                    <Loader />
+                  </>
+                ) : errorMoreInfo ? (
+                  <span>Error: {errorMoreInfo}</span>
+                ) : (
+                  <>
+                    {moreInfo !== null && moreInfo !== undefined ? (
+                      typeof moreInfo === "object" ? (
+                        Object.entries(moreInfo).map(([key, value]) => (
+                          <span key={key}>
+                            {value !== null && value !== undefined ? (
+                              <>
+                                <strong>{key}: </strong> {value}
+                              </>
+                            ) : (
+                              <span className="unknown-details">N/A</span>
+                            )}
+                          </span>
+                        ))
+                      ) : (
+                        moreInfo
+                      )
                     ) : (
-                      moreInfo
-                    )
-                  ) : (
-                    <span className="unknown-details">N/A</span>
-                  )}
-                </span>
-              )}
-            </p>
-            <span className="anime-details-ids">Themes:</span>
+                      <span className="unknown-details">N/A</span>
+                    )}
+                  </>
+                )}
+              </span>
+            </span>
+            <span className="anime-details-ids id-theme">Themes:</span>
             {loadingThemes ? (
               <span>
                 Loading themes
@@ -424,7 +432,7 @@ AnimeDetails.propTypes = {
   anime: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
   recentNews: PropTypes.array.isRequired,
-  loadingNews: PropTypes.bool.isRequired,
+  loadingNews: PropTypes.bool,
   errorNews: PropTypes.string,
   episodes: PropTypes.array.isRequired,
   voiceActors: PropTypes.array,
@@ -436,10 +444,10 @@ AnimeDetails.propTypes = {
   loadingCharacters: PropTypes.bool,
   errorCharacters: PropTypes.string,
   staff: PropTypes.array.isRequired,
-  loadingStaff: PropTypes.bool.isRequired,
+  loadingStaff: PropTypes.bool,
   errorStaff: PropTypes.string,
   moreInfo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  loadingMoreInfo: PropTypes.bool.isRequired,
+  loadingMoreInfo: PropTypes.bool,
   errorMoreInfo: PropTypes.string,
   streaming: PropTypes.arrayOf(
     PropTypes.shape({
@@ -455,17 +463,6 @@ AnimeDetails.propTypes = {
   }),
   loadingThemes: PropTypes.bool,
   errorThemes: PropTypes.string,
-};
-
-AnimeDetails.defaultProps = {
-  voiceActors: [],
-  errorNews: "",
-  errorExternalLinks: "",
-  errorCharacters: "",
-  errorStaff: "",
-  errorMoreInfo: "",
-  errorStreaming: "",
-  errorThemes: "",
 };
 
 export default AnimeDetails;

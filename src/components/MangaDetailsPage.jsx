@@ -1,53 +1,153 @@
+import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
+import http from "./services/http";
 import MangaDetails from "./MangaDetails";
 import Loader from "./Loader";
-import useFetchData from "./useFetchData";
 import "./Details.css";
 
 const MangaDetailsPage = () => {
   const { id } = useParams();
-  const { data: manga, loading, error } = useFetchData(`https://api.jikan.moe/v4/manga/${id}`, `mangaDetails_${id}`);
-  const { data: reviews } = useFetchData(`https://api.jikan.moe/v4/manga/${id}/reviews`, `mangaReviews_${id}`);
-  const {
-    data: news,
-    loading: loadingNews,
-    error: errorNews,
-  } = useFetchData(`https://api.jikan.moe/v4/manga/${id}/news`, `mangaNews_${id}`);
-  const {
-    data: moreInfoData,
-    loading: loadingMoreInfo,
-    error: errorMoreInfo,
-  } = useFetchData(`https://api.jikan.moe/v4/manga/${id}/moreinfo`, `mangaMoreInfo_${id}`);
-  const { data: galleryPictures } = useFetchData(
-    `https://api.jikan.moe/v4/manga/${id}/pictures`,
-    `mangaGalleryPictures_${id}`
-  );
-  const {
-    data: externalLinks,
-    loading: loadingExternalLinks,
-    error: errorExternalLinks,
-  } = useFetchData(`https://api.jikan.moe/v4/manga/${id}/external`, `mangaExternalLinks_${id}`);
-  const {
-    data: characters,
-    loading: loadingCharacters,
-    error: errorCharacters,
-  } = useFetchData(`https://api.jikan.moe/v4/manga/${id}/characters`, `mangaCharacters_${id}`);
+  const [manga, setManga] = useState(null);
+  const [reviews, setReviews] = useState([]);
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingNews, setLoadingNews] = useState(true);
+  const [error, setError] = useState(null);
+  const [errorNews, setErrorNews] = useState(null);
+  const [moreInfo, setMoreInfo] = useState(null);
+  const [loadingMoreInfo, setLoadingMoreInfo] = useState(true);
+  const [errorMoreInfo, setErrorMoreInfo] = useState(null);
+  const [galleryPictures, setGalleryPictures] = useState([]);
+  const [externalLinks, setExternalLinks] = useState(null);
+  const [loadingExternalLinks, setLoadingExternalLinks] = useState(true);
+  const [errorExternalLinks, setErrorExternalLinks] = useState(null);
+  const [characters, setCharacters] = useState([]);
+  const [loadingCharacters, setLoadingCharacters] = useState(true);
+  const [errorCharacters, setErrorCharacters] = useState(null);
 
-  const moreInfo = moreInfoData?.moreinfo ? moreInfoData.moreinfo : "No additional information available.";
+  useEffect(() => {
+    const fetchMangaData = async () => {
+      try {
+        const cachedMangaDetails = sessionStorage.getItem(`mangaDetails_${id}`);
+        if (cachedMangaDetails) {
+          setManga(JSON.parse(cachedMangaDetails));
+          setLoading(false);
+        } else {
+          const mangaResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}`);
+          setManga(mangaResponse.data.data);
+          sessionStorage.setItem(`mangaDetails_${id}`, JSON.stringify(mangaResponse.data.data));
+          setLoading(false);
+        }
 
-  if (loading || loadingNews || loadingMoreInfo || loadingExternalLinks || loadingCharacters)
+        const reviewsResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/reviews`);
+        setReviews(reviewsResponse.data.data);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchMangaData();
+  }, [id]);
+
+  useEffect(() => {
+    if (!manga) return;
+
+    const fetchNews = async () => {
+      try {
+        const cachedNewsData = sessionStorage.getItem(`mangaNews_${id}`);
+        if (cachedNewsData) {
+          setNews(JSON.parse(cachedNewsData));
+          setLoadingNews(false);
+        } else {
+          const newsResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/news`);
+          setNews(newsResponse.data.data);
+          sessionStorage.setItem(`mangaNews_${id}`, JSON.stringify(newsResponse.data.data));
+          setLoadingNews(false);
+        }
+      } catch (error) {
+        setErrorNews(error.message);
+        setLoadingNews(false);
+      }
+    };
+
+    fetchNews();
+  }, [manga, id]);
+
+  useEffect(() => {
+    if (!manga) return;
+
+    const fetchMoreInfo = async () => {
+      try {
+        const moreInfoResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/moreinfo`);
+        setMoreInfo(moreInfoResponse.data.data.moreinfo);
+        setLoadingMoreInfo(false);
+      } catch (error) {
+        setErrorMoreInfo(error.message);
+        setLoadingMoreInfo(false);
+      }
+    };
+
+    fetchMoreInfo();
+  }, [manga, id]);
+
+  useEffect(() => {
+    const fetchGalleryPictures = async () => {
+      try {
+        const picturesResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/pictures`);
+        setGalleryPictures(picturesResponse.data.data); // Update GalleryPictures state
+      } catch (error) {
+        console.error("Failed to fetch manga pictures:", error);
+      }
+    };
+
+    fetchGalleryPictures();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchExternalLinks = async () => {
+      try {
+        const externalLinksResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/external`);
+        setExternalLinks(externalLinksResponse.data.data);
+        setLoadingExternalLinks(false);
+      } catch (error) {
+        setErrorExternalLinks(error.message);
+        setLoadingExternalLinks(false);
+      }
+    };
+
+    fetchExternalLinks();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const charactersResponse = await http.get(`https://api.jikan.moe/v4/manga/${id}/characters`);
+        setCharacters(charactersResponse.data.data);
+        setLoadingCharacters(false);
+      } catch (error) {
+        setErrorCharacters(error.message);
+        setLoadingCharacters(false);
+      }
+    };
+
+    fetchCharacters();
+  }, [id]);
+
+  const memoizedMangaDetails = useMemo(() => manga, [manga]);
+
+  if (loading || loadingMoreInfo || loadingExternalLinks || loadingCharacters)
     return (
       <div className="loading-icon">
         <Loader />
       </div>
     );
-
-  if (error || errorNews || errorMoreInfo || errorExternalLinks || errorCharacters)
-    return <div>Error: {error || errorNews || errorMoreInfo || errorExternalLinks || errorCharacters}</div>;
+  if (error || errorMoreInfo || errorExternalLinks || errorCharacters)
+    return <div>Error: {error || errorMoreInfo || errorExternalLinks || errorCharacters}</div>;
 
   return manga ? (
     <MangaDetails
-      manga={manga}
+      manga={memoizedMangaDetails}
       reviews={reviews}
       recentNews={news}
       loadingNews={loadingNews}

@@ -76,7 +76,7 @@
 /* Style for the title */
 .anime-title,
 .manga-title {
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: var(--title-color-light);
   text-shadow: #1a1a1a 5px 0 5px;
   text-decoration: underline;
@@ -225,6 +225,10 @@
 .synopsis-background-gap p {
   margin-bottom: 2em;
 }
+.id-theme {
+  margin-top: 2rem;
+  display: block;
+}
 .loading-icon {
   color: var(--loading-icon);
 }
@@ -251,6 +255,7 @@
   color: var(--strong-theme-inside);
   font-weight: bold;
 }
+
 /* Media queries for responsiveness */
 @media (max-width: 576px) {
   .detail-image {
