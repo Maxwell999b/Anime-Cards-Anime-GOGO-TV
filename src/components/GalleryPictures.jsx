@@ -71,7 +71,6 @@ const GalleryPictures = ({ pictures }) => {
               <img src={pictures[currentImageIndex].jpg.large_image_url} alt={`Zoomed galleryPic Picture`} />
               <FontAwesomeIcon icon={faTimes} className="zoom-out-button" onClick={handleZoomOut} />
             </div>
-            <FontAwesomeIcon icon="fa-solid fa-forward" />
             <FontAwesomeIcon icon={faChevronRight} className="zoomed-next" onClick={handleNext} />
           </div>
           <div className="page-overlay" onClick={handleZoomOut}></div>
