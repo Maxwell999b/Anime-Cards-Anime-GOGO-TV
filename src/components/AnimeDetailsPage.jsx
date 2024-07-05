@@ -2,10 +2,14 @@ import { useParams } from "react-router-dom";
 import AnimeDetails from "./AnimeDetails";
 import Loader from "./Loader";
 import useFetchData from "./useFetchData";
+import ErrorComponent from "./ErrorComponent";
 
 const AnimeDetailsPage = () => {
   const { id } = useParams();
   const delayTime = 350;
+  const handleRefresh = () => {
+    window.location.reload(); // Refresh the entire page
+  };
 
   const {
     data: anime,
@@ -105,7 +109,7 @@ const AnimeDetailsPage = () => {
   }
 
   if (isError) {
-    return <div>Error: {isError}</div>;
+    return <ErrorComponent onRefresh={handleRefresh} />;
   }
 
   return anime ? (

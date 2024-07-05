@@ -15,9 +15,11 @@ const http = rateLimit(axios.create(), {
 });
 
 axiosRetry(http, {
-  retries: 3, // Retry up to 3 times
-  retryDelay: axiosRetry.exponentialDelay, // Use exponential backoff strategy
-  retryCondition: (error) => axiosRetry.isRetryableError(error), // Retry on network errors or 429 rate limiting errors
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay,
+  retryCondition: (error) => {
+    return axiosRetry.isRetryableError(error) || (error.response && error.response.status === 429);
+  },
 });
 
 export default http;
