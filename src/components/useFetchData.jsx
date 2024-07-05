@@ -43,17 +43,30 @@ const useFetchData = (url, cacheKey, delayTime) => {
         let cachedData = sessionStorage.getItem(cacheKey);
         if (cachedData) {
           setData(JSON.parse(cachedData));
+          setLoading(false);
+          return; // Exit early if data is cached
+        }
+
+        let lruCachedData = lruCache.get(cacheKey);
+        if (lruCachedData) {
+          setData(lruCachedData);
+          setLoading(false);
+          return; // Exit early if data is in LRU cache
+        }
+
+        let response = await http.get(url, { delayTime });
+        let responseData = response.data.data || [];
+
+        // Handle specific HTTP status codes
+        if (response.status === 404) {
+          setError(`Data not found for ${url}`);
+        } else if (response.status === 429) {
+          setError(`Rate limit exceeded for ${url}`);
         } else {
-          let lruCachedData = lruCache.get(cacheKey);
-          if (lruCachedData) {
-            setData(lruCachedData);
-          } else {
-            let response = await http.get(url, { delayTime });
-            let responseData = response.data.data || [];
-            sessionStorage.setItem(cacheKey, JSON.stringify(responseData));
-            lruCache.set(cacheKey, responseData);
-            setData(responseData);
-          }
+          // Cache data
+          sessionStorage.setItem(cacheKey, JSON.stringify(responseData));
+          lruCache.set(cacheKey, responseData);
+          setData(responseData);
         }
       } catch (error) {
         setError(error.message);
