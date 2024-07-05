@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import http from "./services/http";
 import AnimeDetails from "./AnimeDetails";
 import Loader from "./Loader";
-
+// test 3
 const AnimeDetailsPage = () => {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
