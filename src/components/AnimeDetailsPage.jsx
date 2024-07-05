@@ -5,74 +5,63 @@ import useFetchData from "./useFetchData";
 
 const AnimeDetailsPage = () => {
   const { id } = useParams();
-  const delayTime = 350; // delay time between requests
+  const delayTime = 350;
 
   const {
     data: anime,
     loading: loadingAnime,
     error: errorAnime,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}`, `animeDetails_${id}`, delayTime);
-
   const {
     data: reviews,
     loading: loadingReviews,
     error: errorReviews,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/reviews`, `animeReviews_${id}`, delayTime);
-
   const {
     data: news,
     loading: loadingNews,
     error: errorNews,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/news`, `animeNews_${id}`, delayTime);
-
   const {
     data: episodes,
     loading: loadingEpisodes,
     error: errorEpisodes,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/episodes`, `animeEpisodes_${id}`, delayTime);
-
   const {
     data: voiceActors,
     loading: loadingVoiceActors,
     error: errorVoiceActors,
   } = useFetchData(`https://api.jikan.moe/v4/characters/${id}/voices`, `animeVoiceActors_${id}`, delayTime);
-
   const {
     data: galleryPictures,
     loading: loadingGalleryPictures,
     error: errorGalleryPictures,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/pictures`, `animeGalleryPictures_${id}`, delayTime);
-
   const {
     data: characters,
     loading: loadingCharacters,
     error: errorCharacters,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/characters`, `animeCharacters_${id}`, delayTime);
-
   const {
     data: externalLinks,
     loading: loadingExternalLinks,
     error: errorExternalLinks,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/external`, `animeExternalLinks_${id}`, delayTime);
-
   const {
     data: staff,
     loading: loadingStaff,
     error: errorStaff,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/staff`, `animeStaff_${id}`, delayTime);
-
   const {
     data: moreInfo,
     loading: loadingMoreInfo,
     error: errorMoreInfo,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/moreinfo`, `animeMoreInfo_${id}`, delayTime);
-
   const {
     data: streaming,
     loading: loadingStreaming,
     error: errorStreaming,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/streaming`, `animeStreaming_${id}`, delayTime);
-
   const {
     data: themes,
     loading: loadingThemes,
@@ -92,7 +81,6 @@ const AnimeDetailsPage = () => {
     loadingMoreInfo ||
     loadingStreaming ||
     loadingThemes;
-
   const isError =
     errorAnime ||
     errorReviews ||
