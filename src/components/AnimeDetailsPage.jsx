@@ -5,7 +5,7 @@ import useFetchData from "./useFetchData";
 
 const AnimeDetailsPage = () => {
   const { id } = useParams();
-  const delayTime = 500;
+  const delayTime = 350;
 
   const {
     data: anime,
