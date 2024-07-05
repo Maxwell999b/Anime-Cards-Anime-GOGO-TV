@@ -5,7 +5,6 @@ import useFetchData from "./useFetchData";
 
 const AnimeDetailsPage = () => {
   const { id } = useParams();
-<<<<<<< HEAD
   const delayTime = 350; // delay time between requests
 
   const {
@@ -20,28 +19,10 @@ const AnimeDetailsPage = () => {
     error: errorReviews,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/reviews`, `animeReviews_${id}`, delayTime);
 
-||||||| merged common ancestors
-  const { data: anime, loading, error } = useFetchData(`https://api.jikan.moe/v4/anime/${id}`, `animeDetails_${id}`);
-  const { data: reviews } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/reviews`, `animeReviews_${id}`);
-=======
-  const delayTime = 350; // delay time between requests
-
-  const {
-    data: anime,
-    loading,
-    error,
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}`, `animeDetails_${id}`, delayTime);
-  const { data: reviews } = useFetchData(
-    `https://api.jikan.moe/v4/anime/${id}/reviews`,
-    `animeReviews_${id}`,
-    delayTime
-  );
->>>>>>> d36af9a68be66ea23be539e963cfc1768147facc
   const {
     data: news,
     loading: loadingNews,
     error: errorNews,
-<<<<<<< HEAD
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/news`, `animeNews_${id}`, delayTime);
 
   const {
@@ -62,95 +43,36 @@ const AnimeDetailsPage = () => {
     error: errorGalleryPictures,
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/pictures`, `animeGalleryPictures_${id}`, delayTime);
 
-||||||| merged common ancestors
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/news`, `animeNews_${id}`);
-  const { data: episodes } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/episodes`, `animeEpisodes_${id}`);
-  const { data: voiceActors } = useFetchData(
-    `https://api.jikan.moe/v4/characters/${id}/voices`,
-    `animeVoiceActors_${id}`
-  );
-  const { data: galleryPictures } = useFetchData(
-    `https://api.jikan.moe/v4/anime/${id}/pictures`,
-    `animeGalleryPictures_${id}`
-  );
-=======
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/news`, `animeNews_${id}`, delayTime);
-  const { data: episodes } = useFetchData(
-    `https://api.jikan.moe/v4/anime/${id}/episodes`,
-    `animeEpisodes_${id}`,
-    delayTime
-  );
-  const { data: voiceActors } = useFetchData(
-    `https://api.jikan.moe/v4/characters/${id}/voices`,
-    `animeVoiceActors_${id}`,
-    delayTime
-  );
-  const { data: galleryPictures } = useFetchData(
-    `https://api.jikan.moe/v4/anime/${id}/pictures`,
-    `animeGalleryPictures_${id}`,
-    delayTime
-  );
->>>>>>> d36af9a68be66ea23be539e963cfc1768147facc
   const {
     data: characters,
     loading: loadingCharacters,
     error: errorCharacters,
-<<<<<<< HEAD
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/characters`, `animeCharacters_${id}`, delayTime);
 
-||||||| merged common ancestors
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/characters`, `animeCharacters_${id}`);
-=======
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/characters`, `animeCharacters_${id}`, delayTime);
->>>>>>> d36af9a68be66ea23be539e963cfc1768147facc
   const {
     data: externalLinks,
     loading: loadingExternalLinks,
     error: errorExternalLinks,
-<<<<<<< HEAD
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/external`, `animeExternalLinks_${id}`, delayTime);
 
-||||||| merged common ancestors
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/external`, `animeExternalLinks_${id}`);
-=======
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/external`, `animeExternalLinks_${id}`, delayTime);
->>>>>>> d36af9a68be66ea23be539e963cfc1768147facc
   const {
     data: staff,
     loading: loadingStaff,
     error: errorStaff,
-<<<<<<< HEAD
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/staff`, `animeStaff_${id}`, delayTime);
 
-||||||| merged common ancestors
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/staff`, `animeStaff_${id}`);
-=======
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/staff`, `animeStaff_${id}`, delayTime);
->>>>>>> d36af9a68be66ea23be539e963cfc1768147facc
   const {
     data: moreInfo,
     loading: loadingMoreInfo,
     error: errorMoreInfo,
-<<<<<<< HEAD
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/moreinfo`, `animeMoreInfo_${id}`, delayTime);
 
-||||||| merged common ancestors
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/moreinfo`, `animeMoreInfo_${id}`);
-=======
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/moreinfo`, `animeMoreInfo_${id}`, delayTime);
->>>>>>> d36af9a68be66ea23be539e963cfc1768147facc
   const {
     data: streaming,
     loading: loadingStreaming,
     error: errorStreaming,
-<<<<<<< HEAD
   } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/streaming`, `animeStreaming_${id}`, delayTime);
 
-||||||| merged common ancestors
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/streaming`, `animeStreaming_${id}`);
-=======
-  } = useFetchData(`https://api.jikan.moe/v4/anime/${id}/streaming`, `animeStreaming_${id}`, delayTime);
->>>>>>> d36af9a68be66ea23be539e963cfc1768147facc
   const {
     data: themes,
     loading: loadingThemes,
