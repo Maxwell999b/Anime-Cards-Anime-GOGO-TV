@@ -224,7 +224,7 @@
 /* Suitable for small tablets */
 @media (min-width: 481px) and (max-width: 768px) {
   .reviews-container {
-    max-width: 25rem; /* Small tablets */
+    max-width: 19rem; /* Small tablets */
   }
 }
 
@@ -232,7 +232,7 @@
 /* Suitable for tablets */
 @media (min-width: 769px) and (max-width: 1024px) {
   .reviews-container {
-    max-width: 35rem; /* Tablets */
+    max-width: 31rem; /* Tablets */
   }
 }
 
@@ -256,7 +256,7 @@
 /* Suitable for very large desktops */
 @media (min-width: 1200px) and (max-width: 1280px) {
   .reviews-container {
-    max-width: 50rem; /* Suitable for very large desktops */
+    max-width: 45rem; /* Suitable for very large desktops */
   }
 }
 

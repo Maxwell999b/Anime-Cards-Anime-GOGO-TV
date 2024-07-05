@@ -65,7 +65,21 @@
   background-color: var(--card-tags);
   color: var(--mode-theme-primary);
 }
+/* Medium devices (tablets, 769px and up) to large devices (desktops, 1024px and down) */
+/* Suitable for tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .characters-table {
+    max-width: 31rem; /* Tablets */
+  }
+}
 
+/* Extra large devices (large desktops, 1200px and up) to extra extra large devices (very large desktops, 1280px and down) */
+/* Suitable for very large desktops */
+@media (min-width: 1200px) and (max-width: 1280px) {
+  .characters-table {
+    max-width: 45rem; /* Suitable for very large desktops */
+  }
+}
 /* iPad Pro 11" (both landscape and portrait) */
 @media (min-width: 834px) and (max-width: 1194px) and (orientation: portrait) and (aspect-ratio: 4/3),
   (min-width: 1194px) and (max-width: 1668px) and (orientation: landscape) and (aspect-ratio: 4/3) {

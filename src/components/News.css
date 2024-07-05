@@ -204,7 +204,7 @@
 /* Suitable for small tablets */
 @media (min-width: 481px) and (max-width: 768px) {
   .news-container {
-    max-width: 25rem; /* Suitable for small tablets */
+    max-width: 19rem; /* Suitable for small tablets */
   }
 }
 
@@ -212,7 +212,7 @@
 /* Suitable for tablets */
 @media (min-width: 769px) and (max-width: 1024px) {
   .news-container {
-    max-width: 35rem; /* Suitable for tablets */
+    max-width: 31rem; /* Suitable for tablets */
   }
 }
 
@@ -236,7 +236,7 @@
 /* Suitable for very large desktops */
 @media (min-width: 1200px) and (max-width: 1280px) {
   .news-container {
-    max-width: 50rem; /* Suitable for very large desktops */
+    max-width: 45rem; /* Suitable for very large desktops */
   }
 }
 /* iPad Pro 11" (both landscape and portrait) */

@@ -123,13 +123,13 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
   .voice-actors-container {
-    max-width: 25rem; /* Adjust for small tablets */
+    max-width: 19rem; /* Adjust for small tablets */
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .voice-actors-container {
-    max-width: 35rem; /* Adjust for tablets */
+    max-width: 31rem; /* Adjust for tablets */
   }
 }
 

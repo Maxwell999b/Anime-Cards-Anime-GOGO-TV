@@ -124,13 +124,13 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
   .galleryPic-pictures-container {
-    max-width: 25rem;
+    max-width: 19rem;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .galleryPic-pictures-container {
-    max-width: 35rem;
+    max-width: 31rem;
   }
 }
 

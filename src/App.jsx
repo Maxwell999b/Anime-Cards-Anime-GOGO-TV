@@ -18,9 +18,9 @@ export default function App() {
   //   } else if (screenWidth <= 768) {
   //     document.body.style.zoom = "88%"; // Zoom level for small tablets
   //   } else if (screenWidth <= 1024) {
-  //     document.body.style.zoom = "100%"; // Zoom level for tablets
+  //     document.body.style.zoom = "96%"; // Zoom level for tablets
   //   } else if (screenWidth <= 1200) {
-  //     document.body.style.zoom = "100%"; // Zoom level for small desktops
+  //     document.body.style.zoom = "94%"; // Zoom level for small desktops
   //   } else if (screenWidth <= 1280) {
   //     document.body.style.zoom = "100%"; // Zoom level for very large desktops
   //   } else {
