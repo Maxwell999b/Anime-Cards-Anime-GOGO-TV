@@ -5,6 +5,8 @@ import AnimeDetailsPage from "./components/AnimeDetailsPage";
 import MangaCards from "./components/MangaCards";
 import MangaDetailsPage from "./components/MangaDetailsPage";
 import Navbar from "./components/Navbar";
+import BackButton from "./components/BackButton";
+import ScrollToTopButton from "./components/BackToTopButton";
 // import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 
@@ -76,6 +78,8 @@ export default function App() {
             <Route path="/manga/:id" element={<MangaDetailsPage />} />
           </Routes>
         </div>
+        <BackButton />
+        <ScrollToTopButton />
         {/* <Footer /> */}
       </div>
     </Router>

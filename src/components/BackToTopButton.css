@@ -1,0 +1,44 @@
+.scroll-to-top-btn {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  font-weight: bold;
+  background-color: var(--input-search-border);
+  color: var(--details-ids-color-light);
+  border: 1px solid var(--details-values-color-light);
+}
+.light-mode .scroll-to-top-btn {
+  background-color: var(--input-search-border);
+  color: var(--details-ids-color-light);
+  border: 1px solid var(--details-values-color-light);
+}
+
+.scroll-to-top-btn:hover {
+  cursor: pointer;
+  background-color: var(--details-values-color-light);
+}
+.light-mode .scroll-to-top-btn:hover {
+  cursor: pointer;
+  background-color: var(--details-values-color-light);
+}
+
+.scroll-to-top-btn:active {
+  background-color: var(--details-values-color-light-2);
+}
+.light-mode .scroll-to-top-btn:active {
+  background-color: var(--details-values-color-light-2);
+}
+
+.scroll-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
