@@ -53,9 +53,9 @@ const AnimeEpisodes = ({ episodes }) => {
 
   const sliderSettings = {
     infinite: true,
-    speed: 2000,
+    speed: 1000,
     slidesToShow: 1,
-    slidesToScroll: 5,
+    slidesToScroll: 1,
     autoplay: true,
     arrows: false,
     beforeChange: (oldIndex, newIndex) => {
