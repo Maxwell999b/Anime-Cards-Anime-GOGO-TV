@@ -1,4 +1,4 @@
-# Anime-Cards-Anime-GOGO-TV
+## Anime-Cards-Anime-GOGO-TV
 
 An interactive web application built using React.js to showcase a frontend developer portfolio and anime information. It includes features such as a dynamically switchable light and dark mode, search functionality, and a detailed display of anime cards.
 
