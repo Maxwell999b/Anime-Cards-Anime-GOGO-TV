@@ -4,8 +4,6 @@ An interactive web application built using React.js to showcase a frontend devel
 
 ## Features
 
-## testing commit
-
 - **Light and Dark Mode Toggle**
 - **Responsive Design**
 - **Anime Search and Display**
