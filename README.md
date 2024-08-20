@@ -4,24 +4,26 @@ An interactive web application built using React.js to showcase a frontend devel
 
 ## Features
 
--   **Light and Dark Mode Toggle**
--   **Responsive Design**
--   **Anime Search and Display**
--   **Detailed Anime Information**
--   **Contact Links** (LinkedIn, WhatsApp)
+## testing commit
+
+- **Light and Dark Mode Toggle**
+- **Responsive Design**
+- **Anime Search and Display**
+- **Detailed Anime Information**
+- **Contact Links** (LinkedIn, WhatsApp)
 
 ## Technologies Used
 
--   **React.js**
--   **HTML5**
--   **CSS3**
--   **JavaScript**
--   **Axios** (for fetching anime data from the API)
--   **React Router** (for navigation)
--   **Vercel** (for deployment)
--   **Git & GitHub** (for version control and collaboration)
--   **Slick Carousel** (for image sliders)
--   **Material-UI** (for styling and components)
+- **React.js**
+- **HTML5**
+- **CSS3**
+- **JavaScript**
+- **Axios** (for fetching anime data from the API)
+- **React Router** (for navigation)
+- **Vercel** (for deployment)
+- **Git & GitHub** (for version control and collaboration)
+- **Slick Carousel** (for image sliders)
+- **Material-UI** (for styling and components)
 
 ## API
 
@@ -35,55 +37,54 @@ This project uses the Jikan API for fetching anime data.
 
 #### Anime Endpoints
 
--   Anime Details: `https://api.jikan.moe/v4/anime/${id}`
--   Anime News: `https://api.jikan.moe/v4/anime/${id}/news`
--   Anime Episodes: `https://api.jikan.moe/v4/anime/${id}/episodes`
--   Anime Reviews: `https://api.jikan.moe/v4/anime/${id}/reviews`
--   Character Voices: `https://api.jikan.moe/v4/characters/${id}/voices`
--   Anime Pictures: `https://api.jikan.moe/v4/anime/${id}/pictures`
--   Anime Characters: `https://api.jikan.moe/v4/anime/${id}/characters`
--   External Links: `https://api.jikan.moe/v4/anime/${id}/external`
--   Anime Staff: `https://api.jikan.moe/v4/anime/${id}/staff`
--   More Info: `https://api.jikan.moe/v4/anime/${id}/moreinfo`
--   Streaming Links: `https://api.jikan.moe/v4/anime/${id}/streaming`
--   Anime Themes: `https://api.jikan.moe/v4/anime/${id}/themes`
+- Anime Details: `https://api.jikan.moe/v4/anime/${id}`
+- Anime News: `https://api.jikan.moe/v4/anime/${id}/news`
+- Anime Episodes: `https://api.jikan.moe/v4/anime/${id}/episodes`
+- Anime Reviews: `https://api.jikan.moe/v4/anime/${id}/reviews`
+- Character Voices: `https://api.jikan.moe/v4/characters/${id}/voices`
+- Anime Pictures: `https://api.jikan.moe/v4/anime/${id}/pictures`
+- Anime Characters: `https://api.jikan.moe/v4/anime/${id}/characters`
+- External Links: `https://api.jikan.moe/v4/anime/${id}/external`
+- Anime Staff: `https://api.jikan.moe/v4/anime/${id}/staff`
+- More Info: `https://api.jikan.moe/v4/anime/${id}/moreinfo`
+- Streaming Links: `https://api.jikan.moe/v4/anime/${id}/streaming`
+- Anime Themes: `https://api.jikan.moe/v4/anime/${id}/themes`
 
 #### Manga Endpoints
 
--   Manga Details: `https://api.jikan.moe/v4/manga/${id}`
--   Manga Reviews: `https://api.jikan.moe/v4/manga/${id}/reviews`
--   Manga News: `https://api.jikan.moe/v4/manga/${id}/news`
--   More Info: `https://api.jikan.moe/v4/manga/${id}/moreinfo`
--   Manga Pictures: `https://api.jikan.moe/v4/manga/${id}/pictures`
--   External Links: `https://api.jikan.moe/v4/manga/${id}/external`
--   Manga Characters: `https://api.jikan.moe/v4/manga/${id}/characters`
+- Manga Details: `https://api.jikan.moe/v4/manga/${id}`
+- Manga Reviews: `https://api.jikan.moe/v4/manga/${id}/reviews`
+- Manga News: `https://api.jikan.moe/v4/manga/${id}/news`
+- More Info: `https://api.jikan.moe/v4/manga/${id}/moreinfo`
+- Manga Pictures: `https://api.jikan.moe/v4/manga/${id}/pictures`
+- External Links: `https://api.jikan.moe/v4/manga/${id}/external`
+- Manga Characters: `https://api.jikan.moe/v4/manga/${id}/characters`
 
 ## Installation
 
 1.  Clone the repository.
-    
+
     ```bash
     git clone https://github.com/yourusername/Anime-Cards-Anime-GOGO-TV.git
     ```
-    
+
 2.  Navigate to the project directory.
-    
+
     ```bash
     cd Anime-Cards-Anime-GOGO-TV
     ```
-    
+
 3.  Install dependencies.
-    
+
     ```bash
     npm install
     ```
-    
+
 4.  Start the development server.
-    
+
     ```bash
     npm run dev
     ```
-    
 
 ## Usage
 
